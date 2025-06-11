@@ -88,6 +88,40 @@ body {
   line-height: 24px;
   letter-spacing: 0px;
 }
+.ya_tienes_cuenta
+{
+  position: absolute;
+  font-family: Inter;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  left: 907px;
+  top: 700px;
+}
+
+.olvidaste_contraseña
+{
+  position: absolute;
+  font-family: Inter;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  left: 880px;
+  top: 680px;
+}
+.no_tienecuenta
+{
+    position: absolute;
+  font-family: Inter;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  left: 903.9px;
+  top: 720px;
+}
 
 input[type="text"] {
     position: absolute;
@@ -214,17 +248,6 @@ input::placeholder {
   background-color: #00f7ff;
 }
 
-.ya_tienes_cuenta
-{
-  position: absolute;
-  font-family: Inter;
-  font-weight: 200;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0px;
-  left: 907px;
-  top: 700px;
-}
 .boton_registrar {
   position: absolute;
   background-color: #00f7ff;
@@ -268,6 +291,21 @@ input::placeholder {
   margin-top: 10px;
   left: 730px;
   top: 740px;
+  min-height: 45px;
+  min-width: 500px;
+}
+.boton_registrar_cuenta2 {
+  position: absolute;
+  background-color: #1e3a3a;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  left: 730px;
+  top: 755px;
   min-height: 45px;
   min-width: 500px;
 }
