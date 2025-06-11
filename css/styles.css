@@ -19,19 +19,118 @@ body {
 }
 .logo{
     position: absolute;
-    left: 410px;
-    top: -25px;
-    width: 15%;
+    left: 440px;
+    top: -10px;
+    width: 270px;
     height: auto;
 }
 .subtitulo_crea_tu_cuenta
 {
     position: absolute;
-    left: 850px;
-    top: 100px;
+    left: 870px;
+    top: 230px;
     font-family: Inter;
     font-weight: 700;
     font-size: 28px;
+}
 
+.instrucion
+{
+    position: absolute;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #8CCCCF;
+    left: 730px;
+    top: 545px;
+}
+
+.tyc{
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    
+}
+
+input[type="text"] {
+    position: absolute;
+    width: 500px;
+    height: 56px;
+    border-radius: 12px;
+    padding: 16px;
+    background: #214A4A;
+    border: none;
+    outline: none;
+    left: 730px;
+    top: 300px;
+    min-height: 60px;
+}
+
+input[type="email"]
+{
+    position: absolute;
+    width: 500px;
+    height: 56px;
+    border-radius: 12px;
+    padding: 16px;
+    background: #214A4A;
+    border: none;
+    outline: none;
+    left: 730px;
+    top: 385px;
+    min-height: 60px;
+}
+input[type="password"]
+{
+    position: absolute;
+    width: 500px;
+    height: 56px;
+    border-radius: 12px;
+    padding: 16px;
+    background: #214A4A;
+    border: none;
+    outline: none;
+    left: 730px;
+    top: 470px;
+    min-height: 60px;
+}
+input::placeholder {
+  color: #8CCCCF;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+.checkbox-container {
+  display: flex;
+  margin: 10px 0;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #00f7ff;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn-secondary {
+  background-color: #1e3a3a;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  color: white;
+  margin-top: 10px;
 }
 
