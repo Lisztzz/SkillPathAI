@@ -1,0 +1,236 @@
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #122121;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px 12px 48px;
+      background: #122121;
+      position: relative;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .header-logo {
+      width: 48px;
+      height: 48px;
+    }
+    .logo-title {
+      font-size: 1.7rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    .logo-title .skillpath {
+      color: #38bdf8;
+    }
+    .logo-title .ia {
+      color: #fff;
+      margin-left: 2px;
+    }
+    .header-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .search-bar-header input {
+      width: 340px;
+      padding: 10px 16px;
+      border: 1px solid #38bdf8;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      background: #e0f2fe;
+      transition: border 0.2s;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-left: 24px;
+    }
+    .planes-btn {
+      background: #38bdf8;
+      color: #fff;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      min-width: 100px;
+    }
+    .user-icon {
+      font-size: 1.5rem;
+      background: #e0f2fe;
+      border-radius: 50%;
+      padding: 8px 12px;
+      color: #0284c7;
+      min-width: 40px;
+      text-align: center;
+    }
+    .header-divider {
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      margin: 0 auto 0 auto;
+      border: none;
+      margin-top: 12px;
+      opacity: 0.7;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      background: transparent;
+      width: 220px;
+      padding: 0 0 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-right: 1px solid #122121;
+      margin-top: 0;
+    }
+    .sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 32px 0 0 0;
+      width: 100%;
+    }
+    .sidebar nav li {
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      color: #e0f2fe;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sidebar nav li.active, .sidebar nav li:hover {
+      background: #122121;
+      color: #fff;
+      font-weight: bold;
+    }
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+    }
+    .soporte-box {
+      max-width: 700px;
+      width: 100%;
+      margin: 20px auto 0 auto;
+      background: #122121;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 32px 36px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .soporte-box h2 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 24px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .soporte-box label {
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 8px;
+      align-self: flex-start;
+    }
+    .soporte-box input[type="text"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px 16px;
+      border: 1px solid #38bdf8;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      background: #e0f2fe;
+      margin-bottom: 24px;
+      transition: border 0.2s;
+      display: block;
+    }
+    .soporte-box textarea {
+      width: 100%;
+      max-width: 400px;
+      min-height: 80px;
+      padding: 12px 16px;
+      border: 1px solid #38bdf8;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      background: #e0f2fe;
+      margin-bottom: 32px;
+      resize: vertical;
+      transition: border 0.2s;
+      display: block;
+    }
+    .enviar-btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .enviar-btn:hover {
+      background: #0369a1;
+    }
+    @media (max-width: 900px) {
+      .header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        padding: 24px 12px 8px 12px;
+      }
+      .header-divider {
+        margin-top: 8px;
+      }
+      .soporte-box {
+        padding: 24px 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px;
+        border-right: none;
+        border-bottom: 1px solid #122121;
+      }
+      .sidebar nav ul {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 0;
+      }
+      .sidebar nav li {
+        margin-bottom: 0;
+        padding: 8px 10px;
+      }
+      .logo-title {
+        margin-bottom: 0;
+        margin-right: 16px;
+      }
+    }
