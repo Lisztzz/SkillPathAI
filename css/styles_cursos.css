@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
   background-color: #0F2424;
   color: white;
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 a {
@@ -383,4 +386,68 @@ main.container {
     bottom: 70px !important;
     right: 20px;
   }
+}
+.cursos-listado {
+  padding: 2rem;
+  margin-left: 180px; /* igual al ancho de .sidebar */
+  transition: margin-left 0.3s;
+}
+body.sidebar-collapsed .cursos-listado {
+  margin-left: 60px; /* igual al ancho de .sidebar.collapsed */
+}
+.titulo-cursos {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+.badge-pro {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #00F7FF;
+  color: #0F2424;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 0.25em 0.7em;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  z-index: 2;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+.curso-card {
+  position: relative;
+  background: #1a3b3b;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.curso-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: #214A4A;
+}
+
+.curso-info {
+  padding: 1rem;
+}
+
+.curso-titulo {
+  color: #00F7FF;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.curso-descripcion {
+  color: #8CCCCF;
+  font-size: 0.95rem;
 }
