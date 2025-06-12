@@ -262,6 +262,7 @@ input::placeholder {
   top: 625px;
   min-height: 45px;
   min-width: 500px;
+  cursor: pointer;
 }
 .boton_iniciar_sesion_2
 {
@@ -278,6 +279,7 @@ input::placeholder {
   top: 605px;
   min-height: 45px;
   min-width: 500px;
+  cursor: pointer;
 }
 .boton_iniciar_sesion {
   position: absolute;
@@ -293,6 +295,7 @@ input::placeholder {
   top: 740px;
   min-height: 45px;
   min-width: 500px;
+  cursor: pointer;
 }
 .boton_registrar_cuenta2 {
   position: absolute;
@@ -308,4 +311,5 @@ input::placeholder {
   top: 755px;
   min-height: 45px;
   min-width: 500px;
+  cursor: pointer;
 }

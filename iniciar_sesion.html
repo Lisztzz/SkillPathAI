@@ -15,7 +15,7 @@
     <h2 class="subtitulo_iniciar_sesion">
         <strong style="color:#FFFF;">Iniciar sesión</strong>
     </h2>
-    <form>
+    <form id="form-iniciar-sesion">
         <p class="texto_email">
             <strong style="color:#FFFF;">Email</strong>
         </p>
@@ -30,7 +30,7 @@
                 <strong style="color:#FFFF;">Recordarme</strong>
             </label>
         </div>
-        <button type="submit" class="boton_iniciar_sesion_2">
+        <button href="index.html"  class="boton_iniciar_sesion_2">
             Iniciar sesion
         </button>
         <p class="olvidaste_contraseña">
@@ -43,6 +43,18 @@
                 ¿No tienes cuenta?
             </strong>
         </p>
+        
         <button type="button" class="boton_registrar_cuenta2">Registrar cuenta</button>
     </form>
+    <script>
+        document.getElementById('form-iniciar-sesion').addEventListener('submit', function(e) {
+        e.preventDefault();
+        window.location.href = 'index.html';
+        });
+    </script>
+    <script>
+        document.querySelector('.boton_registrar_cuenta2').addEventListener('click', function() {
+        window.location.href = 'registrar_cuenta.html';
+        });
+    </script>
 </body>
