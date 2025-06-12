@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPathAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles_iniciar_registrar.css">
+</head>
+<body>
+    <h1 class="titulo_principal"> 
+        <strong style="color: #00F7FF;">Skillpath</strong><strong style="color: white;">IA</strong>
+    </h1>
+    <img class="logo" src="assets/icons/logo.png" alt="Logo">
+    <h2 class="subtitulo_iniciar_sesion">
+        <strong style="color:#FFFF;">Iniciar sesión</strong>
+    </h2>
+    <form id="form-iniciar-sesion">
+        <p class="texto_email">
+            <strong style="color:#FFFF;">Email</strong>
+        </p>
+        <input type="email_1" placeholder="Email" required>
+        <p class="texto_contraseña">
+            <strong style="color:#FFFF;">Contraseña</strong>
+        </p>
+        <input type="password" placeholder="Contraseña" required>
+        <div class="checkbox-container_2">
+            <input type="checkbox" id="terminos">
+            <label for="terminos" class="tyc">
+                <strong style="color:#FFFF;">Recordarme</strong>
+            </label>
+        </div>
+        <button href="index.html"  class="boton_iniciar_sesion_2">
+            Iniciar sesion
+        </button>
+        <p class="olvidaste_contraseña">
+            <strong style="color:#8CCCCF;">
+                ¿Olvidaste tu contraseña?
+            </strong>
+        </p>
+        <p class="no_tienecuenta">
+            <strong style="color:#8CCCCF;">
+                ¿No tienes cuenta?
+            </strong>
+        </p>
+        
+        <button type="button" class="boton_registrar_cuenta2">Registrar cuenta</button>
+    </form>
+    <script>
+        document.getElementById('form-iniciar-sesion').addEventListener('submit', function(e) {
+        e.preventDefault();
+        window.location.href = 'index.html';
+        });
+    </script>
+    <script>
+        document.querySelector('.boton_registrar_cuenta2').addEventListener('click', function() {
+        window.location.href = 'registrar_cuenta.html';
+        });
+    </script>
+</body>
