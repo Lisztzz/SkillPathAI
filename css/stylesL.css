@@ -1,0 +1,676 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0F2424;
+  color: white;
+  font-family: sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;             /* Fija la posición en la parte superior */
+  top: 0;                      /* Asegura que esté en la parte superior */
+  left: 0;
+  width: 100%;                 /* Que ocupe todo el ancho */
+  z-index: 1000;               /* Asegura que esté por encima de otros elementos */
+  display: flex;
+  align-items: center;
+  background: #0F2424;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #8CCCCF;
+}
+main.container {
+  padding-top: 80px;  /* Ajusta este valor al alto del navbar */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  order: 1;
+  text-decoration: none;
+}
+.navbar-brand img {
+  height: 42px;
+  margin-right: none;
+  margin-left: 1rem;
+  align-items: center;
+}
+
+.brand-skill {
+  color: #00F7FF;
+  font-weight: bold;
+  /*font-size: 1.5rem;*/
+}
+
+.brand-ia {
+  color: #FFF;
+  font-weight: bold;
+  /*font-size: 1.5rem;*/
+}
+
+.navbar-busqueda {
+  max-width: 600px;
+  align-items: center;
+  gap: 1rem;
+  flex: 1; /* Ocupa el espacio disponible */
+  order: 3;
+}
+
+.search-form {
+  flex: 1;
+  max-width: 600px;
+}
+
+.search-form input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #214A4A;
+  color: #8CCCCF;
+}
+
+.menu-toggle {
+  display: none;
+  order: 7;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  order: 8;
+  z-index: 2100;
+}
+/* Los links que se colapsan */
+.navbar-cursos,
+.navbar-precios,
+.navbar-registro {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar-cursos {
+  order: 2;
+}
+
+.navbar-precios {
+  order: 4;
+}
+
+.navbar-registro {
+  order: 6;
+  margin-right: 5px;
+}
+/*siempre visible*/
+.navbar-login {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  order: 5;
+}
+.navbar-derecha {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+  order: 9; /* para que se quede al final */
+}
+
+.btn-primary, .btn-outline, .btn-cursos {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: #00F7FF;
+  color: #000;
+}
+.btn-outline {
+  background-color: #214A4A;
+  color: #FFF;
+}
+.btn-cursos {
+  background-color: #214A4A;
+  color: #FFF;
+}
+
+.linea-divisoria {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #8CCCCF;
+}
+/* Panel lateral oculto por defecto */
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 250px;
+  height: 100vh;
+  background: #0F2424;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  transition: right 0.3s;
+  z-index: 2000;
+}
+
+.close-offcanvas {
+  font-size: 2rem;
+  color: #8CCCCF;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+/* Mostrar el panel cuando el menú está abierto */
+.menu-open .offcanvas-menu {
+  right: 0;
+}
+/* Hero */
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.hero img {
+  flex: 1 1 50%;
+  max-width: 50%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 10px 5px #214A4A;
+}
+
+.hero-text {
+  flex: 1 1 50%;
+  max-width: 50%;
+  text-align: center;
+  font-size: 30px;
+}
+
+.hero-text h2 {
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  margin-bottom: 1.5rem;
+}
+
+.hero-text a.btn-primary {
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* Features & Courses */
+.features, .courses {
+  margin-bottom: 4rem;
+}
+.features-text {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.features-text h3 {
+    font-size: 36px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background-color: #1a3b3b;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid#2E696B;
+}
+.card i {
+    font-size: 40px;
+    color: #ffffff;
+}.card p {
+    color: #8CCCCF;
+}
+
+/* Quita el padding solo en los cards con imagen */
+.card.course {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Haz que la imagen ocupe todo el ancho y solo tenga border-radius arriba */
+.card.course img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px 8px 0 0; /* Solo esquinas superiores redondeadas */
+  margin: 0;
+}
+.card-content {
+  padding: 1rem;
+}
+/* Testimonios */
+.testimonials {
+  margin-bottom: 4rem;
+}
+
+.testimonial {
+  background-color: none;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+  max-width: 100%;
+}
+
+.testimonial-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.person-icon {
+  font-size: 40px;
+  color: #00F7FF;
+  border: 2px solid #8CCCCF;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.testimonial-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.date {
+  font-size: 20px;
+  color: #8CCCCF;
+  line-height: 1.2;
+}
+
+.testimonial-comment {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ffffff;
+}
+.testimonial-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.testimonial-actions button {
+  background: none;
+  border: none;
+  color: #00F7FF;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.testimonial-actions button:hover {
+  color: #8CCCCF;
+}
+
+.like-count,
+.dislike-count {
+  font-size: 1rem;
+  color: #ffffff;
+}
+/* Pricing */
+.pricing {
+  text-align: center;
+  margin: 4rem 0;
+}
+.pricing h2 {
+  font-size: 36px;
+}
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pricing-card {
+  background-color: #1a3b3b;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+}
+
+.pricing-card h3 {
+  margin-bottom: 0.5rem;
+  color: #00F7FF;
+}
+
+.pricing-card .price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.pricing-card ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.pricing-card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #00F7FF;
+}
+
+.featured {
+  border: 2px solid #00F7FF;
+  background-color: #214A4A;
+}
+/*preguntas frecuentes card*/
+.faq {
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #1a3b3b;
+  border-radius: 12px;
+  max-width: 800px;
+}
+
+.faq h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #00F7FF;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #8CCCCF;
+  padding-bottom: 1rem;
+  cursor: pointer;
+}
+
+.faq-question {
+  font-size: 1.2rem;
+  color: #8CCCCF;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #00F7FF;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  color: #8CCCCF;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px; /* Suficiente para mostrar el contenido */
+  opacity: 1;
+  margin-top: 0.5rem;
+}
+
+
+/*preguntas frecuentes boton*/
+.faq-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #8CCCCF;
+  color: #000;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.faq-button:hover {
+  background-color: #00F7FF;
+  color: #000;
+}
+
+.faq-popup {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #1a3b3b;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+  display: none;
+  z-index: 1000;
+}
+
+.faq-popup textarea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-family: sans-serif;
+  background-color: #214A4A;
+  color: #8CCCCF;
+  margin-bottom: 0.5rem;
+}
+
+.faq-popup input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-family: sans-serif;
+  background-color: #214A4A;
+  color: #8CCCCF;
+}
+
+.faq-popup button {
+  background-color: #00F7FF;
+  color: #000;
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Explore */
+.video-demo {
+  text-align: center;
+  margin: 4rem 0; /* espacio arriba y abajo para separar del contenido */
+  color: white; /* para que el título contraste con tu fondo oscuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.video-demo h3 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* ancho máximo para pantallas grandes */
+  margin: 0 auto; /* centrar */
+  padding-bottom: 56.25%; /* mantiene la proporción 16:9 del video */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  background-color: #000; /* fondo negro para mejor experiencia visual mientras carga */
+}
+
+.video-container iframe,
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid #ccc;
+  background-color: #0F2424;  /* Opcional: para que combine con tu sitio */
+  color: #8CCCCF;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #8CCCCF;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #00F7FF;
+  text-decoration: underline;
+}
+
+.social-icons {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.social-icons a {
+  color: #8CCCCF;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #00F7FF;
+}
+
+
+/* Responsive */
+@media (max-width: 990px) {
+  .menu-icon {
+    display: block;
+    order: 4;
+  }
+
+  .navbar-cursos,
+  .navbar-precios,
+  .navbar-registro {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #0F2424;
+    padding-top: 1rem;
+    order: 9;
+  }
+  /* Para que navbar-center (búsqueda e iniciar sesión) siempre visible */
+  .navbar-busqueda {
+    order: 2;
+    flex: 1 1 100%;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .navbar-login {
+    order: 3;
+  }
+  .navbar-derecha {
+    display: none;
+  }
+  /*hero*/
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero img {
+    max-width: 90vw;
+    margin-bottom: 1rem;
+  }
+  .hero-text {
+    width: 100%;
+  }
+}
