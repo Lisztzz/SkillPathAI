@@ -467,6 +467,27 @@ body.sidebar-collapsed .curso-pro-main {
 .btn-mejorar-pro:hover {
       background: #00c6c6;
 }
+.curso-pro-video-main {
+  position: absolute; /* O usa fixed si quieres que flote sobre todo */
+  top: 220px;         /* Ajusta según la altura de tu navbar */
+  right: 520px;        /* Ajusta la separación al borde derecho */
+  z-index: 1200;
+  width: 420px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.curso-pro-video iframe,
+.curso-pro-video video {
+  width: 250%;
+  height: 500px;
+  border-radius: 14px;
+  background: #214A4A;
+}
 @media (max-width: 900px) {
     .curso-pro-main {
         margin-left: 0;
@@ -475,5 +496,15 @@ body.sidebar-collapsed .curso-pro-main {
     .curso-pro-img {
         width: 100%;
         max-width: 100%;
+    }
+    .curso-pro-video-main {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem 0 0 0;
+    }
+    .curso-pro-video iframe,
+    .curso-pro-video video {
+        height: 220px;
     }
 }
