@@ -63,6 +63,57 @@
 
   <!-- Main Content // Aquí deben colocar sus partes- según el orden-->
   <main class="container">
+    <!-- Subtítulo Continuar cursos -->
+    <h2 class="continuar-cursos-titulo">Continuar cursos</h2>
+    <!-- Carrusel de cursos -->
+    <div class="carousel-wrapper">
+      <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+      <div class="dashboard-carousel">
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/introducion a la IA.jpg" alt="JavaScript">
+          <span class="carousel-number">1</span>
+          <div class="carousel-title">Introducción a la IA</div>
+          <div class="carousel-progress">Progreso: 20%</div>
+          <a href="#CursoIntroduccion" class="btn-outline">Continuar</a>
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/tecnicas avanzadas de IA.jpg" alt="tipescript">
+          <span class="carousel-number">2</span>
+          <div class="carousel-title">Técnicas avanzadas de IA</div>
+          <div class="carousel-progress">Progreso: 45%</div>
+          <a href="#CursoTecnicas" class="btn-outline">Continuar</a>
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/Etica y sociedad de la IA.png" alt="react">
+          <span class="carousel-number">3</span>
+          <div class="carousel-title">Etica y sociedad</div>
+          <div class="carousel-progress">Progreso: 10%</div>
+          <a href="#CursoEtica" class="btn-outline">Continuar</a>
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/IA en los negocios.jpg" alt="Python">
+          <span class="carousel-number">4</span>
+          <div class="carousel-title">IA en los negocios</div>
+          <div class="carousel-progress">Progreso: 35%</div>
+          <a href="#CursoIAnegocios" class="btn-outline">Continuar</a>
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/IA para principiantes.jpeg" alt="Programación">
+          <span class="carousel-number">5</span>
+          <div class="carousel-title">IA para principiantes</div>
+          <div class="carousel-progress">Progreso: 60%</div>
+          <a href="#CursoPrincipiantes" class="btn-outline">Continuar</a>
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/gestion de proyectos de IA.jpg" alt="html">
+          <span class="carousel-number">6</span>
+          <div class="carousel-title">Gestión de proyectos de IA</div>
+          <div class="carousel-progress">Progreso: 10%</div>
+          <a href="#CursoGestion" class="btn-outline">Continuar</a>
+        </div>
+      </div>
+      <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
     <!--precios-->
     <section class="pricing" id="precios">
       <h2>Planes de precios</h2>
@@ -123,6 +174,28 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // Carrusel con flechas izquierda y derecha
+    const carousel = document.querySelector('.dashboard-carousel');
+    const nextBtn = document.querySelector('.carousel-next');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const scrollAmount = 220; // Ajusta según el ancho de tus tarjetas
+
+    if (carousel && nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+    }
+    if (carousel && prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+    }
     // Referencias comunes
     const toggle = document.getElementById("menu-toggle");
     const sidebar = document.getElementById("sidebar");
