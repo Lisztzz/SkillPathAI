@@ -148,10 +148,23 @@ input[type="email"]
     border: none;
     outline: none;
     left: 730px;
+    top: 385px;
+    min-height: 60px;
+}
+input[type="email_1"]
+{
+    position: absolute;
+    width: 500px;
+    height: 56px;
+    border-radius: 12px;
+    padding: 16px;
+    background: #214A4A;
+    border: none;
+    outline: none;
+    left: 730px;
     top: 335px;
     min-height: 60px;
 }
-
 
 input[type="password"]
 {
@@ -182,28 +195,6 @@ input, textarea {
   font-size: 17px;
   line-height: 24px;
   letter-spacing: 0px;
-}
-.error-message {
-  position: absolute;      
-  color: #00F7FF;
-  font-size: 0.95em;
-  margin-top: 4px;
-  margin-bottom: 8px;
-  display: block;
-  top: 533px;
-  left: 737px;
-  font-family: 'Inter', sans-serif;
-}
-.error-message1 {
-  position: absolute;     
-  color: #00F7FF;
-  font-size: 0.95em;
-  margin-top: 4px;
-  margin-bottom: 8px;
-  display: block;
-  top: 395px;
-  left: 737px;
-  font-family: 'Inter', sans-serif;
 }
 .checkbox-container{
   position: absolute;
