@@ -66,7 +66,7 @@
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
       <h2 style="color:#fff; font-size:1.3rem; margin-bottom:8px;">Aún no tienes cursos en esta ruta</h2>
       <p style="color:#8CCCCF; font-size:1.1rem; margin-bottom:24px; text-align:center;">Explora los cursos que tenemos para ti y agrégalos a esta ruta.</p>
-      <button class="btn-primary" style="padding: 0.7rem 1.5rem; font-size:1rem;">Explorar Cursos</button>
+      <button class="btn-primary" id="explorarCursosBtn" style="padding: 0.7rem 1.5rem; font-size:1rem;">Explorar Cursos</button>
     </div>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;" id="estadoVacio">
@@ -104,6 +104,13 @@
           document.body.classList.toggle("sidebar-collapsed");
           sidebarToggle.innerHTML = sidebar.classList.contains("collapsed") ? "&gt;&gt;" : "&lt;&lt;";
         });
+      }
+      // Redirección del botón "Explorar Cursos" al listado de cursos
+      const explorarBtn = document.getElementById('explorarCursosBtn');
+      if (explorarBtn) {
+        explorarBtn.onclick = function() {
+          window.location.href = "lista_cursos.html";
+        };
       }
     });
 
