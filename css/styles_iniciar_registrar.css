@@ -330,3 +330,13 @@ input, textarea {
   min-width: 500px;
   cursor: pointer;
 }
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.logo-link:hover .logo,
+.logo-link:hover .subtitulo_crea_tu_cuenta {
+  cursor: pointer;
+  opacity: 0.85; /* Opcional: efecto visual al pasar el mouse */
+}
