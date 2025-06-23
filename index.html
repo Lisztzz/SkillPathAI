@@ -33,8 +33,11 @@
         <a href="index.html#precios" class="btn-primary">Precios</a>
 
       </nav>
-      <div class="navbar-avatar navbar-avatar-desktop">
+      <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
         <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        <div class="avatar-menu" id="avatarMenu">
+          <button class="avatar-menu__item" id="logoutBtn">Cerrar sesion</button>
+        </div>
       </div>
     </div>
     <hr class="linea-divisoria">
@@ -201,7 +204,9 @@
     </div>
   </main>
   <script type="module" src="js/cursos_recomendados.js"></script>
+  <script type="module" src="js/log_out.js"></script>
   <script src="js/misrutasIndex.js"></script>
+
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Carrusel con flechas izquierda y derecha

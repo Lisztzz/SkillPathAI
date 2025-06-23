@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <title>SkillPathIA</title>
   <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <!-- Navbar -->
@@ -30,8 +31,11 @@
       <nav class="navbar-precios">
         <a href="index.html#precios" class="btn-primary">Precios</a>
       </nav>
-      <div class="navbar-avatar navbar-avatar-desktop">
+      <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
         <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        <div class="avatar-menu" id="avatarMenu">
+          <button class="avatar-menu__item" id="logoutBtn">Cerrar sesion</button>
+        </div>
       </div>
     </div>
     <hr class="linea-divisoria">
@@ -204,7 +208,7 @@
       <button id="faqSend">Enviar</button>
     </div>
   </main>
-
+  <script type="module" src="js/log_out.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Referencias comunes

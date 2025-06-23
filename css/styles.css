@@ -656,6 +656,40 @@ main.container {
 .menu-open .offcanvas-menu {
   right: 0;
 }
+.avatar-menu {
+  display: none;
+  position: absolute;
+  top: 60px; /* Ajusta según el tamaño del avatar */
+  right: 0;
+  background: #214A4A;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-width: 120px;
+  z-index: 1000;
+}
+
+.avatar-menu.show {
+  display: block;
+}
+
+.avatar-menu__item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.avatar-menu__item:hover {
+  background: #00F7FF;
+  color: #222;
+  font-family: 'Inter', sans-serif;
+  border-radius: 8px;
+}
 
 @media (max-width: 750px) {
   .menu-icon {
