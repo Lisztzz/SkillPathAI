@@ -126,6 +126,23 @@
           <button class="carousel-next cursos-recomendados-next"><i class="fas fa-chevron-right"></i></button>
         </div>
         </section>
+
+        <!-- Espacio para "Mis rutas" en forma de carrusel -->
+        <section class="mis-rutas-section">
+          <div class="mis-rutas-header">
+            <h2 class="continuar-cursos-titulo">Mis rutas</h2>
+            <a href="mis_rutas.html" class="dashboard-link" id="ver-todas-rutas">Ver todas</a>
+          </div>
+          <div class="carousel-wrapper">
+            <button class="carousel-prev mis-rutas-prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="dashboard-carousel mis-rutas-carousel" id="mis-rutas-carousel">
+              <!-- Las rutas se llenan dinámicamente -->
+            </div>
+            <button class="carousel-next mis-rutas-next"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </section>
+        <!-- Fin de espacio para "Mis rutas" -->
+
         <!--precios-->
         <section class="pricing" id="precios">
           <h2>Planes de precios</h2>
@@ -182,16 +199,6 @@
       <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
       <button id="faqSend">Enviar</button>
     </div>
-
-    <!-- Bloque de estado vacío para "Mis Rutas" (añadido) -->
-    <section id="rutas">
-      <div class="empty-state-container">
-        <!-- Imagen eliminada -->
-        <div class="empty-state-title">Aún no tienes cursos en esta ruta</div>
-        <div class="empty-state-text">Explora los cursos que tenemos para ti y agrégalos a esta ruta.</div>
-        <a href="lista_cursos.html" class="btn-primary">Explorar Cursos</a>
-      </div>
-    </section>
   </main>
   <script type="module" src="js/cursos_recomendados.js"></script>
   <script>
@@ -226,6 +233,68 @@
     if (recomendadosCarousel && recomendadosPrevBtn) {
       recomendadosPrevBtn.addEventListener('click', () => {
         recomendadosCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+    }
+    // Carrusel "Mis rutas"
+    const rutasCarousel = document.getElementById('mis-rutas-carousel');
+    const rutasNextBtn = document.querySelector('.mis-rutas-next');
+    const rutasPrevBtn = document.querySelector('.mis-rutas-prev');
+    const rutasScrollAmount = 340;
+
+    // Obtener rutas guardadas desde localStorage (deben coincidir con las de mis_rutas.html)
+    function getRutasGuardadas() {
+      // Las rutas deben estar guardadas en localStorage bajo la clave 'rutasUsuario'
+      // Ejemplo de estructura: ['Ruta 1', 'Ruta 2', ...]
+      const rutas = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+      // Convertimos a objetos para mostrar en el carrusel
+      return rutas.map(nombre => ({
+        nombre,
+        cursos: 0,
+        descripcion: 'Ruta Personalizada',
+        icono: 'fa-route'
+      }));
+    }
+
+    function renderRutasCarousel() {
+      if (!rutasCarousel) return;
+      rutasCarousel.innerHTML = "";
+      const rutas = getRutasGuardadas();
+      if (rutas.length === 0) {
+        rutasCarousel.innerHTML = `<div style="color:#bdbdbd;padding:24px 0;">No tienes rutas creadas aún.</div>`;
+        return;
+      }
+      rutas.forEach((ruta, idx) => {
+        const item = document.createElement('div');
+        item.className = 'ruta-carousel-item';
+        item.style.cursor = 'pointer';
+        item.innerHTML = `
+          <div class="ruta-card">
+            <div class="ruta-icon"><i class="fas ${ruta.icono}"></i></div>
+            <div class="ruta-info">
+              <div class="ruta-nombre">${ruta.nombre}</div>
+              <div class="ruta-detalles">${ruta.cursos} cursos &nbsp; <span class="ruta-descripcion">${ruta.descripcion}</span></div>
+            </div>
+            <div class="ruta-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        `;
+        // Redirige a mis_rutas.html con el nombre de la ruta como hash y scroll al detalle
+        item.addEventListener('click', () => {
+          window.location.href = `mis_rutas.html#${encodeURIComponent(ruta.nombre)}`;
+        });
+        rutasCarousel.appendChild(item);
+      });
+    }
+
+    renderRutasCarousel();
+
+    if (rutasNextBtn && rutasCarousel) {
+      rutasNextBtn.addEventListener('click', () => {
+        rutasCarousel.scrollBy({ left: rutasScrollAmount, behavior: 'smooth' });
+      });
+    }
+    if (rutasPrevBtn && rutasCarousel) {
+      rutasPrevBtn.addEventListener('click', () => {
+        rutasCarousel.scrollBy({ left: -rutasScrollAmount, behavior: 'smooth' });
       });
     }
     // Referencias comunes
@@ -295,5 +364,107 @@
     }
   });
   </script>
+  <style>
+    /* Estilos básicos para el carrusel de rutas */
+    .mis-rutas-section {
+      margin: 40px 0 32px 0;
+    }
+    .mis-rutas-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .mis-rutas-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 18px;
+      padding-bottom: 8px;
+      scroll-behavior: smooth;
+    }
+    .ruta-carousel-item {
+      min-width: 320px;
+      max-width: 340px;
+      background: #1a3a3a; /* Cambiado a color de fondo de la paleta */
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      display: flex;
+      align-items: center;
+      padding: 18px 22px;
+      position: relative;
+      color: #fff;
+      transition: box-shadow 0.2s, background 0.2s;
+      border: 2px solid #214A4A; /* Borde sutil de la paleta */
+    }
+    .ruta-carousel-item:hover {
+      box-shadow: 0 4px 16px rgba(46, 105, 107, 0.18);
+      background: #214A4A; /* Hover más claro de la paleta */
+      border-color: #2E696B;
+    }
+    .ruta-card {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .ruta-icon {
+      font-size: 2.3rem;
+      margin-right: 18px;
+      color: #8CCCCF; /* Color principal de la paleta */
+      flex-shrink: 0;
+      background: #214A4A;
+      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ruta-info {
+      flex: 1;
+    }
+    .ruta-nombre {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 2px;
+      color: #fff;
+    }
+    .ruta-detalles {
+      font-size: 0.98rem;
+      color: #8CCCCF; /* Texto secundario de la paleta */
+    }
+    .ruta-arrow {
+      font-size: 1.3rem;
+      color: #8CCCCF;
+      margin-left: 12px;
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+    .ruta-carousel-item:hover .ruta-arrow {
+      color: #fff;
+    }
+    .carousel-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .carousel-prev, .carousel-next {
+      background: none;
+      border: none;
+      color: #8CCCCF;
+      font-size: 1.7rem;
+      cursor: pointer;
+      padding: 0 10px;
+      transition: color 0.2s;
+    }
+    .carousel-prev:hover, .carousel-next:hover {
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      .ruta-carousel-item {
+        min-width: 90vw;
+        max-width: 95vw;
+      }
+    }
+  </style>
 </body>
 </html>
