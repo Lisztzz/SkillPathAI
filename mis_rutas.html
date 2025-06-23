@@ -31,8 +31,11 @@
       <nav class="navbar-precios">
         <a href="index.html" class="btn-primary">Precios</a>
       </nav>
-      <div class="navbar-avatar navbar-avatar-desktop">
+      <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
         <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        <div class="avatar-menu" id="avatarMenu">
+          <button class="avatar-menu__item" id="logoutBtn">Cerrar sesion</button>
+        </div>
       </div>
     </div>
     <hr class="linea-divisoria">
@@ -93,6 +96,7 @@
       </div>
     </div>
   </main>
+  <script src="js/log_out.js"></script>
   <script>
     // Sidebar collapse functionality (igual que en index)
     document.addEventListener("DOMContentLoaded", function () {
