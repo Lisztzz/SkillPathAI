@@ -442,7 +442,21 @@ main.container {
   align-items: center;
   margin-bottom: 2rem;
 }
-
+.dashboard-link {
+  margin-left: auto;
+  color: #00F7FF;
+  font-size: 1rem;
+}
+.cursos-recomendados-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.cursos-recomendados-header .continuar-cursos-titulo {
+  margin: 0;
+}
 .dashboard-carousel {
   display: flex;
   align-items: center;
