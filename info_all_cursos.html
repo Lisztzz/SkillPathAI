@@ -50,21 +50,19 @@
     <div class="sidebar-toggle" id="sidebarToggle">&lt;&lt;</div>
   </aside>
   <main class="curso-pro-main">
-    <h1 class="curso-pro-titulo">Introducción a la IA</h1>
+    <h1 class="curso-pro-titulo"></h1>
     <div class="curso-pro-etiquetas">
-      <span class="badge-nivel">Basico</span>
-      <span class="badge-tiempo">2 semanas</span>
+      <span class="badge-pro" style="display:none;">PRO</span>
+      <span class="badge-nivel"></span>
+      <span class="badge-tiempo"></span>
     </div>
-    <img src="assets/imagenes_cursos/introducion a la IA.jpg" alt="Técnicas avanzadas de IA" class="curso-pro-img">
-    <div class="curso-pro-desc">
-      Este curso Introductorio está diseñado para quienes desean iniciarse en el mundo de la inteligencia artificial y comprender los conceptos clave. Aprenderás sobre los fundamentos de la IA, tipos de algoritmos, aprendizaje supervisado y no supervisado, redes neuronales básicas, procesamiento de lenguaje natural, y aplicaciones prácticas de la IA en el mundo real. El curso incluye ejercicios prácticos, ejemplos interactivos y acceso a foros de apoyo para resolver dudas y compartir experiencias.
-      Al finalizar, serás capaz de comprender el funcionamiento general de los sistemas de IA, identificar sus aplicaciones en distintos sectores, y sentar una base sólida para avanzar hacia cursos intermedios o especializados en inteligencia artificial.
-    </div>
-    <button class="btn-mejorar-pro">Comenzar curso</button>
+    <img class="curso-pro-img" />
+    <div class="curso-pro-desc"></div>
+    <button class="btn-accion"></button>
   </main>
   <main class="curso-pro-video-main">
     <div class="curso-pro-video">
-        <iframe src="https://www.youtube.com/embed/GX79smagB2Y" frameborder="0" allowfullscreen></iframe>
+      <iframe frameborder="0" allowfullscreen></iframe>
     </div>
   </main>
   <!-- Botón de ayuda (FAQ) -->
@@ -75,7 +73,7 @@
     <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
     <button id="faqSend">Enviar</button>
   </div>
-
+  <script type="module" src="js/renderinfoCursos.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Referencias comunes
@@ -142,4 +140,3 @@
   });
   </script>
 </body>
-</html>

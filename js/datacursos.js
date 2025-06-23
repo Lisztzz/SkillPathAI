@@ -12,62 +12,62 @@ export const dataCursos = [
         pro: true
     },
     {
-        nombre: "Etica y sociedad",
-        descripcion: "Explora las implicaciones éticas de la IA y su impacto social.",
+        nombre: "Ética y Sociedad",
+        descripcion: "Explora las implicaciones éticas y sociales de la inteligencia artificial.",
         imagen: "assets/imagenes_cursos/Etica y sociedad de la IA.png",
         pro: false
     },
     {
-        nombre: "IA en los negocios",
-        descripcion: "Descubra cómo la IA está transformando el panorama empresarial.",
+        nombre: "Transformación Digital",
+        descripcion: "Descubre cómo la tecnología está cambiando los modelos de negocio y la sociedad.",
         imagen: "assets/imagenes_cursos/IA en los negocios.jpg",
         pro: false
     },
     {
-        nombre: "IA para principiantes",
-        descripcion: "Un curso para principiantes que les ayudará a iniciarse en el mundo de la IA.",
+        nombre: "Fundamentos para Principiantes",
+        descripcion: "Un curso introductorio para quienes inician en el mundo de la tecnología y la IA.",
         imagen: "assets/imagenes_cursos/IA para principiantes.jpeg",
         pro: false
     },
     {
-        nombre: "Gestión de proyectos de IA",
-        descripcion: "Un curso para principiantes que les ayudará a iniciarse en el mundo de la IA.",
+        nombre: "Gestión de Proyectos Tecnológicos",
+        descripcion: "Aprende a planificar y gestionar proyectos tecnológicos de manera efectiva.",
         imagen: "assets/imagenes_cursos/gestion de proyectos de IA.jpg",
         pro: false
     },
     {
-        nombre: "IA y Data Science",
-        descripcion: "Combine la IA con la ciencia de datos para obtener información valiosa.",
+        nombre: "Data Science",
+        descripcion: "Descubre cómo analizar datos y obtener información valiosa para la toma de decisiones.",
         imagen: "assets/imagenes_cursos/IA y data science.jpg",
         pro: true
     },
     {
-        nombre: "IA en Healthcare",
-        descripcion: "Explore las aplicaciones de IA en la industria de la salud.",
+        nombre: "Tecnología en Salud",
+        descripcion: "Explora el impacto de la tecnología en la industria de la salud y la medicina.",
         imagen: "assets/imagenes_cursos/IA en Healthcare.jpg",
         pro: false
     },
     {
-        nombre: "IA y finanzas",
-        descripcion: "Comprender el papel de la IA en el sector financiero.",
+        nombre: "Tecnología en Finanzas",
+        descripcion: "Comprende el papel de la tecnología en el sector financiero y la innovación en servicios.",
         imagen: "assets/imagenes_cursos/IA y finanzas.jpg",
         pro: false
     },
     {
-        nombre: "IA y marketing",
-        descripcion: "Aproveche la IA para las estrategias de marketing y la interacción con el cliente.",
+        nombre: "Marketing Digital",
+        descripcion: "Aprovecha las herramientas digitales para potenciar estrategias de marketing.",
         imagen: "assets/imagenes_cursos/IA y marketing.jpg",
         pro: false
     },
     {
-        nombre: "IA y eduación",
-        descripcion: "Aplicar IA en entornos educativos para mejorar el aprendizaje.",
+        nombre: "Tecnología en Educación",
+        descripcion: "Aplica herramientas tecnológicas para mejorar procesos de enseñanza y aprendizaje.",
         imagen: "assets/imagenes_cursos/IA y eduacion.jpg",
         pro: false
     },
     {
-        nombre: "IA y sostenibilidad",
-        descripcion: "Utilice IA para soluciones sostenibles y para el impacto ambiental.",
+        nombre: "Tecnología y Sostenibilidad",
+        descripcion: "Utiliza la tecnología para impulsar soluciones sostenibles y cuidar el medio ambiente.",
         imagen: "assets/imagenes_cursos/IA y sostenibilidad.jpg",
         pro: false
     },
@@ -79,7 +79,7 @@ export const dataCursos = [
     },
     {
         nombre: "Fundamentos de Machine Learning",
-        descripcion: "Introducción a los algoritmos y tecnicas de machine learning.",
+        descripcion: "Introducción a los algoritmos y técnicas de machine learning.",
         imagen: "assets/imagenes_cursos/Fundamentos de machine learning.jpg",
         pro: true
     },
@@ -90,13 +90,13 @@ export const dataCursos = [
         pro: true
     },
     {
-        nombre: "Procesamiento de Natural Language",
-        descripcion: "Comprender cómo procesar y analizar el lenguaje humano.",
+        nombre: "Procesamiento de Lenguaje Natural",
+        descripcion: "Comprende cómo procesar y analizar el lenguaje humano con tecnología.",
         imagen: "assets/imagenes_cursos/procesamiento de natural language.jpg",
         pro: true
     },
     {
-        nombre: "Computer Vision",
+        nombre: "Visión por Computadora",
         descripcion: "Introducción a la visión artificial y al reconocimiento de imágenes.",
         imagen: "assets/imagenes_cursos/computer-vision.png",
         pro: true
