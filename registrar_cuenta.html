@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkillPathAI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles_iniciar_registrar.css">
+    <link rel="stylesheet" href="css/styles_registra_cuenta.css">
 </head>
 <body>
     <h1 class="titulo_principal"> 
         <strong style="color: #00F7FF;">Skillpath</strong><strong style="color: white;">IA</strong>
     </h1>
-    <img class="logo" src="assets/icons/logo.png" alt="Logo">
-    <h2 class="subtitulo_crea_tu_cuenta">
-        <strong style="color:#FFFF;">Crea tu cuenta</strong>
-    </h2>
-    <form id="form-registrar-cuenta">
-        <input type="text" placeholder="Nombre completo" required>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Contraseña" minlength="8" required>
-        <small class="instrucion">
-            Al menos 8 caracteres
-        </small>
+    <a href="landing.html" class="logo-link">
+        <img class="logo" src="assets/icons/logo.png" alt="Logo">
+        <h2 class="subtitulo_crea_tu_cuenta">
+            <strong style="color:#FFFF;">Crea tu cuenta</strong>
+        </h2>
+    </a>
+    <form id="form-registrar-cuenta" novalidate>
+        <input type="text" id = "text" placeholder="Nombre completo" >
+        <span class="error-message2"></span>
+        <input type="email" id = "email" placeholder="Email" >
+        <span class="error-message1"></span>
+        <input type="password" id = "password" placeholder="Contraseña" minlength="8" >
+        <span class="error-message"></span>
         <div class="checkbox-container">
             <input type="checkbox" id="terminos">
             <label for="terminos" class="tyc">
@@ -38,13 +40,7 @@
         </p>
         <button type="button" class="boton_iniciar_sesion">Iniciar sesión</button>
     </form>
-        </form>
-    <script>
-        document.getElementById('form-registrar-cuenta').addEventListener('submit', function(e) {
-        e.preventDefault();
-        window.location.href = 'index.html';
-        });
-    </script>
+    <script src="js/mensajedeerror1.js"></script>
     <script>
         document.querySelector('.boton_iniciar_sesion').addEventListener('click', function() {
         window.location.href = 'iniciar_sesion.html';
