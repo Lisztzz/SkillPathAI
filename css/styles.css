@@ -128,6 +128,7 @@ a {
   display: flex;
   align-items: center;
   order: 5;
+  cursor: pointer;
 }
 
 .navbar-avatar img {
@@ -752,6 +753,7 @@ main.container {
     align-items: center;
     border: none;
     height: 100%;
+    cursor: pointer;
   }
 
   .sidebar-text,
@@ -765,6 +767,7 @@ main.container {
 
   .navbar-avatar-desktop {
     display: none !important;
+    cursor: pointer;
   }
 
   .navbar-avatar-mobile img {
