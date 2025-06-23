@@ -44,7 +44,7 @@
   <aside class="sidebar" id="sidebar">
     <nav class="sidebar-menu">
         <a href="index.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
-        <a href="#rutas"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+        <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
         <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
         <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
 
@@ -182,6 +182,16 @@
       <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
       <button id="faqSend">Enviar</button>
     </div>
+
+    <!-- Bloque de estado vacío para "Mis Rutas" (añadido) -->
+    <section id="rutas">
+      <div class="empty-state-container">
+        <!-- Imagen eliminada -->
+        <div class="empty-state-title">Aún no tienes cursos en esta ruta</div>
+        <div class="empty-state-text">Explora los cursos que tenemos para ti y agrégalos a esta ruta.</div>
+        <a href="lista_cursos.html" class="btn-primary">Explorar Cursos</a>
+      </div>
+    </section>
   </main>
   <script type="module" src="js/cursos_recomendados.js"></script>
   <script>
