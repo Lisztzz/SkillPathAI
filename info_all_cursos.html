@@ -3,10 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso</title>
-  <link rel="stylesheet" href="css/styles_cursos.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <title>SkillPathIA</title>
+  <link rel="stylesheet" href="css/curso_gratis.css">
 </head>
 <body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <a class="navbar-brand" href="index.html">
+        <img src="assets/icons/logo.png" alt="Logo" />
+        <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
+    </a>
+    <nav class="navbar-cursos">
+      <a href="#cursos" class="nav-cursos">Cursos</a>
+    </nav>
+    <div class="navbar-busqueda">
+      <form class="search-form" action="#" method="get">
+        <input type="text" name="q" placeholder="Buscar cursos..." aria-label="Buscar cursos" />
+      </form>
+    </div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <div class="navbar-derecha">
+      <nav class="navbar-precios">
+        <a href="#precios" class="btn-primary">Precios</a>
+      </nav>
+      <div class="navbar-avatar navbar-avatar-desktop">
+        <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+      </div>
+    </div>
+    <hr class="linea-divisoria">
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-menu">
+        <a href="#inicio"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
+        <a href="#rutas"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+        <a href="#comunidad"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
+        <a href="#dashboard"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
+        <div class="navbar-avatar navbar-avatar-mobile">
+          <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        </div>
+    </nav>
+    <div class="sidebar-toggle" id="sidebarToggle">&lt;&lt;</div>
+  </aside>
   <main class="curso-pro-main">
     <h1 class="curso-pro-titulo"></h1>
     <div class="curso-pro-etiquetas">
@@ -23,6 +65,78 @@
       <iframe frameborder="0" allowfullscreen></iframe>
     </div>
   </main>
+  <!-- Botón de ayuda (FAQ) -->
+  <div class="faq-button" id="faqToggle">❓</div>
+  <div class="faq-popup" id="faqPopup">
+    <input type="text" placeholder="Tu nombre" id="faqName" />
+    <input type="email" placeholder="Tu correo" id="faqEmail" />
+    <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
+    <button id="faqSend">Enviar</button>
+  </div>
   <script type="module" src="js/renderinfoCursos.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Referencias comunes
+    const toggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const faqSendButton = document.getElementById('faqSend');
+
+    // Funcionalidad del menú hamburguesa (offcanvas)
+    if (toggle) {
+      toggle.addEventListener("change", function () {
+        document.body.classList.toggle("menu-open", toggle.checked);
+      });
+    }
+
+    // Funcionalidad de colapso del sidebar
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+        document.body.classList.toggle("sidebar-collapsed");
+        sidebarToggle.innerHTML = sidebar.classList.contains("collapsed") ? "&gt;&gt;" : "&lt;&lt;";
+      });
+    }
+
+    // Envío del formulario de preguntas frecuentes
+    if (faqSendButton) {
+      faqSendButton.addEventListener("click", () => {
+        const name = document.getElementById('faqName').value.trim();
+        const email = document.getElementById('faqEmail').value.trim();
+        const message = document.getElementById('faqMessage').value.trim();
+        const faqPopup = document.getElementById('faqPopup');
+
+        if (!name || !email || !message) {
+          alert('Por favor, completa todos los campos.');
+        } else {
+          alert('¡Mensaje enviado! Gracias por contactarnos.');
+          document.getElementById('faqName').value = '';
+          document.getElementById('faqEmail').value = '';
+          document.getElementById('faqMessage').value = '';
+          if (faqPopup) faqPopup.style.display = 'none';
+        }
+      });
+    }
+
+    // Mostrar/ocultar el popup de preguntas frecuentes
+    const faqToggle = document.getElementById('faqToggle');
+    const faqPopup = document.getElementById('faqPopup');
+
+    if (faqToggle && faqPopup) {
+      faqToggle.addEventListener('click', () => {
+        faqPopup.style.display = faqPopup.style.display === 'block' ? 'none' : 'block';
+      });
+
+      document.addEventListener('click', (e) => {
+        if (
+          faqPopup.style.display === 'block' &&
+          !faqPopup.contains(e.target) &&
+          e.target !== faqToggle
+        ) {
+          faqPopup.style.display = 'none';
+        }
+      });
+    }
+  });
+  </script>
 </body>
-</html>
