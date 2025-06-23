@@ -188,6 +188,14 @@ input::placeholder {
   line-height: 24px;
   letter-spacing: 0px;
 }
+input, textarea {
+  color: #00F7FF;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
 .checkbox-container{
   position: absolute;
   display: flex;
