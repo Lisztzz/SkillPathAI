@@ -321,3 +321,38 @@ input, textarea {
   min-width: 500px;
   cursor: pointer;
 }
+
+.error-message {
+  position: absolute;      
+  color: #00F7FF;
+  font-size: 0.95em;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: block;
+  top: 533px;
+  left: 737px;
+  font-family: 'Inter', sans-serif;
+}
+.error-message1 {
+  position: absolute;     
+  color: #00F7FF;
+  font-size: 0.95em;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: block;
+  top: 443px;
+  left: 737px;
+  font-family: 'Inter', sans-serif;
+}
+
+.error-message2 {
+  position: absolute;     
+  color: #00F7FF;
+  font-size: 0.95em;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: block;
+  top: 358px;
+  left: 737px;
+  font-family: 'Inter', sans-serif;
+}
