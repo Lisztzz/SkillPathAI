@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (valid) {
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
         }
     });
 
