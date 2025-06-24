@@ -1,3 +1,49 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const btnAgregarRuta = document.querySelector('.btn-accion_ruta');
+  const modal = document.getElementById('modalRutas');
+  const lista = document.getElementById('listaRutas');
+  const cerrar = document.getElementById('cerrarModalRutas');
+
+  if (btnAgregarRuta && modal && lista && cerrar) {
+    btnAgregarRuta.addEventListener('click', function () {
+      // Obtén las rutas actuales
+      const rutas = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+      // Llena el listado de rutas como botones
+      lista.innerHTML = rutas.length
+        ? rutas.map(r => `<li><button class="ruta-link-btn" data-nombre="${r}">${r}</button></li>`).join('')
+        : '<li style="color:#888;">No tienes rutas creadas.</li>';
+      modal.style.display = 'flex';
+
+      // Agrega el event listener a cada botón de ruta
+      lista.querySelectorAll('.ruta-link-btn').forEach(btn => {
+        btn.onclick = function () {
+          // Obtén el nombre del curso actual desde el DOM
+          const nombreCurso = document.querySelector('.curso-pro-titulo').textContent.trim();
+          const nombreRuta = btn.getAttribute('data-nombre');
+          // Guarda el curso en la ruta seleccionada en localStorage
+          let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+          if (!cursosPorRuta[nombreRuta]) cursosPorRuta[nombreRuta] = [];
+          if (nombreCurso && !cursosPorRuta[nombreRuta].includes(nombreCurso)) {
+            cursosPorRuta[nombreRuta].push(nombreCurso);
+          }
+          localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+          modal.style.display = 'none';
+          alert(`Curso "${nombreCurso}" agregado a la ruta "${nombreRuta}"`);
+        };
+      });
+    });
+
+    cerrar.onclick = function () {
+      modal.style.display = 'none';
+    };
+
+    // Cierra el modal al hacer click fuera del contenido
+    modal.onclick = function(e) {
+      if (e.target === modal) modal.style.display = 'none';
+    };
+  }
+});
+
 // Sidebar collapse functionality (igual que en index)
 document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.getElementById("sidebar");
@@ -101,6 +147,12 @@ function crearRuta(nombre, guardar = true) {
     var rutas = obtenerRutas();
     rutas.push(nombre);
     guardarRutas(rutas);
+  
+    let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+    if (!cursosPorRuta[nombre]) {
+      cursosPorRuta[nombre] = [];
+      localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+    }
   }
 }
 
@@ -156,12 +208,83 @@ document.getElementById('crearRutaModal').onclick = function() {
 function mostrarDetalleRuta(nombre) {
   document.getElementById('rutasContainer').style.display = 'none';
   var estadoVacio = document.getElementById('estadoVacio');
-  if (estadoVacio) estadoVacio.style.display = 'none';
-  document.getElementById('detalleRuta').style.display = 'block';
-  document.getElementById('nombreRutaDetalle').textContent = nombre;
+  var detalleRuta = document.getElementById('detalleRuta');
+  var nombreRutaDetalle = document.getElementById('nombreRutaDetalle');
+  if (nombreRutaDetalle) nombreRutaDetalle.textContent = nombre;
+  if (detalleRuta) detalleRuta.style.display = 'block';
   // Oculta el header con el botón "Crear una ruta"
   var header = document.getElementById('headerMisRutas');
   if (header) header.style.display = 'none';
+
+  // Obtener cursos de la ruta seleccionada
+  let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+  let cursos = cursosPorRuta[nombre] || [];
+
+  // Selecciona el contenedor donde se mostrarán los cursos (puedes crear uno si no existe)
+  let cursosDiv = document.getElementById('detalleCursos');
+  if (!cursosDiv) {
+    cursosDiv = document.createElement('div');
+    cursosDiv.id = 'detalleCursos';
+    detalleRuta.appendChild(cursosDiv);
+  }
+  // Mostrar u ocultar el mensaje de "no hay cursos"
+  const mensajeVacio = detalleRuta.querySelector('h2');
+  const parrafoVacio = detalleRuta.querySelector('p');
+  const explorarBtn = document.getElementById('explorarCursosBtn');
+  if (cursos.length > 0) {
+    if (estadoVacio) estadoVacio.style.display = 'none';
+    if (mensajeVacio) mensajeVacio.style.display = 'none';
+    if (parrafoVacio) parrafoVacio.style.display = 'none';
+    if (explorarBtn) explorarBtn.style.display = 'none';
+    cursosDiv.style.display = 'block';
+    // Muestra solo los nombres de los cursos
+    cursosDiv.style.position = 'absolute';
+    cursosDiv.style.top = '295px'; // Ajusta según tu diseño
+    cursosDiv.style.left = '280px';
+    cursosDiv.style.right = '800px';
+    cursosDiv.style.margin = '0 auto';
+    cursosDiv.style.zIndex = '5';
+    cursosDiv.innerHTML = cursos.map(nombreCurso => `
+      <div style="
+      display:flex;
+      align-items:center;
+      gap:4px;
+      margin:22px 0 0 0;
+      padding:16px 10px;
+      border-radius:20px;
+      background:#214A4A;
+      cursor:pointer;
+      ">
+      <div style="
+        background:#2E696B;
+        color:#fff;
+        width:56px;
+        height:56px;
+        border-radius:16px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:2rem;
+        font-weight:bold;
+        flex-shrink:0;
+      ">${nombreCurso[0].toUpperCase()}</div>
+      <div>
+        <a href="info_all_cursos.html?nombre=${encodeURIComponent(nombreCurso)}" 
+          style="font-size:1.2rem; font-weight:bold; color:#fff; text-decoration:none;">
+          ${nombreCurso}
+        </a>
+      </div>
+      <div style="flex:1;"></div>
+      </div>
+    `).join('');
+  } else {
+    cursosDiv.innerHTML = '';
+    cursosDiv.style.display = 'none';
+    if (mensajeVacio) mensajeVacio.style.display = '';
+    if (parrafoVacio) parrafoVacio.style.display = '';
+    if (explorarBtn) explorarBtn.style.display = '';
+    if (estadoVacio) estadoVacio.style.display = 'flex';
+  }
 }
 
 function volverAListaRutas() {
@@ -202,3 +325,4 @@ function inicializarBotones() {
 // Llamar después de renderizar rutas
 renderizarRutas();
 inicializarBotones();
+
