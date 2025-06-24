@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // acción de logout
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function () {
-        window.location.href = 'landing.html'; 
+        window.location.href = 'index.html'; 
       });
     }
   }
