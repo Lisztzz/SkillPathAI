@@ -32,6 +32,9 @@ if (curso) {
     btn.disabled = false;
     btn.classList.add('btn-mejorar-pro');
     btn.classList.remove('btn-comenzar');
+    btn.onclick= function() {
+      window.location.href = 'home.html#precios'; // Cambia la URL si tu página de precios es otra
+    };
   } else {
     btn.textContent = 'Comenzar curso';
     btn.disabled = false;
