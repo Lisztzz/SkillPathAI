@@ -62,7 +62,10 @@
     </div>
     <img class="curso-pro-img" />
     <div class="curso-pro-desc"></div>
-    <button class="btn-accion"></button>
+    <div class="acciones-cursos">
+      <button class="btn-accion">Acción principal</button>
+      <button class="btn-accion_ruta">Agregar a mi ruta</button>
+    </div>
   </main>
   <main class="curso-pro-video-main">
     <div class="curso-pro-video">
@@ -77,8 +80,17 @@
     <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
     <button id="faqSend">Enviar</button>
   </div>
+  <!-- Modal para mostrar rutas -->
+  <div id="modalRutas" class="modal-rutas-overlay" style="display:none;">
+    <div class="modal-rutas-content">
+      <button id="cerrarModalRutas" class="modal-rutas-close">&times;</button>
+      <h2>Mis Rutas</h2>
+      <ul id="listaRutas"></ul>
+    </div>
+  </div>
   <script type="module" src="js/renderinfoCursos.js"></script>
   <script type="module" src="js/log_out.js"></script>
+  <script type="module" src="js/agregar_curso_ruta.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Referencias comunes
