@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,44 +8,48 @@
     <link rel="stylesheet" href="css/styles_registra_cuenta.css">
 </head>
 <body>
-    <h1 class="titulo_principal"> 
-        <strong style="color: #00F7FF;">Skillpath</strong><strong style="color: white;">IA</strong>
-    </h1>
-    <a href="index.html" class="logo-link">
-        <img class="logo" src="assets/icons/logo.png" alt="Logo">
-        <h2 class="subtitulo_crea_tu_cuenta">
-            <strong style="color:#FFFF;">Crea tu cuenta</strong>
-        </h2>
-    </a>
-    <form id="form-registrar-cuenta" novalidate>
-        <input type="text" id = "text" placeholder="Nombre completo" >
-        <span class="error-message2"></span>
-        <input type="email" id = "email" placeholder="Email" >
-        <span class="error-message1"></span>
-        <input type="password" id = "password" placeholder="Contraseña" minlength="8" >
-        <span class="error-message"></span>
-        <div class="checkbox-container">
-            <input type="checkbox" id="terminos">
-            <label for="terminos" class="tyc">
-                <strong style="color:#FFFF;">Aceptar términos y condiciones</strong>
-            </label>
+    <div class="formato">
+        <div class="logo-header">
+            <a href="index.html" class="logo-link" style="text-decoration:none;">
+                <div class="logo-container">
+                    <img class="logo" src="assets/icons/logo.png" alt="Logo">
+                    <h1 class="titulo_principal">
+                        <strong style="color: #00F7FF;">Skillpath</strong><strong style="color: white;">IA</strong>
+                    </h1>
+                </div>
+            </a>
+            <h2 class="subtitulo_crea_tu_cuenta">
+                <strong style="color:#FFFF;">Crea tu cuenta</strong>
+            </h2>
         </div>
-        <button type="submit" class="boton_registrar">
-            Registrarse ahora
-        </button>
-        <p class="ya_tienes_cuenta">
-            <strong style="color:#8CCCCF;">
-                ¿Ya tienes cuenta?
-            </strong>
-        </p>
-        <button type="button" class="boton_iniciar_sesion">Iniciar sesión</button>
-    </form>
+        <form id="form-registrar-cuenta" novalidate>
+            <input type="text" id="text" placeholder="Nombre completo">
+            <span class="error-message2"></span>
+            <input type="email" id="email" placeholder="Email">
+            <span class="error-message1"></span>
+            <input type="password" id="password" placeholder="Contraseña" minlength="8">
+            <span class="error-message"></span>
+            <div class="checkbox-container">
+                <input type="checkbox" id="terminos">
+                <label for="terminos" class="tyc">
+                    <strong style="color:#FFFF;">Aceptar términos y condiciones</strong>
+                </label>
+            </div>
+            <button type="submit" class="boton_registrar">
+                Registrarse ahora
+            </button>
+            <p class="ya_tienes_cuenta">
+                <strong style="color:#8CCCCF;">
+                    ¿Ya tienes cuenta?
+                </strong>
+            </p>
+            <button type="button" class="boton_iniciar_sesion">Iniciar sesión</button>
+        </form>
+    </div>
     <script src="js/mensajedeerror1.js"></script>
     <script>
         document.querySelector('.boton_iniciar_sesion').addEventListener('click', function() {
-        window.location.href = 'iniciar_sesion.html';
+            window.location.href = 'iniciar_sesion.html';
         });
     </script>
 </body>
-
-</html>
