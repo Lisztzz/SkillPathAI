@@ -107,7 +107,7 @@
     <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
   </div>
     <div class="responder-box" style="display:none;">
-      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
       <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
     </div>
     <div class="comentarios-respuestas"></div>
@@ -129,7 +129,7 @@
     <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
   </div>
       <div class="responder-box" style="display:none;">
-      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
       <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
     </div>
     <div class="comentarios-respuestas"></div>
@@ -151,7 +151,7 @@
     <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
   </div>
       <div class="responder-box" style="display:none;">
-      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
       <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
     </div>
     <div class="comentarios-respuestas"></div>
@@ -173,7 +173,7 @@
     <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
   </div>
       <div class="responder-box" style="display:none;">
-      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
       <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
     </div>
     <div class="comentarios-respuestas"></div>
@@ -231,14 +231,14 @@ function publicarComentario() {
   `;
 
   const miPublicacionContenedor = document.getElementById('miPublicacionContenedor');
-miPublicacionContenedor.innerHTML = '';
-miPublicacionContenedor.appendChild(div);
+  // miPublicacionContenedor.innerHTML = ''; // <-- Elimina esta línea
+  miPublicacionContenedor.appendChild(div);
 
-// Aquí inicializas los contadores para tu publicación
-const acciones = div.querySelector('.acciones-reacciones');
-if (typeof inicializarContadores === "function" && acciones) {
-  inicializarContadores(acciones);
-}
+  // Aquí inicializas los contadores para tu publicación
+  const acciones = div.querySelector('.acciones-reacciones');
+  if (typeof inicializarContadores === "function" && acciones) {
+    inicializarContadores(acciones);
+  }
   textarea.value = '';
   activarPublicarBtn();
 }
@@ -320,33 +320,71 @@ function enviarRespuesta(btn) {
 </script>
 
 <script>
-  function inicializarContadores(reacciones) {
-    if (!reacciones) return;
-    // Like
-    const like = reacciones.querySelector('.like-btn');
-    if (like && !like.nextElementSibling?.classList.contains('contador-like')) {
-      let likeCont = document.createElement('span');
-      likeCont.className = 'contador-like';
-      likeCont.textContent = '0';
-      like.after(likeCont);
+function inicializarContadores(reacciones) {
+  if (!reacciones) return;
+  const like = reacciones.querySelector('.like-btn');
+  const dislike = reacciones.querySelector('.dislike-btn');
 
-      like.addEventListener('click', function () {
+  // Like
+  if (like && !like.nextElementSibling?.classList.contains('contador-like')) {
+    let likeCont = document.createElement('span');
+    likeCont.className = 'contador-like';
+    likeCont.textContent = '0';
+    like.after(likeCont);
+
+    like.addEventListener('click', function () {
+      if (like.classList.contains('activo')) {
+        // Quitar like
+        likeCont.textContent = Math.max(0, parseInt(likeCont.textContent) - 1);
+        like.classList.remove('activo');
+        like.style.opacity = "1";
+        if (dislike) {
+          dislike.classList.remove('deshabilitado');
+          dislike.style.opacity = "1";
+        }
+      } else {
+        // Dar like
         likeCont.textContent = parseInt(likeCont.textContent) + 1;
-      });
-    }
-    // Dislike
-    const dislike = reacciones.querySelector('.dislike-btn');
-    if (dislike && !dislike.nextElementSibling?.classList.contains('contador-dislike')) {
-      let dislikeCont = document.createElement('span');
-      dislikeCont.className = 'contador-dislike';
-      dislikeCont.textContent = '0';
-      dislike.after(dislikeCont);
-
-      dislike.addEventListener('click', function () {
-        dislikeCont.textContent = parseInt(dislikeCont.textContent) + 1;
-      });
-    }
+        like.classList.add('activo');
+        like.style.opacity = "0.5";
+        if (dislike) {
+          dislike.classList.add('deshabilitado');
+          dislike.style.opacity = "0.5";
+        }
+      }
+    });
   }
+
+  // Dislike
+  if (dislike && !dislike.nextElementSibling?.classList.contains('contador-dislike')) {
+    let dislikeCont = document.createElement('span');
+    dislikeCont.className = 'contador-dislike';
+    dislikeCont.textContent = '0';
+    dislike.after(dislikeCont);
+
+    dislike.addEventListener('click', function () {
+      if (dislike.classList.contains('activo')) {
+        // Quitar dislike
+        dislikeCont.textContent = Math.max(0, parseInt(dislikeCont.textContent) - 1);
+        dislike.classList.remove('activo');
+        dislike.style.opacity = "1";
+        if (like) {
+          like.classList.remove('deshabilitado');
+          like.style.opacity = "1";
+        }
+      } else {
+        // Dar dislike
+        dislikeCont.textContent = parseInt(dislikeCont.textContent) + 1;
+        dislike.classList.add('activo');
+        dislike.style.opacity = "0.5";
+        if (like) {
+          like.classList.add('deshabilitado');
+          like.style.opacity = "0.5";
+        }
+      }
+    });
+  }
+}
 </script>
 
 <script>
