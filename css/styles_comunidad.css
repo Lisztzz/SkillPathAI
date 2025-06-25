@@ -389,6 +389,7 @@ a {
   background: #1a3b3b;
   box-shadow: 0 0 0 2px #1a3b3b;
 }
+
 /* Subtítulo Mi publicación */
 .mi-publicacion-titulo {
   margin: 2rem 0 1rem 0;
@@ -399,6 +400,7 @@ a {
   width: 100%;
   display: block;
 }
+
 /* Subtítulo Publicaciones */
 .subtitulo-publicaciones {
   margin-top: 2.2rem;
@@ -516,6 +518,10 @@ a {
   color: #fff;
   margin-left: 2px;
 }
+.like-btn.deshabilitado,
+.dislike-btn.deshabilitado {
+  pointer-events: none;
+}
 @media (max-width: 700px) {
   .foro-comunidad-wrapper {
     margin-top: 90px;
@@ -592,6 +598,21 @@ a {
   font-size: 0.98rem;
   width: 100%;
   box-sizing: border-box;
+}
+.comentario-respuesta-visible {
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  padding: 0.5rem 0;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comentario-respuesta-texto {
+  white-space: pre-line; /* Respeta saltos de línea */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .comentario-respuesta-header {
   display: flex;
