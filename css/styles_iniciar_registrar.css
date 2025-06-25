@@ -4,29 +4,58 @@
     padding: 0;
 }
 body {
-  background-color: #0F2424; 
+  background-color: #0F2424;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .titulo_principal{
-    position: absolute;
-    top: 106px;
-    left: 700px;
+    width:42%;
     font-family: 'Inter',sans-serif;
-    font-weight: 700;
-    font-size: 128px;
+    font-size: 150px;
     line-height: 23px;
     letter-spacing: 0px;
     vertical-align: middle;
 }
 .logo{
-    position: absolute;
-    left: 440px;
-    top: -10px;
     width: 270px;
     height: auto;
 }
+.logo-header, #form-iniciar-sesion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-header {
+  margin-bottom: 32px;
+}
+#form-iniciar-sesion {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background: none;
+  box-shadow: none;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+  margin-left:-240px;
+
+}
+.formato
+{
+    margin-left:-10px;
+}
 .subtitulo_crea_tu_cuenta
 {
-    position: absolute;
+
     left: 870px;
     top: 230px;
     font-family: Inter;
@@ -36,31 +65,29 @@ body {
 
 .texto_email
 {
-  position: absolute;
   font-family: Inter;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0px;
-  left: 730px;
-  top: 300px;
+  margin-left: -460px;
+
   font-weight: 100;
 }
 
 .texto_contraseña
 {
-  position: absolute;
+
   font-family: Inter;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0px;
-  left: 730px;
+  margin-left: -415px;
   top: 435px;
   font-weight: 100;
 }
 
 .subtitulo_iniciar_sesion
 {
-  position: absolute;
   left: 890px;
   top: 230px;
   font-family: Inter;
@@ -70,7 +97,6 @@ body {
 
 .instrucion
 {
-  position: absolute;
   font-family: Inter;
   font-weight: 400;
   font-size: 17px;
@@ -87,10 +113,11 @@ body {
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0px;
+  margin-left: -250px;
 }
 .ya_tienes_cuenta
 {
-  position: absolute;
+
   font-family: Inter;
   font-weight: 200;
   font-size: 16px;
@@ -102,29 +129,27 @@ body {
 
 .olvidaste_contraseña
 {
-  position: absolute;
+
   font-family: Inter;
   font-weight: 200;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0px;
-  left: 880px;
-  top: 680px;
+  margin-top: 20px;
 }
 .no_tienecuenta
 {
-    position: absolute;
+
   font-family: Inter;
   font-weight: 200;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0px;
   left: 903.9px;
-  top: 720px;
+  margin-top: 11px;
 }
 
 input[type="text"] {
-    position: absolute;
     width: 500px;
     height: 56px;
     border-radius: 12px;
@@ -139,7 +164,7 @@ input[type="text"] {
 
 input[type="email"]
 {
-    position: absolute;
+
     width: 500px;
     height: 56px;
     border-radius: 12px;
@@ -148,14 +173,14 @@ input[type="email"]
     border: none;
     outline: none;
     left: 730px;
-    top: 335px;
+    margin-top: 11px;
     min-height: 60px;
 }
 
 
 input[type="password"]
 {
-    position: absolute;
+
     width: 500px;
     height: 56px;
     border-radius: 12px;
@@ -164,7 +189,7 @@ input[type="password"]
     border: none;
     outline: none;
     left: 730px;
-    top: 470px;
+    margin-top: 11px;
     min-height: 60px;
 }
 input::placeholder {
@@ -184,7 +209,7 @@ input, textarea {
   letter-spacing: 0px;
 }
 .error-message {
-  position: absolute;      
+ 
   color: #00F7FF;
   font-size: 0.95em;
   margin-top: 4px;
@@ -195,7 +220,7 @@ input, textarea {
   font-family: 'Inter', sans-serif;
 }
 .error-message1 {
-  position: absolute;     
+  
   color: #00F7FF;
   font-size: 0.95em;
   margin-top: 4px;
@@ -206,15 +231,14 @@ input, textarea {
   font-family: 'Inter', sans-serif;
 }
 .checkbox-container{
-  position: absolute;
+
   display: flex;
   margin: 10px 0;
   gap: 10px;
-  left: 730px;
   top: 575px;
 }
 .checkbox-container_2{
-  position: absolute;
+
   display: flex;
   margin: 10px 0;
   gap: 10px;
@@ -266,7 +290,7 @@ input, textarea {
 }
 
 .boton_registrar {
-  position: absolute;
+
   background-color: #00f7ff;
   border: none;
   border-radius: 12px;
@@ -283,7 +307,7 @@ input, textarea {
 }
 .boton_iniciar_sesion_2
 {
-  position: absolute;
+
   background-color: #00f7ff;
   border: none;
   border-radius: 12px;
@@ -293,13 +317,13 @@ input, textarea {
   margin-top: 10px;
   height: 20px;
   left: 730px;
-  top: 605px;
+  margin-top: 10px;
   min-height: 45px;
   min-width: 500px;
   cursor: pointer;
 }
 .boton_iniciar_sesion {
-  position: absolute;
+
   background-color: #1e3a3a;
   border: none;
   border-radius: 12px;
@@ -315,7 +339,7 @@ input, textarea {
   cursor: pointer;
 }
 .boton_registrar_cuenta2 {
-  position: absolute;
+
   background-color: #1e3a3a;
   border: none;
   border-radius: 12px;
@@ -325,7 +349,7 @@ input, textarea {
   font-size: 16px;
   margin-top: 10px;
   left: 730px;
-  top: 755px;
+  margin-top: 20px;
   min-height: 45px;
   min-width: 500px;
   cursor: pointer;
@@ -338,5 +362,44 @@ input, textarea {
 .logo-link:hover .logo,
 .logo-link:hover .subtitulo_crea_tu_cuenta {
   cursor: pointer;
-  opacity: 0.85; /* Opcional: efecto visual al pasar el mouse */
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .titulo_principal,
+  .logo,
+  .subtitulo_iniciar_sesion,
+  .texto_email,
+  .texto_contraseña,
+  .instrucion,
+  .ya_tienes_cuenta,
+  .olvidaste_contraseña,
+  .no_tienecuenta,
+  .checkbox-container,
+  .checkbox-container_2,
+  .boton_registrar,
+  .boton_iniciar_sesion_2,
+  .boton_iniciar_sesion,
+  .boton_registrar_cuenta2,
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  .error-message,
+  .error-message1 {
+    position: static !important;
+    left: unset !important;
+    top: unset !important;
+    width: 100% !important;
+    min-width: unset !important;
+    margin: 8px 0 !important;
+    text-align: left !important;
+  }
+  form#form-iniciar-sesion {
+    padding: 0 8px;
+  }
+}
+@media (max-width: 600px) {
+  form#form-iniciar-sesion {
+    display: block;
+  }
 }
