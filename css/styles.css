@@ -67,7 +67,19 @@ a {
   margin-left: 1rem;
   align-items: center;
 }
-
+.nav-cursos{
+  padding: 7px 14px;
+  background: #00F7FF;
+  color: #0F2424;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  transition: background 0.2s, color 0.2s;
+  margin-left: 12px;
+  display: inline-block;
+}
 .brand-skill {
   color: #00F7FF;
   font-weight: bold;
