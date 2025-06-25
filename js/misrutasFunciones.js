@@ -29,6 +29,17 @@ document.addEventListener('DOMContentLoaded', function () {
           localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
           modal.style.display = 'none';
           alert(`Curso "${nombreCurso}" agregado a la ruta "${nombreRuta}"`);
+
+          // Actualiza el contador de cursos en la ruta correspondiente
+          document.querySelectorAll('.ruta-item').forEach(item => {
+            const nombreDiv = item.querySelector('div > div');
+            if (nombreDiv && nombreDiv.textContent.trim() === nombreRuta) {
+              const contador = item.querySelector('.contador-cursos');
+              if (contador) {
+                contador.textContent = cursosPorRuta[nombreRuta].length;
+              }
+            }
+          });
         };
       });
     });
@@ -102,6 +113,11 @@ function crearRuta(nombre, guardar = true) {
   var rutasContainer = document.getElementById('rutasContainer');
   var estadoVacio = document.getElementById('estadoVacio');
   if (estadoVacio) estadoVacio.style.display = 'none';
+
+  // Obtener cantidad de cursos para la ruta
+  let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+  let cantidadCursos = (cursosPorRuta[nombre] || []).length;
+
   var ruta = document.createElement('div');
   ruta.className = 'ruta-item';
   ruta.style.display = 'flex';
@@ -114,7 +130,7 @@ function crearRuta(nombre, guardar = true) {
     <div style="background:#2E696B; color:#fff; width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:bold;">${nombre[0].toUpperCase()}</div>
     <div>
       <div style="font-size:1.2rem; font-weight:bold; color:#fff;">${nombre}</div>
-      <div style="font-size:0.95rem; color:#8CCCCF;">Ruta Personalizada | 0 Cursos</div>
+      <div class="ruta-cursos-contador" style="font-size:0.95rem; color:#8CCCCF;">Ruta Personalizada | <span class="contador-cursos">${cantidadCursos}</span> Cursos</div>
     </div>
     <div style="flex:1;"></div>
     <div style="width:180px; display:flex; align-items:center; gap:8px;">
@@ -124,6 +140,7 @@ function crearRuta(nombre, guardar = true) {
     </div>
   `;
   rutasContainer.appendChild(ruta);
+
   // Eliminar ruta
   ruta.querySelector('.eliminarRutaBtn').onclick = function(e) {
     e.stopPropagation();
@@ -180,7 +197,7 @@ function crearRuta(nombre, guardar = true) {
     var rutas = obtenerRutas();
     rutas.push(nombre);
     guardarRutas(rutas);
-  
+
     let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
     if (!cursosPorRuta[nombre]) {
       cursosPorRuta[nombre] = [];
