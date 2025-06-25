@@ -599,7 +599,24 @@ main.container {
   background: #00F7FF;
   color: #000000;
 }
+/* Carrusel de cursos tendencia */
+.carousel-desc {
+  color: #8CCCCF;
+  font-size: 0.98rem;
+  text-align: center;
+  margin: 8px 0 10px 0;
+  padding: 0 5px;
+  min-height: 38px;
 
+}
+.continuar-cursos-tendencia {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 32px 0 24px 0;
+  color: white;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
  /* Pricing */
 .pricing {
   text-align: center;
