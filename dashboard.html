@@ -62,63 +62,18 @@
     <a href="index.html#precios" class="btn-primary">Precios</a>
   </div>
 
-  <!-- Main Content // Aquí deben colocar sus partes- según el orden.-->
+  <!-- Main Content -->
   <main class="container dashboard-main">
-    <!-- Tabs de navegación -->
-    <div class="dashboard-tabs">
-      <button class="tab active"><i class="fas fa-fire"></i> Tendencias</button>
-      <a href="lista_cursos.html" class="dashboard-link">Ver todos los cursos</a>
-    </div>
-
-    <!-- Carrusel de cursos tendencias-->
-    <div class="carousel-wrapper">
-      <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
-      <div class="dashboard-carousel">
-        <a class="carousel-item" href="info_all_cursos.html?nombre=Procesamiento%20de%20Lenguaje%20Natural">
-          <img src="assets/imagenes_cursos/procesamiento de natural language.jpg" alt="JavaScript">
-          <span class="carousel-number">1</span>
-          <div class="carousel-title">Procesamiento de lenguaje natural</div>
-        </a>
-        <a class="carousel-item" href="info_all_cursos.html?nombre=Visión%20por%20Computadora">
-          <img src="assets/imagenes_cursos/computer-vision.png" alt="JavaScript">
-          <span class="carousel-number">2</span>
-          <div class="carousel-title">Vision por computadora</div>
-        </a>
-        <a class="carousel-item" href="info_all_cursos.html?nombre=Fundamentos%20de%20Machine%20Learning">
-          <img src="assets/imagenes_cursos/Fundamentos de machine learning.jpg" alt="JavaScript">
-          <span class="carousel-number">3</span>
-          <div class="carousel-title">Funadmentos de machine learning</div>
-        </a>
-        <a class="carousel-item" href="info_all_cursos.html?nombre=Tecnología%20y%20Sostenibilidad">
-          <img src="assets/imagenes_cursos/IA y sostenibilidad.jpg" alt="JavaScript">
-          <span class="carousel-number">4</span>
-          <div class="carousel-title">Tecnologia y sostenibilidad</div>
-        </a>
-        <a class="carousel-item" href="info_all_cursos.html?nombre=Marketing%20Digital">
-          <img src="assets/imagenes_cursos/IA y marketing.jpg" alt="JavaScript">
-          <span class="carousel-number">5</span>
-          <div class="carousel-title">Marketing digital</div>
-        </a>
-        <a class="carousel-item" href="info_all_cursos.html?nombre=Data%20Science">
-          <img src="assets/imagenes_cursos/IA y data science.jpg" alt="JavaScript">
-          <span class="carousel-number">6</span>
-          <div class="carousel-title">Data Science</div>
-        </a>
-      </div>
-      <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
-    </div>
-
-    <!-- Paneles de estadísticas -->
-    <div class="dashboard-panels">
+    <div class="dashboard-panels-row">
       <!-- Panel de estudios de la semana -->
-      <div class="dashboard-panel">
+      <div class="dashboard-panel panel-half">
         <div class="panel-header">
           <span>Tus estudios de la semana</span>
         </div>
-        <canvas id="studyChart" height="120"></canvas>
+        <canvas id="studyChart"></canvas>
       </div>
       <!-- Panel de objetivo diario -->
-      <div class="dashboard-panel">
+      <div class="dashboard-panel panel-half">
         <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
           <span>Tu objetivo diario</span>
           <i class="fas fa-cog panel-settings" id="goalSettingsBtn" style="cursor:pointer;"></i>
@@ -126,12 +81,21 @@
         <div class="daily-goal" style="position:relative;">
           <svg width="250" height="250">
             <circle cx="110" cy="110" r="100" stroke="#214A4A" stroke-width="20" fill="none"/>
-            <circle id="goalProgressCircle" cx="110" cy="110" r="100" stroke="#00F7FF" stroke-width="20" fill="none"
-              stroke-dasharray="597" stroke-dashoffset="320"/>
+            <circle
+              id="goalProgressCircle"
+              cx="110"
+              cy="110"
+              r="100"
+              stroke="#00F7FF"
+              stroke-width="20"
+              fill="none"
+              stroke-dasharray="597"
+              stroke-dashoffset="320"
+              transform="rotate(-90 110 110)" />
           </svg>
           <div class="goal-text">
             <span class="goal-hours" id="goalHoursText">0/2h</span>
-            <span class="goal-msg">¡Vas por buen camino!</span>
+            <span class="goal-msg">¡Sigue así!</span>
           </div>
         </div>
         <!-- Popup de configuración de objetivo diario -->
@@ -156,56 +120,20 @@
           </div>
         </div>
       </div>
-      <!-- Panel de Cursos estudiados -->
-      <div class="dashboard-panel">
-        <div class="panel-header">
-            <span>Cursos estudiados</span>
-            <a href="mis_rutas.html" class="panel-link">Ver todos</a>
-        </div>
-        <div class="studied-courses-list">
-            <div class="studied-course">
-              <img src="assets/images/JS0.jpg" alt="JavaScript de cero">
-              <div class="studied-info">
-                <div class="studied-title">JavaScript de cero</div>
-                <div class="studied-progress">Progreso: 60%</div>
-              </div>
-              <a href="#rutas" class="btn-primary btn-continue">Continuar</a>
-            </div>
-            <div class="studied-course">
-              <img src="assets/images/react0.png" alt="React desde cero">
-              <div class="studied-info">
-                <div class="studied-title">React desde cero</div>
-                <div class="studied-progress">Progreso: 35%</div>
-              </div>
-              <a href="#rutas" class="btn-primary btn-continue">Continuar</a>
-            </div>
-        </div>
-        </div>
-      <!-- Panel de Certificados -->
-      <div class="dashboard-panel">
-        <div class="panel-header">
-          <span>Certificados</span>
-          <a href="#certificados" class="panel-link">Ver todos</a>
-        </div>
-        <div class="cert-panel">
-          <i class="fas fa-certificate cert-icon"></i>
-          <div>
-            <div class="cert-title">¡Aún no tienes certificados!</div>
-            <div class="cert-desc">Completa un curso para obtener tu primer certificado.</div>
-          </div>
+    </div>
+    <!-- Panel de Certificados debajo y a lo ancho -->
+    <div class="dashboard-panel panel-full">
+      <div class="panel-header">
+        <span>Certificados</span>
+      </div>
+      <div class="cert-panel cert-panel-empty">
+        <i class="fas fa-certificate cert-icon"></i>
+        <div class="cert-empty-content">
+          <div class="cert-title">¡Aún no tienes certificados!</div>
+          <div class="cert-desc">Completa un curso para obtener tu primer certificado.</div>
+          <a href="lista_cursos.html" class="btn-primary cert-explore-btn">Explorar cursos</a>
         </div>
       </div>
-    </div>
-
-    <!-- FAQ Button -->
-    <div class="faq-button" id="faqToggle">❓</div>
-
-    <!-- FAQ Popup -->
-    <div class="faq-popup" id="faqPopup">
-      <input type="text" placeholder="Tu nombre" id="faqName" />
-      <input type="email" placeholder="Tu correo" id="faqEmail" />
-      <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
-      <button id="faqSend">Enviar</button>
     </div>
   </main>
   <script type="module" src="js/log_out.js"></script>
@@ -278,29 +206,6 @@
       });
     }
 
-    // Carrusel con flechas izquierda y derecha
-    const carousel = document.querySelector('.dashboard-carousel');
-    const nextBtn = document.querySelector('.carousel-next');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const scrollAmount = 220; // Ajusta según el ancho de tus tarjetas
-
-    if (carousel && nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        carousel.scrollBy({
-          left: scrollAmount,
-          behavior: 'smooth'
-        });
-      });
-    }
-    if (carousel && prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        carousel.scrollBy({
-          left: -scrollAmount,
-          behavior: 'smooth'
-        });
-      });
-    }
-
     // Gráfico de horas estudiadas por día
     const ctx = document.getElementById('studyChart').getContext('2d');
     const studyChart = new Chart(ctx, {
@@ -327,7 +232,7 @@
           },
           y: {
             beginAtZero: true,
-            max: 4,
+            max: 12,
             ticks: {
               stepSize: 1,
               color: '#8CCCCF',
@@ -341,7 +246,7 @@
 
     // --- Configuración de objetivo diario ---
     let dailyGoal = 2; // valor inicial
-    let hoursToday = 0; // puedes actualizar esto según tus datos reales
+    let hoursToday = 1; // puedes actualizar esto según tus datos reales
 
     const goalSettingsBtn = document.getElementById('goalSettingsBtn');
     const goalSettingsPopup = document.getElementById('goalSettingsPopup');
@@ -410,6 +315,10 @@
     }
 
     updateGoalDisplay();
+
+    // Ajustar la altura del canvas del gráfico
+    const canvas = document.getElementById('studyChart');
+    canvas.height = canvas.parentElement.offsetHeight || 220;
   });
   </script>
 </body>
