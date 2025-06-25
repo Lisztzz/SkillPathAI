@@ -556,7 +556,7 @@ a {
   align-self: flex-end;
 }
 .btn-enviar-respuesta:hover {
-  background: #06d6a0;
+  background: #00F7FF;
 }
 .responder-box {
   width: 100%;
@@ -632,7 +632,6 @@ a {
   height: 28px;
   border-radius: 50%;
   object-fit: cover;
-  background: #00F7A7;
 }
 .nombre-respuesta {
   font-weight: 600;
@@ -670,11 +669,12 @@ a {
 
 .comentario-respuesta-toggle {
   cursor: pointer;
-  color: #00F7A7;
+  color: #00F7FF !important;
   font-weight: bold;
   margin-bottom: 0.3rem;
   user-select: none;
 }
+
 .comentario-respuesta-toggle:hover {
   text-decoration: underline;
 }
