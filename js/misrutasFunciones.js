@@ -29,6 +29,17 @@ document.addEventListener('DOMContentLoaded', function () {
           localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
           modal.style.display = 'none';
           alert(`Curso "${nombreCurso}" agregado a la ruta "${nombreRuta}"`);
+
+          // Actualiza el contador de cursos en la ruta correspondiente
+          document.querySelectorAll('.ruta-item').forEach(item => {
+            const nombreDiv = item.querySelector('div > div');
+            if (nombreDiv && nombreDiv.textContent.trim() === nombreRuta) {
+              const contador = item.querySelector('.contador-cursos');
+              if (contador) {
+                contador.textContent = cursosPorRuta[nombreRuta].length;
+              }
+            }
+          });
         };
       });
     });
@@ -102,6 +113,11 @@ function crearRuta(nombre, guardar = true) {
   var rutasContainer = document.getElementById('rutasContainer');
   var estadoVacio = document.getElementById('estadoVacio');
   if (estadoVacio) estadoVacio.style.display = 'none';
+
+  // Obtener cantidad de cursos para la ruta
+  let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+  let cantidadCursos = (cursosPorRuta[nombre] || []).length;
+
   var ruta = document.createElement('div');
   ruta.className = 'ruta-item';
   ruta.style.display = 'flex';
@@ -114,27 +130,61 @@ function crearRuta(nombre, guardar = true) {
     <div style="background:#2E696B; color:#fff; width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:bold;">${nombre[0].toUpperCase()}</div>
     <div>
       <div style="font-size:1.2rem; font-weight:bold; color:#fff;">${nombre}</div>
-      <div style="font-size:0.95rem; color:#8CCCCF;">Ruta Personalizada | 0 Cursos</div>
+      <div class="ruta-cursos-contador" style="font-size:0.95rem; color:#8CCCCF;">Ruta Personalizada | <span class="contador-cursos">${cantidadCursos}</span> Cursos</div>
     </div>
     <div style="flex:1;"></div>
     <div style="width:180px; display:flex; align-items:center; gap:8px;">
       <span style="color:#8CCCCF; font-size:0.95rem;">0%</span>
       <div style="flex:1; height:6px; background:#214A4A; border-radius:4px;"></div>
-      <button class="eliminarRutaBtn" style="background:none; border:none; color:#8CCCCF; font-size:1.2rem; cursor:pointer;" title="Eliminar ruta">&#128465;</button>
+      <button class="eliminarRutaBtn" style="background:none; border:none; color:#8CCCCF; font-size:2.3rem; cursor:pointer;" title="Eliminar ruta">&#128465;</button>
     </div>
   `;
   rutasContainer.appendChild(ruta);
+
   // Eliminar ruta
   ruta.querySelector('.eliminarRutaBtn').onclick = function(e) {
     e.stopPropagation();
-    rutasContainer.removeChild(ruta);
-    var rutas = obtenerRutas();
-    rutas = rutas.filter(function(r) { return r !== nombre; });
-    guardarRutas(rutas);
-    mostrarNotificacionEliminada && mostrarNotificacionEliminada();
-    if (rutasContainer.children.length === 0 && estadoVacio) {
-      estadoVacio.style.display = 'flex';
-    }
+    // Confirmación personalizada con colores de la paleta
+    const confirmBox = document.createElement('div');
+    confirmBox.style.position = 'fixed';
+    confirmBox.style.left = '0';
+    confirmBox.style.top = '0';
+    confirmBox.style.width = '100vw';
+    confirmBox.style.height = '100vh';
+    confirmBox.style.background = 'rgba(26,58,58,0.75)'; // Fondo más oscuro de la paleta
+    confirmBox.style.display = 'flex';
+    confirmBox.style.alignItems = 'center';
+    confirmBox.style.justifyContent = 'center';
+    confirmBox.style.zIndex = '99999';
+    confirmBox.innerHTML = `
+      <div style="background:#1a3a3a; color:#fff; border-radius:18px; padding:36px 32px; box-shadow:0 4px 24px rgba(0,0,0,0.18); text-align:center; min-width:320px; border:2px solid #214A4A;">
+        <div style="font-size:1.25rem; margin-bottom:18px; color:#8CCCCF;">¿Estás seguro de que quieres eliminar esta ruta?</div>
+        <div style="display:flex; gap:18px; justify-content:center;">
+          <button id="confirmEliminarRutaSi" style="background:#e74c3c; color:#fff; border:none; border-radius:8px; padding:10px 28px; font-size:1.1rem; cursor:pointer; transition:background 0.2s;">Sí</button>
+          <button id="confirmEliminarRutaNo" style="background:#8CCCCF; color:#1a3a3a; border:none; border-radius:8px; padding:10px 28px; font-size:1.1rem; cursor:pointer; transition:background 0.2s;">No</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(confirmBox);
+
+    document.getElementById('confirmEliminarRutaSi').onclick = function() {
+      rutasContainer.removeChild(ruta);
+      var rutas = obtenerRutas();
+      rutas = rutas.filter(function(r) { return r !== nombre; });
+      guardarRutas(rutas);
+      mostrarNotificacionEliminada && mostrarNotificacionEliminada();
+      // Elimina los cursos asociados a la ruta
+      let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+      delete cursosPorRuta[nombre];
+      localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+      if (rutasContainer.children.length === 0 && estadoVacio) {
+        estadoVacio.style.display = 'flex';
+      }
+      document.body.removeChild(confirmBox);
+    };
+    document.getElementById('confirmEliminarRutaNo').onclick = function() {
+      document.body.removeChild(confirmBox);
+    };
   };
   // Redirigir al hacer click en la ruta (excepto en la basurita)
   ruta.onclick = function(e) {
@@ -147,7 +197,7 @@ function crearRuta(nombre, guardar = true) {
     var rutas = obtenerRutas();
     rutas.push(nombre);
     guardarRutas(rutas);
-  
+
     let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
     if (!cursosPorRuta[nombre]) {
       cursosPorRuta[nombre] = [];

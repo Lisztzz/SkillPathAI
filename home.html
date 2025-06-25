@@ -132,18 +132,18 @@
 
         <!-- Espacio para "Mis rutas" en forma de carrusel -->
         <section class="mis-rutas-section">
-          <div class="mis-rutas-header">
-            <h2 class="continuar-cursos-titulo">Mis rutas</h2>
-            <a href="mis_rutas.html" class="dashboard-link" id="ver-todas-rutas">Ver todas</a>
-          </div>
-          <div class="carousel-wrapper">
-            <button class="carousel-prev mis-rutas-prev"><i class="fas fa-chevron-left"></i></button>
-            <div class="dashboard-carousel mis-rutas-carousel" id="mis-rutas-carousel">
-              <!-- Las rutas se llenan dinámicamente -->
-            </div>
-            <button class="carousel-next mis-rutas-next"><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </section>
+      <div class="mis-rutas-header">
+        <h2 class="continuar-cursos-titulo">Mis rutas</h2>
+        <a href="mis_rutas.html" class="dashboard-link" id="ver-todas-rutas">Ver todas</a>
+      </div>
+      <div class="carousel-wrapper">
+        <button class="carousel-prev mis-rutas-prev"><i class="fas fa-chevron-left"></i></button>
+        <div class="dashboard-carousel mis-rutas-carousel" id="mis-rutas-carousel">
+          <!-- Las rutas se llenan dinámicamente -->
+        </div>
+        <button class="carousel-next mis-rutas-next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
         <!-- Fin de espacio para "Mis rutas" -->
 
         <!--precios-->
@@ -194,7 +194,6 @@
   <script src="js/misrutasIndex.js"></script>
   <script type="module" src="js/barraBusqueda.js"></script>
   <script type="module" src="js/log_out.js"></script>
-
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Carrusel con flechas izquierda y derecha
@@ -229,21 +228,18 @@
         recomendadosCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
       });
     }
-    // Carrusel "Mis rutas"
+    // Carrusel "Mis rutas" con contador de cursos actualizado
     const rutasCarousel = document.getElementById('mis-rutas-carousel');
     const rutasNextBtn = document.querySelector('.mis-rutas-next');
     const rutasPrevBtn = document.querySelector('.mis-rutas-prev');
     const rutasScrollAmount = 340;
 
-    // Obtener rutas guardadas desde localStorage (deben coincidir con las de mis_rutas.html)
     function getRutasGuardadas() {
-      // Las rutas deben estar guardadas en localStorage bajo la clave 'rutasUsuario'
-      // Ejemplo de estructura: ['Ruta 1', 'Ruta 2', ...]
       const rutas = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
-      // Convertimos a objetos para mostrar en el carrusel
+      const cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
       return rutas.map(nombre => ({
         nombre,
-        cursos: 0,
+        cursos: (cursosPorRuta[nombre] || []).length,
         descripcion: 'Ruta Personalizada',
         icono: 'fa-route'
       }));
@@ -266,12 +262,11 @@
             <div class="ruta-icon"><i class="fas ${ruta.icono}"></i></div>
             <div class="ruta-info">
               <div class="ruta-nombre">${ruta.nombre}</div>
-              <div class="ruta-detalles">${ruta.cursos} cursos &nbsp; <span class="ruta-descripcion">${ruta.descripcion}</span></div>
+              <div class="ruta-detalles"><span class="contador-cursos">${ruta.cursos}</span> cursos &nbsp; <span class="ruta-descripcion">${ruta.descripcion}</span></div>
             </div>
             <div class="ruta-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
         `;
-        // Redirige a mis_rutas.html con el nombre de la ruta como hash y scroll al detalle
         item.addEventListener('click', () => {
           window.location.href = `mis_rutas.html#${encodeURIComponent(ruta.nombre)}`;
         });
