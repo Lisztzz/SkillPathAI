@@ -1,3 +1,426 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+
+  <title>SkillPathIA</title>
+  <link rel="stylesheet" href="css/stylesL.css">
+</head>
+<body>
+    <header class="navbar">
+
+    <a class="navbar-brand" href="index.html">
+      <img src="assets/icons/logo.png" alt="Logo" />
+      <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
+    </a>
+
+
+    <!-- Contenedor para búsqueda e iniciar sesión, siempre visible -->
+     <nav class="navbar-cursos">
+        <a href="#cursos" class="nav-cursos">Cursos</a>
+     </nav>
+    <div class="navbar-busqueda">
+        <form class="search-form" action="#" method="get">
+        <input type="text" name="q" placeholder="Buscar cursos..." aria-label="Buscar cursos" />
+        </form>
+    </div>
     
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+    <!-- Agrupar botones a la derecha -->
+    <div class="navbar-derecha">
+        <nav class="navbar-precios">
+        <a href="#precios" class="btn-primary">Precios</a>
+        </nav>
+        <div class="navbar-login">
+        <a href="iniciar_sesion.html" class="btn-outline iniciar-sesion">Iniciar sesión</a>
+        </div>
+        <nav class="navbar-registro">
+        <a href="registrar_cuenta.html" class="btn-outline nav-registro">Registrarse</a>
+        </nav>
+    </div>
+    <hr class="linea-divisoria">
+    </header>
+
+    <!-- Agrega esto justo después del header/navbar -->
+    <div class="offcanvas-menu" id="offcanvas-menu">
+        <label for="menu-toggle" class="close-offcanvas">&times;</label>
+        <a href="#cursos" class="btn-cursos cursos">Cursos</a>
+        <a href="#precios" class="btn-primary">Precios</a>
+        <a href="registrar_cuenta.html" class="btn-outline nav-registro">Registrarse</a>
+        <a href="iniciar_sesion.html" class="btn-outline iniciar-sesion">Iniciar sesión</a>
+    </div>
+  <!--hero-->
+  <main class="container">
+    <section class="hero">
+      <img src="assets/images/Aprende habilidades en IA.jpg" alt="Imagen principal">
+      <div class="hero-text">
+        <h2>Aprenda habilidades de IA para transformar su carrera</h2>
+        <p>Domina las últimas tecnologías de IA con nuestros cursos. Adquiere habilidades prácticas y mantente a la vanguardia.</p>
+        <a href="registrar_cuenta.html" class="btn-primary">Empieza ahora</a>
+      </div>
+    </section>
+    <!-- Sección de características -->
+    <section class="features">
+      <div class="features-text" >
+          <h3>¿Por qué elegir SkillPathIA?</h3>
+          <p>Nuestra plataforma ofrece una experiencia integral, diseñada para ayudarte a tener éxito en el campo de la IA.</p>
+      </div>
+      <div class="cards">
+          <div class="card feature-card">
+              <i class="bi bi-mortarboard"></i>
+              <h5>Cursos dirigidos por expertos</h5>
+              <p>Aprenda de líderes con años de experiencia en IA.</p>
+              <div class="feature-extra">
+                  Nuestros cursos son impartidos por profesionales reconocidos en la industria de la IA, con experiencia real en proyectos y docencia.
+              </div>
+          </div>
+          <div class="card feature-card">
+              <i class="bi bi-easel2"></i>
+              <h5>Proyectos prácticos</h5>
+              <p>Aplica tus conocimientos y crea un portafolio real.</p>
+              <div class="feature-extra">
+                  Realiza proyectos prácticos y casos reales para aplicar lo aprendido y construir un portafolio que destaque tu perfil profesional.
+              </div>
+          </div>
+          <div class="card feature-card">
+              <i class="bi bi-people"></i>
+              <h5>Apoyo comunitario</h5>
+              <p>Conéctate con otros estudiantes y obtén soporte.</p>
+              <div class="feature-extra">
+                  Únete a una comunidad activa de estudiantes y expertos, comparte dudas, recibe apoyo y crece junto a otros apasionados por la IA.
+              </div>
+          </div>
+      </div>
+  </section>
+    </section>
+    <!-- Sección de cursos destacados -->
+     <h3 class="titulo-cursos-destacados" id="cursos">Cursos destacados</h3>
+    <div class="carousel-wrapper">
+      <button class="carousel-prev cursos-tendencias-prev"><i class="fas fa-chevron-left"></i></button>
+      <div class="dashboard-carousel cursos-tendencias-carousel" id="cursos-tendencias-carousel">
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/procesamiento de natural language.jpg" alt="Procesamiento de lenguaje natural">
+          <div class="carousel-title">Procesamiento de lenguaje natural</div>
+          <div class="carousel-desc">Aprende a trabajar con texto y lenguaje humano usando IA y NLP.</div>
+          <!--<a href="#info_all_cursos.html?nombre=Procesamiento%20de%20Lenguaje%20Natural" class="btn-outlinec">Ver</a>-->
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/computer-vision.png" alt="Visión por computadora">
+          <div class="carousel-title">Visión por computadora</div>
+          <div class="carousel-desc">Descubre cómo las máquinas interpretan imágenes y videos.</div>
+          <!--<a href="#info_all_cursos.html?nombre=Visión%20por%20Computadora" class="btn-outlinec">Ver</a>-->
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/Fundamentos de machine learning.jpg" alt="Fundamentos de machine learning">
+          <div class="carousel-title">Fundamentos de machine learning</div>
+          <div class="carousel-desc">Domina los conceptos básicos y algoritmos esenciales de ML.</div>
+          <!--<a href="#info_all_cursos.html?nombre=Fundamentos%20de%20Machine%20Learning" class="btn-outlinec">Ver</a>-->
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/IA y sostenibilidad.jpg" alt="Tecnología y sostenibilidad">
+          <div class="carousel-title">Tecnología y sostenibilidad</div>
+          <div class="carousel-desc">Explora el impacto de la IA en el desarrollo sostenible.</div>
+          <!--<a href="#info_all_cursos.html?nombre=Tecnología%20y%20Sostenibilidad" class="btn-outlinec">Ver</a>-->
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/IA y marketing.jpg" alt="Marketing digital">
+          <div class="carousel-title">Marketing digital</div>
+          <div class="carousel-desc">Potencia tus campañas con inteligencia artificial aplicada al marketing.</div>
+          <!--<a href="#info_all_cursos.html?nombre=Marketing%20Digital" class="btn-outlinec">Ver</a>-->
+        </div>
+        <div class="carousel-item">
+          <img src="assets/imagenes_cursos/IA y data science.jpg" alt="Data Science">
+          <div class="carousel-title">Data Science</div>
+          <div class="carousel-desc">Aprende a analizar y visualizar datos con herramientas modernas.</div>
+          <!--<a href="#info_all_cursos.html?nombre=Data%20Science" class="btn-outlinec">Ver</a>-->
+        </div>
+      </div>
+      <button class="carousel-next cursos-tendencias-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <!-- Sección de testimonios -->
+    <section class="testimonials">
+        <div class="features-text">
+            <h3>Testimonios de estudiantes</h3>
+        </div>
+      
+    <div class="testimonial">
+      <div class="testimonial-top">
+        <i class="bi bi-person person-icon"></i>
+        <div class="testimonial-info">
+          <strong class="name">Sophia Carter</strong>
+          <small class="date">2023-08-15</small>
+        </div>
+      </div>
+      <div class="stars">
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+    </div>
+    <p class="testimonial-comment">El curso de Aprendizaje Automático de skillpathIA sentó una base sólida para mi transición profesional hacia la IA. Los instructores fueron muy competentes y me brindaron mucho apoyo.</p>
+    <div class="testimonial-actions">
+      <button class="like-btn">
+        <i class="bi bi-hand-thumbs-up"></i>
+        <span class="like-count">12</span>
+      </button>
+      <button class="dislike-btn">
+        <i class="bi bi-hand-thumbs-down"></i>
+        <span class="dislike-count">2</span>
+      </button>
+    </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-top">
+        <i class="bi bi-person person-icon"></i>
+        <div class="testimonial-info">
+          <strong class="name">Ethan Bennett</strong>
+          <small class="date">2023-09-22</small>
+        </div>
+      </div>
+      <div class="stars">
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star"></i>
+    </div>
+    <p class="testimonial-comment">Curso desafiante pero gratificante. Aprendí mucho y creé proyectos impresionantes.</p>
+    <div class="testimonial-actions">
+      <button class="like-btn"><i class="bi bi-hand-thumbs-up"></i></button>
+      <button class="dislike-btn"><i class="bi bi-hand-thumbs-down"></i></button>
+    </div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-actions">
+      <button class="like-btn">
+        <i class="bi bi-hand-thumbs-up"></i>
+        <span class="like-count">8</span>
+      </button>
+      <button class="dislike-btn">
+        <i class="bi bi-hand-thumbs-down"></i>
+        <span class="dislike-count">1</span>
+      </button>
+      </div>
+    </div>
+      <div class="testimonial">
+      <div class="testimonial-top">
+        <i class="bi bi-person person-icon"></i>
+        <div class="testimonial-info">
+          <strong class="name">Olivia Bayes</strong>
+          <small class="date">2023-10-10</small>
+        </div>
+      </div>
+      <div class="stars">
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+      <i class="bi bi-star-fill"></i>
+    </div>
+    <p class="testimonial-comment">Recomiendo ampliamente SkillpathIA a cualquiera que desee aprender sobre la ética de la IA. El contenido del curso fue muy instructivo y estimulante.</p>
+    <div class="testimonial-actions">
+      <button class="like-btn">
+        <i class="bi bi-hand-thumbs-up"></i>
+        <span class="like-count">15</span>
+      </button>
+      <button class="dislike-btn">
+        <i class="bi bi-hand-thumbs-down"></i>
+        <span class="dislike-count">3</span>
+      </button>
+    </div>
+    </div>
+    </section>
+    <!--precios-->
+    <section class="pricing" id="precios">
+        <h2>Planes de precios</h2>
+        <div class="pricing-cards">
+            
+            <div class="pricing-card basic">
+            <h3>Plan gratuito</h3>
+            <p class="price">S/ 0</p>
+            <ul>
+                <li>Acceso a cursos introductorios</li>
+                <li>Certificados limitados</li>
+                <li>Acceso a la comunidad</li>
+                <li>:/</li>
+            </ul>
+            <a href="#" class="btn-outline">Comenzar</a>
+            </div>
+
+            <div class="pricing-card pro">
+            <h3>Plan mensual</h3>
+            <p class="price">S/ 70</p>
+            <ul>
+                <li>Acceso ilimitado a todos los cursos</li>
+                <li>Certificados profesionales</li>
+                <li>Proyectos prácticos</li>
+                <li>Soporte prioritario</li>
+            </ul>
+            <a href="#" class="btn-outline">Más popular</a>
+            </div>
+
+            <div class="pricing-card business featured">
+            <h3>Plan anual</h3>
+            <p class="price">Desde S/ 700</p>
+            <ul>
+                <li>Todo lo del plan mensual</li>
+                <li>2 meses gratis (ahorras S/140)</li>
+                <li>Acceso anticipado a nuevos cursos</li>
+                <li>Somos felices</li>
+            </ul>
+
+            <a href="#" class="btn-primary">Más ahorro</a>
+
+            </div>
+
+        </div>
+    </section>
+    <!--seccion de preguntas frecuentes-->
+    <section class="faq">
+        <h3>Preguntas frecuentes</h3>
+        <div class="faq-item">
+            <h4 class="faq-question">¿Qué cursos ofrece SkillPathIA?</h4>
+            <div class="faq-answer">
+            <p>Ofrecemos una amplia gama de cursos en IA, desde fundamentos hasta especializaciones avanzadas.</p>
+            <p>Nuestros cursos incluyen temas como Machine Learning, Deep Learning, NLP, visión por computador, y más.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <h4 class="faq-question">¿Cómo puedo registrarme?</h4>
+            <div class="faq-answer">
+            <p>Puede registrarse fácilmente a través de nuestro sitio web. Simplemente haga clic en "Registrarse" y siga las instrucciones.</p>
+            <p>También puede registrarse usando su cuenta de Google o LinkedIn para mayor comodidad.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <h4 class="faq-question">¿Hay algún costo asociado?</h4>
+            <div class="faq-answer">
+            <p>Ofrecemos un plan gratuito con acceso limitado y planes de pago con características adicionales.</p>
+            <p>El plan premium incluye certificaciones, proyectos guiados y mentoría personalizada.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Botón de preguntas frecuentes -->
+    <div class="faq-button" id="faqToggle">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+
+     <!-- Globo de texto para enviar preguntas -->
+    <div class="faq-popup" id="faqPopup">
+        <input type="text" placeholder="Tu nombre" id="faqName" />
+        <input type="email" placeholder="Tu correo" id="faqEmail" />
+        <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
+        <button id="faqSend">Enviar</button>
+    </div>
+
+    <!--Explora SkillPathIA-->
+    <section class="video-demo">
+        <h3>Cómo navegar por SkillPathIA</h3>
+        <div class="video-container">
+            <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/_tA5cinv0U8"
+            title="Video demostración SkillPathIA"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            ></iframe>
+        </div>
+    </section>
+
+  <footer>
+    <div class="footer-links">
+        <a href="#">Contáctanos</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Condiciones de servicio</a>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61577398873798" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@SkillpathIA" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com/skillpathia/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/skillpathia-skillpathia-b47850371/?trk=public-profile-join-page" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+    </div>
+
+    <p>&copy; 2025 SkillPathIA. Todos los derechos reservados.</p>
+    </footer>
+</main>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Funcionalidad del menú hamburguesa
+    const toggle = document.getElementById("menu-toggle");
+    toggle.addEventListener("change", function () {
+      document.body.classList.toggle("menu-open", toggle.checked);
+    });
+
+    // Funcionalidad del botón de Preguntas Frecuentes
+    const faqToggle = document.getElementById('faqToggle');
+    const faqPopup = document.getElementById('faqPopup');
+
+    faqToggle.addEventListener('click', () => {
+      faqPopup.style.display = faqPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Envío del formulario del globo de preguntas
+    const faqSendButton = document.getElementById('faqSend');
+    faqSendButton.addEventListener('click', () => {
+      const name = document.getElementById('faqName').value.trim();
+      const email = document.getElementById('faqEmail').value.trim();
+      const message = document.getElementById('faqMessage').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Por favor, completa todos los campos.');
+      } else {
+        alert('¡Mensaje enviado! Gracias por contactarnos.');
+        // Limpiar los campos
+        document.getElementById('faqName').value = '';
+        document.getElementById('faqEmail').value = '';
+        document.getElementById('faqMessage').value = '';
+        faqPopup.style.display = 'none';
+        // Aquí puedes integrar una llamada a backend o servicio externo
+      }
+    });
+
+    // Funcionalidad para abrir/cerrar respuestas en la sección de preguntas frecuentes
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function () {
+        const item = this.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // Carrusel de cursos destacados
+    const carousel = document.getElementById('featured-courses-carousel');
+    const prevBtn = document.getElementById('featured-prev');
+    const nextBtn = document.getElementById('featured-next');
+    const scrollAmount = 240; // Ajusta según el ancho de tus cards
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
 </html>
