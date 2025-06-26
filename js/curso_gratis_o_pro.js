@@ -3,6 +3,7 @@ import { dataCursos } from './datacursos.js';
 export const cursosDetalle = dataCursos.map(curso => ({
     nombre: curso.nombre,
     imagen: curso.imagen,
+    profesor: curso.profesor,
     pro: curso.pro,
     youtube: "",
     descripcion_larga: "",
@@ -90,7 +91,7 @@ cursosDetalle.forEach(curso => {
         curso.puedeEmpezar = true;
     }
     if (curso.nombre === "Tecnología y Sostenibilidad") {
-        curso.youtube = "https://www.youtube.com/embed/2b3c4d5e6f7";
+        curso.youtube = "https://www.youtube.com/embed/1yx2mlkgywE";
         curso.duracion = "3 semanas";
         curso.nivel = "Intermedio";
         curso.descripcion_larga = "Este curso está orientado a aplicar tecnología para resolver desafíos ambientales y fomentar la sostenibilidad. Aprenderás sobre monitoreo ambiental mediante sensores, uso de IA en eficiencia energética, análisis de datos para sostenibilidad, agricultura de precisión y energías limpias. También se presentarán proyectos reales con impacto positivo.<br><br>Al finalizar, estarás preparado para diseñar iniciativas tecnológicas orientadas a la conservación del medio ambiente y la gestión responsable de recursos.";
