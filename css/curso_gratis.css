@@ -339,6 +339,7 @@ main.container {
   align-items: center;
 }
 
+
 /* Responsive */
 @media (max-width: 750px) {
   .menu-icon {

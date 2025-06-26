@@ -159,9 +159,10 @@ footer {
     gap: 1rem;
 }
 
-/* Elimina el icono grande de estado vacío */
 .empty-state-icon {
-    display: none;
+    font-size: 4rem;
+    color: #00F7FF;
+    margin-bottom: 1rem;
 }
 
 .empty-state-title {
@@ -218,62 +219,4 @@ footer {
 main.container {
     margin-left: 260px; /* Ajusta el contenido para que no se solape con el sidebar */
     padding-top: 2rem; /* Ajustado para el navbar sticky */
-}
-
-/* Modal para crear nueva ruta */
-.modal-ruta {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.4);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-}
-.modal-ruta-content {
-  background: #1a3b3b;
-  color: #8CCCCF;
-  padding: 32px 24px;
-  border-radius: 8px;
-  min-width: 320px;
-  max-width: 90vw;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border: 2px solid #00F7FF;
-}
-.modal-ruta-close {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #8CCCCF;
-}
-.input-ruta {
-  width: 100%;
-  padding: 8px;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #2E696B;
-  background: #214A4A;
-  color: #8CCCCF;
-}
-
-.ruta-item {
-  background: #0F2424;
-  border-radius: 16px;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: none;
-  cursor: pointer;
-  padding: 0;
-}
-.ruta-item:hover {
-  background: #23272e;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  cursor: pointer;
 }
