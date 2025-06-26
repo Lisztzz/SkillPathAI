@@ -7,11 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <title>SkillPathIA</title>
   <link rel="stylesheet" href="css/styles_cursos.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <!-- Navbar -->
   <header class="navbar">
-    <a class="navbar-brand" href="#home">
+
+    <a class="navbar-brand" href="home.html">
+
         <img src="assets/icons/logo.png" alt="Logo" />
         <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
     </a>
@@ -27,10 +30,15 @@
     <label for="menu-toggle" class="menu-icon">&#9776;</label>
     <div class="navbar-derecha">
       <nav class="navbar-precios">
-        <a href="index.html" class="btn-primary">Precios</a>
+
+        <a href="home.html#precios" class="btn-primary">Precios</a>
+
       </nav>
-      <div class="navbar-avatar navbar-avatar-desktop">
+      <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
         <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        <div class="avatar-menu" id="avatarMenu">
+          <button class="avatar-menu__item" id="logoutBtn">Cerrar sesion</button>
+        </div>
       </div>
     </div>
     <hr class="linea-divisoria">
@@ -39,8 +47,10 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <nav class="sidebar-menu">
-        <a href="#inicio"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
-        <a href="#rutas"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+
+        <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
+        <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+
         <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
         <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
         <div class="navbar-avatar navbar-avatar-mobile">
@@ -201,13 +211,19 @@
   </main>
 
   <!-- Botón de ayuda (FAQ) -->
-  <div class="faq-button" id="faqToggle">❓</div>
+  <div class="faq-button" id="faqToggle">
+    <i class="fas fa-comment-dots"></i>
+  </div>
   <div class="faq-popup" id="faqPopup">
     <input type="text" placeholder="Tu nombre" id="faqName" />
     <input type="email" placeholder="Tu correo" id="faqEmail" />
     <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
     <button id="faqSend">Enviar</button>
   </div>
+
+  <script type="module" src="js/renderCursos.js"></script>
+  <script type="module" src="js/log_out.js"></script>
+  <script type="module" src="js/barraBusqueda.js"></script>
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {

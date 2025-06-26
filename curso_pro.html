@@ -6,12 +6,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <title>SkillPathIA</title>
-  <link rel="stylesheet" href="css/curso_pro.css">
+  <link rel="stylesheet" href="css/curso_gratis.css">
+  <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
   <!-- Navbar -->
   <header class="navbar">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="home.html">
         <img src="assets/icons/logo.png" alt="Logo" />
         <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
     </a>
@@ -27,10 +29,15 @@
     <label for="menu-toggle" class="menu-icon">&#9776;</label>
     <div class="navbar-derecha">
       <nav class="navbar-precios">
-        <a href="#precios" class="btn-primary">Precios</a>
+
+        <a href="home.html#precios" class="btn-primary">Precios</a>
+
       </nav>
-      <div class="navbar-avatar navbar-avatar-desktop">
+      <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
         <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        <div class="avatar-menu" id="avatarMenu">
+          <button class="avatar-menu__item" id="logoutBtn">Cerrar sesion</button>
+        </div>
       </div>
     </div>
     <hr class="linea-divisoria">
@@ -39,10 +46,11 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <nav class="sidebar-menu">
-        <a href="#inicio"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
-        <a href="#rutas"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
-        <a href="#comunidad"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
-        <a href="#dashboard"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
+        <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
+        <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+        <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
+
         <div class="navbar-avatar navbar-avatar-mobile">
           <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
         </div>
@@ -56,12 +64,14 @@
       <span class="badge-nivel">Intermedio</span>
       <span class="badge-tiempo">4 semanas</span>
     </div>
-    <img src="assets/imagenes_cursos/tecnicas avanzadas de IA.jpg" alt="Técnicas avanzadas de IA" class="curso-pro-img">
-    <div class="curso-pro-desc">
-      Este curso PRO está diseñado para quienes desean profundizar en los algoritmos y modelos avanzados de la inteligencia artificial. Aprenderás sobre redes neuronales profundas, técnicas de optimización, regularización, redes convolucionales y recurrentes, transfer learning, y cómo aplicar estos conocimientos en proyectos reales. Incluye ejercicios prácticos, estudios de caso y acceso a foros exclusivos para miembros PRO.<br><br>
-      Al finalizar, serás capaz de implementar soluciones avanzadas de IA en distintos contextos y comprender los desafíos actuales en el desarrollo de modelos inteligentes.
+
+    <img class="curso-pro-img" />
+    <div class="curso-pro-desc"></div>
+    <div class="acciones-cursos">
+      <button class="btn-accion">Acción principal</button>
+      <button class="btn-accion_ruta">Agregar a mi ruta</button>
     </div>
-    <button class="btn-mejorar-pro">Mejorar a Pro</button>
+
   </main>
   <main class="curso-pro-video-main">
     <div class="curso-pro-video">
@@ -69,13 +79,28 @@
     </div>
   </main>
   <!-- Botón de ayuda (FAQ) -->
-  <div class="faq-button" id="faqToggle">❓</div>
+  <div class="faq-button" id="faqToggle">
+    <i class="fas fa-comment-dots"></i>
+  </div>
   <div class="faq-popup" id="faqPopup">
     <input type="text" placeholder="Tu nombre" id="faqName" />
     <input type="email" placeholder="Tu correo" id="faqEmail" />
     <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
     <button id="faqSend">Enviar</button>
   </div>
+
+  <!-- Modal para mostrar rutas -->
+  <div id="modalRutas" class="modal-rutas-overlay" style="display:none;">
+    <div class="modal-rutas-content">
+      <button id="cerrarModalRutas" class="modal-rutas-close">&times;</button>
+      <h2>Mis Rutas</h2>
+      <ul id="listaRutas"></ul>
+    </div>
+  </div>
+  <script type="module" src="js/renderinfoCursos.js"></script>
+  <script type="module" src="js/log_out.js"></script>
+  <script type="module" src="js/barraBusqueda.js"></script>
+  <script type="module" src="js/misrutasFunciones.js"></script>
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -142,5 +167,8 @@
     }
   });
   </script>
+  
 </body>
+
 </html>
+

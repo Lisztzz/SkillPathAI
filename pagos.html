@@ -10,7 +10,7 @@
 <body>
   <!-- Encabezado solo logo y nombre -->
   <header class="pago-header">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="home.html">
       <img src="assets/icons/logo.png" alt="Logo" class="logo-pago" />
       <span class="brand-skill">SkillPath</span><span class="brand-ia">AI</span>
     </a>
@@ -71,7 +71,9 @@
   </main>
 
   <!-- Botón de preguntas frecuentes -->
-  <div class="faq-button" id="faqToggle">❓</div>
+  <div class="faq-button" id="faqToggle">
+    <i class="fas fa-comment-dots"></i>
+  </div>
 
   <!-- Popup de preguntas frecuentes -->
   <div class="faq-popup" id="faqPopup">
@@ -154,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formPago.addEventListener('submit', function(e) {
       e.preventDefault();
       alert('¡Pago realizado con éxito! Gracias por tu compra.');
-      window.location.href = 'index.html';
+      window.location.href = 'home.html';
     });
   }
 });

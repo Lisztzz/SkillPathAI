@@ -1,0 +1,248 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+  background-color: #0F2424;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.titulo_principal {
+    font-family: 'Inter',sans-serif;
+    font-size: 150px;
+    line-height: 23px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    width: 42%;
+}
+.logo {
+    width: 270px;
+    height: auto;
+}
+.logo-header, #form-registrar-cuenta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.logo-header {
+  margin-bottom: 32px;
+}
+#form-registrar-cuenta {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background: none;
+  box-shadow: none;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+  margin-left: -240px;
+}
+.formato {
+    margin-left: -10px;
+}
+
+/* --------- ESTILOS ADICIONALES PROPIOS DE REGISTRO --------- */
+.subtitulo_crea_tu_cuenta {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 28px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+.texto_nombre,
+.texto_email,
+.texto_contraseña {
+    font-family: Inter;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    font-weight: 100;
+    margin: 8px 0 4px 0;
+    text-align: left;
+    width: 100%;
+}
+.tyc {
+    font-family: Inter;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    margin-left:-220px;
+}
+.ya_tienes_cuenta {
+    font-family: Inter;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    margin-top: 16px;
+    text-align: center;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 500px;
+    height: 56px;
+    border-radius: 12px;
+    padding: 16px;
+    background: #214A4A;
+    border: none;
+    outline: none;
+    min-height: 60px;
+    margin-bottom: 8px;
+    color: #00F7FF;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    letter-spacing: 0px;
+}
+input::placeholder {
+  color: #8CCCCF;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  gap: 10px;
+}
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+/* Estilo visual del checkbox */
+.checkbox-container label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-color: #214A4A;
+  border-radius: 4px;
+  vertical-align: middle;
+  transition: background-color 0.2s ease;
+  appearance: none; 
+  border: 2.8px solid #2E696B; 
+  border-radius: 4px;       
+  background-color: transparent;
+}
+.checkbox-container input[type="checkbox"]:checked + label::before {
+  background-color: #00f7ff;
+}
+.boton_registrar {
+  background-color: #00f7ff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  min-height: 45px;
+  width: 500px;
+  cursor: pointer;
+}
+.boton_iniciar_sesion {
+  background-color: #1e3a3a;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  min-height: 45px;
+  width: 500px;
+  cursor: pointer;
+}
+.error-message,
+.error-message1,
+.error-message2 {
+  color: #00F7FF;
+  font-size: 0.95em;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: block;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+.logo-link:hover .logo,
+.logo-link:hover .subtitulo_crea_tu_cuenta {
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+/* --------- RESPONSIVE --------- */
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    min-height: 100vh;
+  }
+  .logo-header, #form-registrar-cuenta {
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 8px;
+  }
+  .logo-container {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .logo {
+    width: 80px !important;
+  }
+  .titulo_principal {
+    font-size: 2rem !important;
+    line-height: 2.2rem !important;
+    width: auto !important;
+    text-align: center !important;
+  }
+  #form-registrar-cuenta {
+    max-width: 100vw;
+    padding: 0 8px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 1rem;
+    min-width: unset;
+    width: 100%;
+  }
+  .boton_registrar,
+  .boton_iniciar_sesion {
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  .checkbox-container {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .subtitulo_crea_tu_cuenta {
+    font-size: 1.2rem;
+    margin-top: 12px;
+  }
+  .ya_tienes_cuenta {
+    text-align: center;
+    font-size: 1rem;
+  }
+}

@@ -1,70 +1,498 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SkillpathIA - Comunidad</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <title>SkillPathIA</title>
   <link rel="stylesheet" href="css/styles_comunidad.css"/>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header class="header">
-    <div class="header-left">
-      <img src="assets/icons/logo.png" alt="Logo" class="header-logo" />
-      <span class="logo-title">
-        <span class="skillpath">SkillPath</span><span class="ia">IA</span>
-      </span>
+<!-- Navbar -->
+  <header class="navbar">
+    <a class="navbar-brand" href="home.html">
+        <img src="assets/icons/logo.png" alt="Logo" />
+        <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
+    </a>
+    <nav class="navbar-cursos">
+
+      <a href="lista_cursos.html" class="nav-cursos">Cursos</a>
+    </nav>
+    <div class="navbar-busqueda">
+      <form class="search-form" action="#" method="get">
+        <input type="text" name="q" placeholder="Buscar cursos..." aria-label="Buscar cursos" />
+      </form>
     </div>
-    <div class="header-center">
-      <div class="search-bar-header">
-        <input type="text" placeholder="Buscar..."/>
-      </div>
-    </div>
-    <div class="header-right">
-      <button class="planes-btn">Planes</button>
-      <div class="user-icon">👤</div>
-    </div>
-  </header>
-  <hr class="header-divider">
-  <div class="container">
-    <aside class="sidebar">
-      <nav>
-        <ul>
-          <li>🏠 Inicio</li>
-          <li>📘 Mis Rutas</li>
-          <li class="active">👥 Comunidad</li>
-        </ul>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <div class="navbar-derecha">
+      <nav class="navbar-precios">
+
+        <a href="home.html#precios" class="btn-primary">Precios</a>
+
       </nav>
-    </aside>
-    <main class="main-content">
-      <section class="community">
-        <h2>Foro de comunidad</h2>
-        <div class="search-bar-community">
-          <input type="text" placeholder="Buscar en el foro..."/>
+      <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
+        <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        <div class="avatar-menu" id="avatarMenu">
+          <button class="avatar-menu__item" id="logoutBtn">Cerrar sesion</button>
         </div>
-        <div class="post-box">
-          <div class="avatar">👤</div>
-          <textarea placeholder="Escribe algo..."></textarea>
-          <button class="publish-btn">Publicar</button>
+    </div>
+    <hr class="linea-divisoria">
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-menu">
+        <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
+        <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+        <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
+
+        <div class="navbar-avatar navbar-avatar-mobile">
+          <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
         </div>
-        <h3>Comentarios</h3>
-        <div class="post">
-          <div class="avatar">👤</div>
-          <div class="post-content">
-            <strong>Sophia Clark</strong> <span>hace 2 días</span>
-            <p>Tengo problemas para entender el concepto de redes neuronales. ¿Alguien puede explicarlo en términos más simples?</p>
-            <div class="actions">👍 12   💬 2</div>
-          </div>
-        </div>
-        <div class="post">
-          <div class="avatar">👤</div>
-          <div class="post-content">
-            <strong>Ethan Carter</strong> <span>hace 3 días</span>
-            <p>¿Alguien ha completado el curso ‘Ética y sociedad de la IA’? Me encantaría escuchar tu opinión al respecto.</p>
-            <div class="actions">👍 8   💬 1</div>
-          </div>
-        </div>
-      </section>
-    </main>
+    </nav>
+    <div class="sidebar-toggle" id="sidebarToggle">&lt;&lt;</div>
+  </aside>
+  
+  <!-- Offcanvas Menu -->
+  <div class="offcanvas-menu" id="offcanvas-menu">
+    <label for="menu-toggle" class="close-offcanvas">&times;</label>
+    <a href="lista_cursos.html" class="btn-cursos cursos">Cursos</a>
+    <a href="home.html#precios" class="btn-primary">Precios</a>
   </div>
+
+    <!-- FAQ Button -->
+    <div class="faq-button" id="faqToggle">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <!-- FAQ Popup -->
+    <div class="faq-popup" id="faqPopup">
+      <input type="text" placeholder="Tu nombre" id="faqName" />
+      <input type="email" placeholder="Tu correo" id="faqEmail" />
+      <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
+      <button id="faqSend">Enviar</button>
+    </div>
+
+  <div class="foro-comunidad-wrapper">
+  <h2 class="foro-comunidad-titulo">Foro de comunidad</h2>
+  <!-- Cuadro de texto verde para publicar -->
+  <div class="publicar-verde-container">
+  <div class="publicar-verde-wrapper" style="display: flex; align-items: flex-start; gap: 0.8rem;">
+    <img src="assets/images/perfil.jpg" alt="Tu perfil" class="avatar-publicar" />
+    <textarea class="publicar-verde" id="nuevoComentario" placeholder="¿Quieres publicar algo?" oninput="autoExpand(this); activarPublicarBtn()"></textarea>
+    <button class="btn-publicar" id="btnPublicar" disabled onclick="publicarComentario()">Publicar</button>
+  </div>
+  </div>
+  <!-- Subtítulo Publicaciones -->
+  <h3 class="subtitulo-publicaciones">Publicaciones</h3>
+  <!-- Cuadros de publicaciones -->
+<div class="muro-publicaciones-comunidad" id="muroPublicaciones">
+  <div class="publicacion-comunidad">
+    <div class="publicacion-header">
+      <img class="avatar-publicacion" src="assets/img/personita.png" alt="Avatar de Sofía Clark" />
+      <span class="nombre-publicacion">Sofía Clark</span>
+      <span class="fecha-publicacion">hace 2 horas</span>
+    </div>
+    <div class="texto-publicacion-comunidad">
+      ¡Hola a todos! ¿Alguien recomienda un curso para empezar con IA?
+    </div>
+  <div class="acciones-publicacion-comunidad">
+    <div class="acciones-reacciones">
+      <img class="like-btn" src="assets/img/like.png" alt="Like" />
+      <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
+    </div>
+    <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
+  </div>
+    <div class="responder-box" style="display:none;">
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
+      <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
+    </div>
+    <div class="comentarios-respuestas"></div>
+  </div>
+    <div class="publicacion-comunidad">
+      <div class="publicacion-header">
+        <img class="avatar-publicacion" src="assets/img/personita.png" alt="Avatar de Carlos M" />
+        <span class="nombre-publicacion">Carlos Méndez</span>
+        <span class="fecha-publicacion">hace 1 día</span>
+      </div>
+      <div class="texto-publicacion-comunidad">
+        El curso de Machine Learning básico está genial, lo recomiendo mucho.
+      </div>
+      <div class="acciones-publicacion-comunidad">
+    <div class="acciones-reacciones">
+      <img class="like-btn" src="assets/img/like.png" alt="Like" />
+      <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
+    </div>
+    <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
+  </div>
+      <div class="responder-box" style="display:none;">
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
+      <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
+    </div>
+    <div class="comentarios-respuestas"></div>
+    </div>
+    <div class="publicacion-comunidad">
+      <div class="publicacion-header">
+        <img class="avatar-publicacion" src="assets/img/personita.png" alt="Avatar de María López" />
+        <span class="nombre-publicacion">María López</span>
+        <span class="fecha-publicacion">hace 2 días</span>
+      </div>
+      <div class="texto-publicacion-comunidad">
+        ¿Alguien más tiene problemas con el reto de la semana? ¡Necesito ayuda!
+      </div>
+      <div class="acciones-publicacion-comunidad">
+    <div class="acciones-reacciones">
+      <img class="like-btn" src="assets/img/like.png" alt="Like" />
+      <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
+    </div>
+    <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
+  </div>
+      <div class="responder-box" style="display:none;">
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
+      <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
+    </div>
+    <div class="comentarios-respuestas"></div>
+    </div>
+    <div class="publicacion-comunidad">
+      <div class="publicacion-header">
+        <img class="avatar-publicacion" src="assets/img/personita.png" alt="Avatar de Luis Torres" />
+        <span class="nombre-publicacion">Luis Torres</span>
+        <span class="fecha-publicacion">hace 3 días</span>
+      </div>
+      <div class="texto-publicacion-comunidad">
+        ¡Me encantó el último webinar sobre ética en IA!
+      </div>
+      <div class="acciones-publicacion-comunidad">
+    <div class="acciones-reacciones">
+      <img class="like-btn" src="assets/img/like.png" alt="Like" />
+      <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
+    </div>
+    <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
+  </div>
+      <div class="responder-box" style="display:none;">
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..." oninput="autoExpand(this)"></textarea>
+      <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
+    </div>
+    <div class="comentarios-respuestas"></div>
+    </div>
+  </div>
+</div>
+<script src="js/log_out.js"></script>
+<script type="module" src="js/barraBusqueda.js"></script>
+<script>
+function activarPublicarBtn() {
+  const textarea = document.getElementById('nuevoComentario');
+  const btn = document.getElementById('btnPublicar');
+  btn.disabled = textarea.value.trim().length === 0;
+}
+
+function publicarComentario() {
+  const textarea = document.getElementById('nuevoComentario');
+  const texto = textarea.value.trim();
+  if (!texto) return;
+
+  const subtituloPublicaciones = document.querySelector('.subtitulo-publicaciones');
+  let miPublicacionBlock = document.getElementById('miPublicacionBlock');
+
+  if (!miPublicacionBlock) {
+    miPublicacionBlock = document.createElement('div');
+    miPublicacionBlock.id = 'miPublicacionBlock';
+    miPublicacionBlock.innerHTML = `
+      <h4 id="miPublicacionTitulo" class="mi-publicacion-titulo">Mi publicación</h4>
+      <div id="miPublicacionContenedor"></div>
+    `;
+    subtituloPublicaciones.parentNode.insertBefore(miPublicacionBlock, subtituloPublicaciones);
+  }
+
+  const div = document.createElement('div');
+  div.className = 'publicacion-comunidad';
+  div.innerHTML = `
+    <div class="publicacion-header">
+      <img class="avatar-publicacion" src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+      <span class="nombre-publicacion">Tú</span>
+      <span class="fecha-publicacion">ahora</span>
+    </div>
+    <div class="texto-publicacion-comunidad">${texto}</div>
+    <div class="acciones-publicacion-comunidad">
+      <div class="acciones-reacciones">
+        <img class="like-btn" src="assets/img/like.png" alt="Like" />
+        <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
+      </div>
+      <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
+    </div>
+    <div class="responder-box" style="display:none;">
+      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
+      <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
+    </div>
+    <div class="comentarios-respuestas"></div>
+  `;
+
+  const miPublicacionContenedor = document.getElementById('miPublicacionContenedor');
+  // miPublicacionContenedor.innerHTML = ''; // <-- Elimina esta línea
+  miPublicacionContenedor.appendChild(div);
+
+  // Aquí inicializas los contadores para tu publicación
+  const acciones = div.querySelector('.acciones-reacciones');
+  if (typeof inicializarContadores === "function" && acciones) {
+    inicializarContadores(acciones);
+  }
+  textarea.value = '';
+  activarPublicarBtn();
+}
+</script>
+
+<script>
+  function mostrarResponder(btn) {
+  const responderBox = btn.parentElement.nextElementSibling;
+  if (responderBox) {
+    responderBox.style.display = responderBox.style.display === "none" || responderBox.style.display === "" ? "block" : "none";
+    // Opcional: enfocar el textarea cuando se muestre
+    if (responderBox.style.display === "block") {
+      const textarea = responderBox.querySelector('textarea');
+      if (textarea) textarea.focus();
+    }
+  }
+}
+function enviarRespuesta(btn) {
+  const textarea = btn.previousElementSibling;
+  const texto = textarea.value.trim();
+  if (!texto) return;
+  const comentariosDiv = btn.parentElement.nextElementSibling;
+
+  // Buscar si ya existe un contenedor de respuesta en este comentario
+  let respuesta = comentariosDiv.querySelector('.comentario-respuesta-contenedor');
+  let visible, toggle;
+
+  if (!respuesta) {
+    // Si no existe, lo creamos con el subtítulo y el primer comentario
+    respuesta = document.createElement("div");
+    respuesta.className = "comentario-respuesta-contenedor";
+    respuesta.innerHTML = `
+      <div class="comentario-respuesta-toggle" style="cursor:pointer; color:#00F7A7; font-weight:bold; margin-bottom:0.3rem;">Ocultar</div>
+      <div class="comentario-respuesta-visible"></div>
+    `;
+    comentariosDiv.appendChild(respuesta);
+
+    // Lógica para ocultar/mostrar el comentario
+    toggle = respuesta.querySelector('.comentario-respuesta-toggle');
+    visible = respuesta.querySelector('.comentario-respuesta-visible');
+    toggle.addEventListener('click', function() {
+      if (visible.style.display === "none") {
+        visible.style.display = "";
+        toggle.textContent = "Ocultar";
+      } else {
+        visible.style.display = "none";
+        toggle.textContent = "Mostrar";
+      }
+    });
+  } else {
+    visible = respuesta.querySelector('.comentario-respuesta-visible');
+  }
+
+  // Agregar el nuevo comentario dentro del mismo contenedor
+  const nuevoComentario = document.createElement("div");
+  nuevoComentario.innerHTML = `
+    <div class="comentario-respuesta-header">
+      <img class="avatar-respuesta" src="assets/images/perfil.jpg" alt="Tu foto de perfil" />
+      <span class="nombre-respuesta">Tú</span>
+      <span class="fecha-respuesta">ahora</span>
+    </div>
+    <div class="comentario-respuesta-texto">${texto}</div>
+    <div class="comentario-respuesta-acciones">
+      <img class="like-btn" src="assets/img/like.png" alt="Like" />
+      <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
+    </div>
+  `;
+  visible.appendChild(nuevoComentario);
+
+  // Inicializar contadores en la nueva respuesta
+  const acciones = nuevoComentario.querySelector('.comentario-respuesta-acciones');
+  if (typeof inicializarContadores === "function" && acciones) {
+    inicializarContadores(acciones);
+  }
+
+  textarea.value = "";
+  btn.parentElement.style.display = "none";
+}
+</script>
+
+<script>
+function inicializarContadores(reacciones) {
+  if (!reacciones) return;
+  const like = reacciones.querySelector('.like-btn');
+  const dislike = reacciones.querySelector('.dislike-btn');
+
+  // Like
+  if (like && !like.nextElementSibling?.classList.contains('contador-like')) {
+    let likeCont = document.createElement('span');
+    likeCont.className = 'contador-like';
+    likeCont.textContent = '0';
+    like.after(likeCont);
+
+    like.addEventListener('click', function () {
+      if (like.classList.contains('activo')) {
+        // Quitar like
+        likeCont.textContent = Math.max(0, parseInt(likeCont.textContent) - 1);
+        like.classList.remove('activo');
+        like.style.opacity = "1";
+        if (dislike) {
+          dislike.classList.remove('deshabilitado');
+          dislike.style.opacity = "1";
+        }
+      } else {
+        // Dar like
+        likeCont.textContent = parseInt(likeCont.textContent) + 1;
+        like.classList.add('activo');
+        like.style.opacity = "0.5";
+        if (dislike) {
+          dislike.classList.add('deshabilitado');
+          dislike.style.opacity = "0.5";
+        }
+      }
+    });
+  }
+
+  // Dislike
+  if (dislike && !dislike.nextElementSibling?.classList.contains('contador-dislike')) {
+    let dislikeCont = document.createElement('span');
+    dislikeCont.className = 'contador-dislike';
+    dislikeCont.textContent = '0';
+    dislike.after(dislikeCont);
+
+    dislike.addEventListener('click', function () {
+      if (dislike.classList.contains('activo')) {
+        // Quitar dislike
+        dislikeCont.textContent = Math.max(0, parseInt(dislikeCont.textContent) - 1);
+        dislike.classList.remove('activo');
+        dislike.style.opacity = "1";
+        if (like) {
+          like.classList.remove('deshabilitado');
+          like.style.opacity = "1";
+        }
+      } else {
+        // Dar dislike
+        dislikeCont.textContent = parseInt(dislikeCont.textContent) + 1;
+        dislike.classList.add('activo');
+        dislike.style.opacity = "0.5";
+        if (like) {
+          like.classList.add('deshabilitado');
+          like.style.opacity = "0.5";
+        }
+      }
+    });
+  }
+}
+</script>
+
+<script>
+  function autoExpand(textarea) {
+  textarea.style.height = 'auto'; // Reinicia la altura
+  textarea.style.height = (textarea.scrollHeight) + 'px'; // Ajusta a la altura del contenido
+}
+</script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  // Inicializar contadores en publicaciones principales
+  document.querySelectorAll('.acciones-reacciones, .comentario-respuesta-acciones').forEach(function(reacciones) {
+    inicializarContadores(reacciones);
+  });
+
+  // Delegación para publicaciones nuevas
+  const muro = document.getElementById('muroPublicaciones');
+  if (muro) {
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            // Para publicaciones principales
+            const reacciones = node.querySelector('.acciones-reacciones');
+            if (reacciones && !reacciones.querySelector('.contador-like')) {
+              inicializarContadores(reacciones);
+            }
+            // Para respuestas nuevas
+            node.querySelectorAll('.comentario-respuesta-acciones').forEach(function(resp) {
+              if (!resp.querySelector('.contador-like')) {
+                inicializarContadores(resp);
+              }
+            });
+          }
+        });
+      });
+    });
+    observer.observe(muro, { childList: true, subtree: true });
+  }
+    // Referencias comunes
+    const toggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const faqSendButton = document.getElementById('faqSend');
+
+    // Funcionalidad del menú hamburguesa (offcanvas)
+    if (toggle) {
+      toggle.addEventListener("change", function () {
+        document.body.classList.toggle("menu-open", toggle.checked);
+      });
+    }
+
+    // Funcionalidad de colapso del sidebar
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+        document.body.classList.toggle("sidebar-collapsed");
+
+        // Cambia el símbolo del botón
+        sidebarToggle.innerHTML = sidebar.classList.contains("collapsed") ? "&gt;&gt;" : "&lt;&lt;";
+      });
+    }
+
+    // Envío del formulario de preguntas frecuentes
+    if (faqSendButton) {
+      faqSendButton.addEventListener("click", () => {
+        const name = document.getElementById('faqName').value.trim();
+        const email = document.getElementById('faqEmail').value.trim();
+        const message = document.getElementById('faqMessage').value.trim();
+        const faqPopup = document.getElementById('faqPopup');
+
+        if (!name || !email || !message) {
+          alert('Por favor, completa todos los campos.');
+        } else {
+          alert('¡Mensaje enviado! Gracias por contactarnos.');
+          // Limpiar los campos
+          document.getElementById('faqName').value = '';
+          document.getElementById('faqEmail').value = '';
+          document.getElementById('faqMessage').value = '';
+          if (faqPopup) faqPopup.style.display = 'none';
+        }
+      });
+    }
+
+    // Mostrar/ocultar el popup de preguntas frecuentes
+    const faqToggle = document.getElementById('faqToggle');
+    const faqPopup = document.getElementById('faqPopup');
+
+    if (faqToggle && faqPopup) {
+      faqToggle.addEventListener('click', () => {
+        faqPopup.style.display = faqPopup.style.display === 'block' ? 'none' : 'block';
+      });
+
+      // Opcional: cerrar el popup al hacer clic fuera de él
+      document.addEventListener('click', (e) => {
+        if (
+          faqPopup.style.display === 'block' &&
+          !faqPopup.contains(e.target) &&
+          e.target !== faqToggle
+        ) {
+          faqPopup.style.display = 'none';
+        }
+      });
+    }
+  });
+  </script>
 </body>
 </html>
