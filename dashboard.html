@@ -80,7 +80,7 @@
         <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
 
           <span>Tu objetivo diario</span>
-          <i class="fas fa-cog panel-settings"></i>
+          <i class="fas fa-cog panel-settings" id="goalSettingsBtn" style="cursor:pointer;"></i>
         </div>
         <div class="daily-goal" style="position:relative;">
           <svg width="250" height="250">
@@ -101,6 +101,28 @@
           <div class="goal-text">
             <span class="goal-hours" id="goalHoursText">0/2h</span>
             <span class="goal-msg">¡Sigue así!</span>
+
+          </div>
+        </div>
+        <!-- Popup de configuración de objetivo diario -->
+        <div id="goalSettingsOverlay" class="goal-popup-overlay"></div>
+        <div id="goalSettingsPopup" class="goal-popup">
+          <div class="goal-popup-title">
+            Configura tu objetivo diario
+          </div>
+          <div class="goal-popup-desc">
+            Escribe las horas que te propones a estudiar hoy:
+          </div>
+          <div class="goal-popup-input-row">
+            <input type="number" id="goalInput" min="1" max="24" class="goal-popup-input" />
+            <span class="goal-popup-input-label">horas</span>
+          </div>
+          <div class="goal-popup-tip">
+            Los estudiantes suelen estudiar un promedio de <b>2 horas</b> al día.
+          </div>
+          <div class="goal-popup-btn-row">
+            <button id="saveGoalBtn" class="btn-primary goal-popup-btn">Guardar</button>
+            <button id="cancelGoalBtn" class="btn-secondary goal-popup-btn">Cancelar</button>
 
           </div>
         </div>

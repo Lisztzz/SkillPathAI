@@ -7,16 +7,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <title>SkillPathIA</title>
   <link rel="stylesheet" href="css/curso_gratis.css">
+  <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
   <!-- Navbar -->
   <header class="navbar">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="home.html">
         <img src="assets/icons/logo.png" alt="Logo" />
         <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
     </a>
     <nav class="navbar-cursos">
-      <a href="#cursos" class="nav-cursos">Cursos</a>
+      <a href="lista_cursos.html" class="nav-cursos">Cursos</a>
     </nav>
     <div class="navbar-busqueda">
       <form class="search-form" action="#" method="get">
@@ -27,10 +29,15 @@
     <label for="menu-toggle" class="menu-icon">&#9776;</label>
     <div class="navbar-derecha">
       <nav class="navbar-precios">
-        <a href="#precios" class="btn-primary">Precios</a>
+
+        <a href="home.html#precios" class="btn-primary">Precios</a>
+
       </nav>
-      <div class="navbar-avatar navbar-avatar-desktop">
+      <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
         <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+        <div class="avatar-menu" id="avatarMenu">
+          <button class="avatar-menu__item" id="logoutBtn">Cerrar sesion</button>
+        </div>
       </div>
     </div>
     <hr class="linea-divisoria">
@@ -39,10 +46,10 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <nav class="sidebar-menu">
-        <a href="#inicio"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
-        <a href="#rutas"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
-        <a href="#comunidad"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
-        <a href="#dashboard"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
+        <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
+        <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+        <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
         <div class="navbar-avatar navbar-avatar-mobile">
           <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
         </div>
@@ -50,32 +57,46 @@
     <div class="sidebar-toggle" id="sidebarToggle">&lt;&lt;</div>
   </aside>
   <main class="curso-pro-main">
-    <h1 class="curso-pro-titulo">Introducción a la IA</h1>
+    <h1 class="curso-pro-titulo"></h1>
     <div class="curso-pro-etiquetas">
-      <span class="badge-nivel">Basico</span>
-      <span class="badge-tiempo">2 semanas</span>
+      <span class="badge-pro" style="display:none;">PRO</span>
+      <span class="badge-nivel"></span>
+      <span class="badge-tiempo"></span>
     </div>
-    <img src="assets/imagenes_cursos/introducion a la IA.jpg" alt="Técnicas avanzadas de IA" class="curso-pro-img">
-    <div class="curso-pro-desc">
-      Este curso Introductorio está diseñado para quienes desean iniciarse en el mundo de la inteligencia artificial y comprender los conceptos clave. Aprenderás sobre los fundamentos de la IA, tipos de algoritmos, aprendizaje supervisado y no supervisado, redes neuronales básicas, procesamiento de lenguaje natural, y aplicaciones prácticas de la IA en el mundo real. El curso incluye ejercicios prácticos, ejemplos interactivos y acceso a foros de apoyo para resolver dudas y compartir experiencias.
-      Al finalizar, serás capaz de comprender el funcionamiento general de los sistemas de IA, identificar sus aplicaciones en distintos sectores, y sentar una base sólida para avanzar hacia cursos intermedios o especializados en inteligencia artificial.
+    <img class="curso-pro-img" />
+    <div class="curso-pro-desc"></div>
+    <div class="acciones-cursos">
+      <button class="btn-accion">Acción principal</button>
+      <button class="btn-accion_ruta">Agregar a mi ruta</button>
     </div>
-    <button class="btn-mejorar-pro">Comenzar curso</button>
   </main>
   <main class="curso-pro-video-main">
     <div class="curso-pro-video">
-        <iframe src="https://www.youtube.com/embed/GX79smagB2Y" frameborder="0" allowfullscreen></iframe>
+      <iframe frameborder="0" allowfullscreen></iframe>
     </div>
   </main>
   <!-- Botón de ayuda (FAQ) -->
-  <div class="faq-button" id="faqToggle">❓</div>
+  <div class="faq-button" id="faqToggle">
+    <i class="fas fa-comment-dots"></i>
+  </div>
   <div class="faq-popup" id="faqPopup">
     <input type="text" placeholder="Tu nombre" id="faqName" />
     <input type="email" placeholder="Tu correo" id="faqEmail" />
     <textarea placeholder="¿En qué podemos ayudarte?" id="faqMessage"></textarea>
     <button id="faqSend">Enviar</button>
   </div>
-
+  <!-- Modal para mostrar rutas -->
+  <div id="modalRutas" class="modal-rutas-overlay" style="display:none;">
+    <div class="modal-rutas-content">
+      <button id="cerrarModalRutas" class="modal-rutas-close">&times;</button>
+      <h2>Mis Rutas</h2>
+      <ul id="listaRutas"></ul>
+    </div>
+  </div>
+  <script type="module" src="js/renderinfoCursos.js"></script>
+  <script type="module" src="js/log_out.js"></script>
+  <script type="module" src="js/barraBusqueda.js"></script>
+  <script type="module" src="js/misrutasFunciones.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Referencias comunes
@@ -141,5 +162,8 @@
     }
   });
   </script>
+  
 </body>
+
 </html>
+
