@@ -64,7 +64,9 @@
 
   <!-- Main Content -->
   <main class="container dashboard-main">
+
     <div class="dashboard-panels-row">
+
       <!-- Panel de estudios de la semana -->
       <div class="dashboard-panel panel-half">
         <div class="panel-header">
@@ -73,14 +75,17 @@
         <canvas id="studyChart"></canvas>
       </div>
       <!-- Panel de objetivo diario -->
+
       <div class="dashboard-panel panel-half">
         <div class="panel-header" style="display: flex; justify-content: space-between; align-items: center;">
+
           <span>Tu objetivo diario</span>
           <i class="fas fa-cog panel-settings" id="goalSettingsBtn" style="cursor:pointer;"></i>
         </div>
         <div class="daily-goal" style="position:relative;">
           <svg width="250" height="250">
             <circle cx="110" cy="110" r="100" stroke="#214A4A" stroke-width="20" fill="none"/>
+
             <circle
               id="goalProgressCircle"
               cx="110"
@@ -96,6 +101,7 @@
           <div class="goal-text">
             <span class="goal-hours" id="goalHoursText">0/2h</span>
             <span class="goal-msg">¡Sigue así!</span>
+
           </div>
         </div>
         <!-- Popup de configuración de objetivo diario -->
@@ -117,6 +123,7 @@
           <div class="goal-popup-btn-row">
             <button id="saveGoalBtn" class="btn-primary goal-popup-btn">Guardar</button>
             <button id="cancelGoalBtn" class="btn-secondary goal-popup-btn">Cancelar</button>
+
           </div>
         </div>
       </div>
@@ -331,6 +338,7 @@
     // Ajustar la altura del canvas del gráfico
     const canvas = document.getElementById('studyChart');
     canvas.height = canvas.parentElement.offsetHeight || 220;
+
   });
   </script>
 </body>

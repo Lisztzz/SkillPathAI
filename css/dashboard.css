@@ -614,6 +614,7 @@ main.container {
   color: #fff;
   border: none;
   font-weight: bold;
+
   cursor: pointer;
   transition: background 0.2s;
   text-decoration: none;

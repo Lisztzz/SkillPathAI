@@ -432,6 +432,7 @@ main.container {
   line-height: 1;
 }
 
+
 .continuar-cursos-titulo {
   font-size: 2rem;
   font-weight: 700;
@@ -617,6 +618,7 @@ main.container {
   text-align: left;
   letter-spacing: 0.5px;
 }
+
  /* Pricing */
 .pricing {
   text-align: center;
