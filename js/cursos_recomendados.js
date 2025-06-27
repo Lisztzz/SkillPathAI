@@ -19,7 +19,7 @@ if (carousel) {
         <img src="${curso.imagen}" alt="${curso.nombre}">
         ${curso.pro ? '<span class="badge-pro">PRO</span>' : ''}
         <div class="carousel-title">${curso.nombre}</div>
-        <div class="carousel-progress">${curso.descripcion}</div>
+        <div class="carousel-progress">Por ${curso.profesor}</div>
         <a href="info_all_cursos.html?nombre=${encodeURIComponent(curso.nombre)}" class="btn-outline">Ver curso</a>
       </div>
     `;
