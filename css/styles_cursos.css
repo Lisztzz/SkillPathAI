@@ -229,9 +229,7 @@ a {
 .sidebar.collapsed .sidebar-toggle {
   text-align: center;
 }
-body.sidebar-collapsed main.container {
-  margin-left: 60px;
-}
+
 .sidebar,
 main.container {
   transition: all 0.3s ease;
