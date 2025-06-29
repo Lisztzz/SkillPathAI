@@ -1,17 +1,18 @@
 import { dataCursos } from './datacursos.js';
 
 // Nombres de los cursos que quieres mostrar en el carrusel
-const cursosRecomendados = [
-  "Fundamentos de Machine Learning",
-  "Fundamentos de Deep Learning",
+const cursosTendencia = [
   "Procesamiento de Lenguaje Natural",
   "Visión por Computadora",
+  "Fundamentos de Machine Learning",
+  "Tecnología y Sostenibilidad",
+  "Marketing Digital",
   "Data Science"
 ];
 
-const carousel = document.getElementById('cursos-recomendados-carousel');
+const carousel = document.getElementById('cursos-tedencia-carousel');
 if (carousel) {
-  carousel.innerHTML = cursosRecomendados.map(nombre => {
+  carousel.innerHTML = cursosTendencia.map(nombre => {
     const curso = dataCursos.find(c => c.nombre === nombre);
     if (!curso) return '';
     return `
@@ -20,7 +21,7 @@ if (carousel) {
         ${curso.pro ? '<span class="badge-pro">PRO</span>' : ''}
         <div class="carousel-title">${curso.nombre}</div>
         <div class="carousel-progress">Por ${curso.profesor}</div>
-        <a href="info_all_cursos.html?nombre=${encodeURIComponent(curso.nombre)}" class="btn-outline">Ver curso</a>
+        <a href="info_all_cursos.html?nombre=${encodeURIComponent(curso.nombre)}" class="btn-outline">Descubrir</a>
       </div>
     `;
   }).join('');

@@ -465,7 +465,7 @@ body.sidebar-collapsed .curso-pro-main {
       letter-spacing: 1px;
       display: inline-block;
 }
-.badge-nivel, .badge-tiempo {
+.badge-nivel, .badge-tiempo,.badge-profesor {
       background: #214A4A;
       color: #8CCCCF;
       font-size: 1rem;

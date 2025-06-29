@@ -15,6 +15,7 @@ if (curso) {
   document.querySelector('.curso-pro-desc').innerHTML = curso.descripcion_larga;
   document.querySelector('.badge-nivel').textContent = curso.nivel || '';
   document.querySelector('.badge-tiempo').textContent = curso.duracion || '';
+  document.querySelector('.badge-profesor').textContent = curso.profesor || '';
   document.querySelector('.curso-pro-video iframe').src = curso.youtube;
 
   // Mostrar o no la insignia PRO
@@ -33,7 +34,7 @@ if (curso) {
     btn.classList.add('btn-mejorar-pro');
     btn.classList.remove('btn-comenzar');
     btn.onclick= function() {
-      window.location.href = 'home.html#precios'; // Cambia la URL si tu página de precios es otra
+      window.location.href = 'home.html#precios';
     };
   } else {
     btn.textContent = 'Comenzar curso';
