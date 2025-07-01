@@ -262,10 +262,7 @@ a {
   text-align: center;
 }
 
-/* Ajustar contenido principal */
-body.sidebar-collapsed main.container {
-  margin-left: 60px;
-}
+
 
 /* Animaciones opcionales */
 .sidebar,

@@ -229,9 +229,7 @@ a {
 .sidebar.collapsed .sidebar-toggle {
   text-align: center;
 }
-body.sidebar-collapsed main.container {
-  margin-left: 60px;
-}
+
 .sidebar,
 main.container {
   transition: all 0.3s ease;
@@ -390,7 +388,7 @@ main.container {
 }
 .cursos-listado {
   padding: 2rem;
-  margin-left: 180px; /* igual al ancho de .sidebar */
+  margin-left: 250px; /* igual al ancho de .sidebar */
   transition: margin-left 0.3s;
 }
 body.sidebar-collapsed .cursos-listado {
