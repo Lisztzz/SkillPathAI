@@ -456,3 +456,17 @@ body.sidebar-collapsed .cursos-listado {
   color: #8CCCCF;
   font-size: 0.95rem;
 }
+
+.curso-pro-etiquetas {
+  display: flex;
+  gap: 1rem;
+  margin-top:10px;
+}
+.badge-tiempo,.badge-modulo {
+  background: #214A4A;
+  color: #00F7FF;
+  font-size: 1rem;
+  padding: 0.3em 1em;
+  border-radius: 12px;
+  display: inline-block;
+}
