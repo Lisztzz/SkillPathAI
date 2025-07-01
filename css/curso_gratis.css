@@ -430,8 +430,8 @@ main.container {
 }
 
 .curso-pro-main {
-  margin-left: 180px; /* igual al ancho de .sidebar */
-  padding: 6.5rem 2rem 2rem 2rem;
+  margin-left:240px; /* igual al ancho de .sidebar */
+  padding: 1rem  2rem;
   min-height: 100vh;
   transition: margin-left 0.3s;
   background: #0F2424;

@@ -5,6 +5,7 @@ export const cursosDetalle = dataCursos.map(curso => ({
     imagen: curso.imagen,
     profesor: curso.profesor,
     duracion: curso.duracion,
+    modulo: curso.modulos,
     pro: curso.pro,
     youtube: "",
     descripcion_larga: "",

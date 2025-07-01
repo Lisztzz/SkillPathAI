@@ -15,6 +15,7 @@ if (curso) {
   document.querySelector('.curso-pro-desc').innerHTML = curso.descripcion_larga;
   document.querySelector('.badge-nivel').textContent = curso.nivel || '';
   document.querySelector('.badge-tiempo').textContent = curso.duracion || '';
+  document.querySelector('.badge-modulo').textContent = curso.modulo || '';
   document.querySelector('.badge-profesor').textContent = curso.profesor || '';
   document.querySelector('.curso-pro-video iframe').src = curso.youtube;
 
