@@ -13,7 +13,7 @@ export const dataCursos = [
         descripcion: "Profundice en los algoritmos y modelos avanzados de la IA.",
         imagen: "assets/imagenes_cursos/tecnicas avanzadas de IA.jpg",
         profesor: "Dra. Ana Gómez",
-        modulos: 6,
+        modulos: 4,
         duracion: "48h",
         pro: true
     },
@@ -31,7 +31,7 @@ export const dataCursos = [
         descripcion: "Descubre cómo la tecnología está cambiando los modelos de negocio y la sociedad.",
         imagen: "assets/imagenes_cursos/IA en los negocios.jpg",
         profesor: "Dra. Laura Fernández",
-        modulos: 5,
+        modulos: 4,
         duracion: "15h",
         pro: false
     },
@@ -49,7 +49,7 @@ export const dataCursos = [
         descripcion: "Aprende a planificar y gestionar proyectos tecnológicos de manera efectiva.",
         imagen: "assets/imagenes_cursos/gestion de proyectos de IA.jpg",
         profesor: "Dra. María Rodríguez",
-        modulos: 6,
+        modulos: 4,
         duracion: "15h",
         pro: false
     },
@@ -58,7 +58,7 @@ export const dataCursos = [
         descripcion: "Descubre cómo analizar datos y obtener información valiosa para la toma de decisiones.",
         imagen: "assets/imagenes_cursos/IA y data science.jpg",
         profesor: "Dr. Andrés Torres",
-        modulos: 5,
+        modulos: 4,
         duracion: "22h",
         pro: true
     },
@@ -76,7 +76,7 @@ export const dataCursos = [
         descripcion: "Comprende el papel de la tecnología en el sector financiero y la innovación en servicios.",
         imagen: "assets/imagenes_cursos/IA y finanzas.jpg",
         profesor: "Dr. Javier Sánchez",
-        modulos: 5,
+        modulos: 3,
         duracion: "14h",
         pro: false
     },
@@ -85,7 +85,7 @@ export const dataCursos = [
         descripcion: "Aprovecha las herramientas digitales para potenciar estrategias de marketing.",
         imagen: "assets/imagenes_cursos/IA y marketing.jpg",
         profesor: "Dra. Paula Jiménez",
-        modulos: 4,
+        modulos: 2,
         duracion: "11h",
         pro: false
     },

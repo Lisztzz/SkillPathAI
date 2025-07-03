@@ -10,8 +10,6 @@ const curso = cursosDetalle.find(c => c.nombre === nombreCurso);
 
 if (curso) {
   document.querySelector('.curso-pro-titulo').textContent = curso.nombre;
-  document.querySelector('.curso-pro-img').src = curso.imagen;
-  document.querySelector('.curso-pro-img').alt = curso.nombre;
   document.querySelector('.curso-pro-desc').innerHTML = curso.descripcion_larga;
   document.querySelector('.badge-nivel').textContent = curso.nivel || '';
   document.querySelector('.badge-tiempo').textContent = curso.duracion || '';
