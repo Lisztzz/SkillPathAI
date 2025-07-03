@@ -12,7 +12,7 @@ if (grid) {
           <p class="curso-descripcion">Por ${curso.profesor}</p>
           <div class="curso-pro-etiquetas">
             <span class="badge-tiempo">${curso.duracion}</span>
-            <span class="badge-modulo">${curso.modulos}</span>
+            <span class="badge-modulo">${curso.modulos} modulos</span>
           </div>
         </div>
       </div>
