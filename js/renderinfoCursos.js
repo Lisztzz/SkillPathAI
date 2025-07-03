@@ -15,7 +15,6 @@ if (curso) {
   document.querySelector('.badge-tiempo').textContent = curso.duracion || '';
   document.querySelector('.badge-modulo').textContent = `${curso.modulo} modulos`;
   document.querySelector('.badge-profesor').textContent = curso.profesor || '';
-  document.querySelector('.curso-pro-video iframe').src = curso.youtube;
 
   // Mostrar o no la insignia PRO
   const badgePro = document.querySelector('.badge-pro');

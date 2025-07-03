@@ -337,6 +337,7 @@ main.container {
   display: flex;
   gap: 1rem; /* Espacio entre los botones */
   align-items: center;
+  margin-left: 100px;
 }
 
 
@@ -512,9 +513,9 @@ body.sidebar-collapsed .curso-pro-main {
       background: #00c6c6;
 }
 .curso-pro-video-main { 
-  width: 420px;
-  margin-left: 1000px;
-  margin-top: -700px;
+  width: 260px;
+  margin-left: 1050px;
+  margin-top: -730px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -525,7 +526,7 @@ body.sidebar-collapsed .curso-pro-main {
 .curso-pro-video iframe,
 .curso-pro-video video {
   width: 250%;
-  height: 500px;
+  height: 350px;
   border-radius: 14px;
   background: #214A4A;
 }

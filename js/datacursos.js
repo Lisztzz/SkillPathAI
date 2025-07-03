@@ -4,7 +4,7 @@ export const dataCursos = [
         descripcion: "Aprenda los conceptos básicos de la IA y sus aplicaciones.",
         imagen: "assets/imagenes_cursos/introducion a la IA.jpg",
         profesor: "Dr. Juan Pérez",
-        modulos: 4,
+        modulos: 3,
         duracion: "18h",
         pro: false
     },
@@ -13,7 +13,7 @@ export const dataCursos = [
         descripcion: "Profundice en los algoritmos y modelos avanzados de la IA.",
         imagen: "assets/imagenes_cursos/tecnicas avanzadas de IA.jpg",
         profesor: "Dra. Ana Gómez",
-        modulos: 4,
+        modulos: 3,
         duracion: "48h",
         pro: true
     },
@@ -31,7 +31,7 @@ export const dataCursos = [
         descripcion: "Descubre cómo la tecnología está cambiando los modelos de negocio y la sociedad.",
         imagen: "assets/imagenes_cursos/IA en los negocios.jpg",
         profesor: "Dra. Laura Fernández",
-        modulos: 4,
+        modulos: 3,
         duracion: "15h",
         pro: false
     },
@@ -40,7 +40,7 @@ export const dataCursos = [
         descripcion: "Un curso introductorio para quienes inician en el mundo de la tecnología y la IA.",
         imagen: "assets/imagenes_cursos/IA para principiantes.jpeg",
         profesor: "Dr. Carlos López",
-        modulos: 4,
+        modulos: 3,
         duracion: "7h",
         pro: false
     },
@@ -49,7 +49,7 @@ export const dataCursos = [
         descripcion: "Aprende a planificar y gestionar proyectos tecnológicos de manera efectiva.",
         imagen: "assets/imagenes_cursos/gestion de proyectos de IA.jpg",
         profesor: "Dra. María Rodríguez",
-        modulos: 4,
+        modulos: 3,
         duracion: "15h",
         pro: false
     },
@@ -58,7 +58,7 @@ export const dataCursos = [
         descripcion: "Descubre cómo analizar datos y obtener información valiosa para la toma de decisiones.",
         imagen: "assets/imagenes_cursos/IA y data science.jpg",
         profesor: "Dr. Andrés Torres",
-        modulos: 4,
+        modulos: 3,
         duracion: "22h",
         pro: true
     },
@@ -67,7 +67,7 @@ export const dataCursos = [
         descripcion: "Explora el impacto de la tecnología en la industria de la salud y la medicina.",
         imagen: "assets/imagenes_cursos/IA en Healthcare.jpg",
         profesor: "Dra. Elena Ruiz",
-        modulos: 4,
+        modulos: 3,
         duracion: "17h",
         pro: false
     },
@@ -85,7 +85,7 @@ export const dataCursos = [
         descripcion: "Aprovecha las herramientas digitales para potenciar estrategias de marketing.",
         imagen: "assets/imagenes_cursos/IA y marketing.jpg",
         profesor: "Dra. Paula Jiménez",
-        modulos: 2,
+        modulos: 3,
         duracion: "11h",
         pro: false
     },
