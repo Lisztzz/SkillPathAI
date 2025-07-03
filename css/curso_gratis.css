@@ -337,7 +337,7 @@ main.container {
   display: flex;
   gap: 1rem; /* Espacio entre los botones */
   align-items: center;
-  margin-left: 100px;
+  margin-left: 70px;
 }
 
 
@@ -488,9 +488,9 @@ body.sidebar-collapsed .curso-pro-main {
 }
 .curso-pro-desc {
       color: #8CCCCF;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       margin-bottom: 2.5rem;
-      max-width: 700px;
+      max-width: 620px;
       line-height: 1.7;
       font-family: 'Inter', sans-serif;
       text-align: justify;
