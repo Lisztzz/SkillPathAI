@@ -158,6 +158,42 @@
         }
       });
     }
+    // --- NAVBAR AVATAR MENU PERSONALIZADO (igual que perfil.js) ---
+    const avatarDesktop = document.getElementById('avatarDesktop');
+    const avatarMenu = document.getElementById('avatarMenu');
+    // Actualiza el icono de perfil en el navbar si hay uno guardado
+    const savedAvatar = localStorage.getItem('perfilAvatar');
+    if (savedAvatar) {
+      const navbarAvatar = avatarDesktop.querySelector('img');
+      if (navbarAvatar) navbarAvatar.src = savedAvatar;
+    }
+    function construirMenuAvatar() {
+      let nombreMostrar = localStorage.getItem('perfilNombre') || 'Usuario';
+      avatarMenu.innerHTML = `
+        <div style="padding: 16px 18px 8px 18px; color: #8CCCCF; font-weight: bold; font-size: 1.1rem;">Hola ${nombreMostrar}</div>
+        <button class="avatar-menu__item" id="btnMiPerfil" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#fff;font-size:1rem;cursor:pointer;">Mi perfil</button>
+        <hr style="border:0;border-top:1px solid #2E696B;margin:8px 0;">
+        <button class="avatar-menu__item" id="logoutBtn" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#e74c3c;font-size:1rem;cursor:pointer;">Cerrar sesión</button>
+      `;
+      avatarMenu.querySelector('#btnMiPerfil').onclick = function() {
+        window.location.href = 'perfil.html';
+      };
+      avatarMenu.querySelector('#logoutBtn').onclick = function() {
+        window.location.href = 'index.html';
+      };
+    }
+    if (avatarDesktop && avatarMenu) {
+      avatarDesktop.addEventListener('click', function (e) {
+        e.stopPropagation();
+        construirMenuAvatar();
+        avatarMenu.style.display = avatarMenu.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', function (e) {
+        if (avatarMenu.style.display === 'block' && !avatarDesktop.contains(e.target)) {
+          avatarMenu.style.display = 'none';
+        }
+      });
+    }
   });
   </script>
   

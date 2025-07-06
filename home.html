@@ -14,11 +14,10 @@
   <!-- Navbar -->
   <header class="navbar">
     <a class="navbar-brand" href="home.html">
-        <img src="assets/icons/logo.png" alt="Logo" />
-        <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
+      <img src="assets/icons/logo.png" alt="Logo" />
+      <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
     </a>
     <nav class="navbar-cursos">
-
       <a href="lista_cursos.html" class="nav-cursos">Cursos</a>
     </nav>
     <div class="navbar-busqueda">
@@ -30,9 +29,7 @@
     <label for="menu-toggle" class="menu-icon">&#9776;</label>
     <div class="navbar-derecha">
       <nav class="navbar-precios">
-
         <a href="home.html#precios" class="btn-primary">Precios</a>
-
       </nav>
       <div class="navbar-avatar navbar-avatar-desktop" id="avatarDesktop">
         <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
@@ -47,15 +44,16 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <nav class="sidebar-menu">
-        <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
-        <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
-        <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
-        <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
-        <div class="navbar-avatar navbar-avatar-mobile">
-          <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
-        </div>
+      <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
+      <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+      <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
+      <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
+      <div class="navbar-avatar navbar-avatar-mobile">
+        <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+      </div>
     </nav>
-    <div class="sidebar-toggle" id="sidebarToggle">&lt;&lt;</div>
+    <div style="flex:1"></div>
+    <div class="sidebar-toggle" id="sidebarToggle" style="display:flex;align-items:center;justify-content:center;height:48px;font-size:1.3rem;cursor:pointer;position:relative;">&lt;&lt;</div>
   </aside>
   
   <!-- Offcanvas Menu -->
@@ -210,8 +208,77 @@
   <script src="js/misrutasIndex.js"></script>
   <script type="module" src="js/barraBusqueda.js"></script>
   <script type="module" src="js/log_out.js"></script>
+  <script src="js/perfil.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // Sidebar toggle y colisión igual que perfil
+    const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    function updateSidebarTogglePosition() {
+      if (sidebar.classList.contains("collapsed")) {
+        sidebarToggle.innerHTML = "&gt;";
+        sidebar.style.width = "64px";
+        document.body.classList.add("sidebar-collapsed");
+        sidebarToggle.style.position = "absolute";
+        sidebarToggle.style.left = "50%";
+        sidebarToggle.style.transform = "translateX(-50%)";
+      } else {
+        sidebarToggle.innerHTML = "&lt;&lt;";
+        sidebar.style.width = "";
+        document.body.classList.remove("sidebar-collapsed");
+        sidebarToggle.style.position = "relative";
+        sidebarToggle.style.left = "0";
+        sidebarToggle.style.transform = "none";
+      }
+      sidebarToggle.style.display = "flex";
+      sidebarToggle.style.alignItems = "center";
+      sidebarToggle.style.justifyContent = "center";
+    }
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("collapsed");
+        updateSidebarTogglePosition();
+      });
+      updateSidebarTogglePosition();
+    }
+
+    // --- NAVBAR AVATAR MENU PERSONALIZADO (igual que perfil.js) ---
+    const avatarDesktop = document.getElementById('avatarDesktop');
+    const avatarMenu = document.getElementById('avatarMenu');
+    // Actualiza el icono de perfil en el navbar si hay uno guardado
+    const savedAvatar = localStorage.getItem('perfilAvatar');
+    if (savedAvatar) {
+      const navbarAvatar = avatarDesktop.querySelector('img');
+      if (navbarAvatar) navbarAvatar.src = savedAvatar;
+    }
+    function construirMenuAvatar() {
+      let nombreMostrar = localStorage.getItem('perfilNombre') || 'Usuario';
+      avatarMenu.innerHTML = `
+        <div style="padding: 16px 18px 8px 18px; color: #8CCCCF; font-weight: bold; font-size: 1.1rem;">Hola ${nombreMostrar}</div>
+        <button class="avatar-menu__item" id="btnMiPerfil" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#fff;font-size:1rem;cursor:pointer;">Mi perfil</button>
+        <hr style="border:0;border-top:1px solid #2E696B;margin:8px 0;">
+        <button class="avatar-menu__item" id="logoutBtn" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#e74c3c;font-size:1rem;cursor:pointer;">Cerrar sesión</button>
+      `;
+      avatarMenu.querySelector('#btnMiPerfil').onclick = function() {
+        window.location.href = 'perfil.html';
+      };
+      avatarMenu.querySelector('#logoutBtn').onclick = function() {
+        window.location.href = 'index.html';
+      };
+    }
+    if (avatarDesktop && avatarMenu) {
+      avatarDesktop.addEventListener('click', function (e) {
+        e.stopPropagation();
+        construirMenuAvatar();
+        avatarMenu.style.display = avatarMenu.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', function (e) {
+        if (avatarMenu.style.display === 'block' && !avatarDesktop.contains(e.target)) {
+          avatarMenu.style.display = 'none';
+        }
+      });
+    }
+
     // Carrusel con flechas izquierda y derecha
     const continuarCarousel = document.querySelector('.dashboard-carousel:not(.cursos-recomendados-carousel)');
     const continuarNextBtn = document.querySelector('.carousel-next:not(.cursos-recomendados-next)');
@@ -320,25 +387,12 @@
     }
     // Referencias comunes
     const toggle = document.getElementById("menu-toggle");
-    const sidebar = document.getElementById("sidebar");
-    const sidebarToggle = document.getElementById("sidebarToggle");
     const faqSendButton = document.getElementById('faqSend');
 
     // Funcionalidad del menú hamburguesa (offcanvas)
     if (toggle) {
       toggle.addEventListener("change", function () {
         document.body.classList.toggle("menu-open", toggle.checked);
-      });
-    }
-
-    // Funcionalidad de colapso del sidebar
-    if (sidebarToggle && sidebar) {
-      sidebarToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("collapsed");
-        document.body.classList.toggle("sidebar-collapsed");
-
-        // Cambia el símbolo del botón
-        sidebarToggle.innerHTML = sidebar.classList.contains("collapsed") ? "&gt;&gt;" : "&lt;&lt;";
       });
     }
 

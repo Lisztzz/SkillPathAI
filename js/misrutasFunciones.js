@@ -375,4 +375,3 @@ function inicializarBotones() {
 // Llamar después de renderizar rutas
 renderizarRutas();
 inicializarBotones();
-
