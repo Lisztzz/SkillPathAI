@@ -262,10 +262,7 @@ a {
   text-align: center;
 }
 
-/* Ajustar contenido principal */
-body.sidebar-collapsed main.container {
-  margin-left: 60px;
-}
+
 
 /* Animaciones opcionales */
 .sidebar,
@@ -474,6 +471,113 @@ main.container {
   color: #8CCCCF;
   display: block;
 }
+/* Overlay oscuro */
+.goal-popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+/* Popup centrado */
+.goal-popup {
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #214A4A;
+  border: 1.5px solid #8CCCCF;
+  border-radius: 14px;
+  padding: 32px 28px 24px 28px;
+  z-index: 1010;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+  min-width: 320px;
+  max-width: 90vw;
+}
+
+/* Título */
+.goal-popup-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Descripción */
+.goal-popup-desc {
+  color: #fff;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* Input y label */
+.goal-popup-input-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  
+}
+.goal-popup-input {
+  width: 70px;
+  font-size: 1.1rem;
+  padding: 6px 10px;
+  border: 1.5px solid #8CCCCF;
+  border-radius: 7px;
+  color: #ffffff;
+  text-align: center;
+  margin-right: 10px;
+  background: #214A4A;
+}
+.goal-popup-input-label {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Mensaje de referencia */
+.goal-popup-tip {
+  color: #8CCCCF;
+  background: #163232;
+  border-radius: 7px;
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0.98rem;
+}
+
+/* Botones */
+.goal-popup-btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.goal-popup-btn {
+  border-radius: 7px;
+  padding: 8px 22px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary.goal-popup-btn {
+  background: #163232;
+  color: #ffffff;
+  border: solid 1.5px #00F7FF;
+}
+.btn-primary.goal-popup-btn:hover {
+  background: #00F7FF;
+}
+.btn-secondary.goal-popup-btn {
+  border: solid 1.5px #8CCCCF;
+  background: #163232;
+  color: #ffffff;
+}
+.btn-secondary.goal-popup-btn:hover {
+  background: #163232;
+}
 
 /* Certificados */
 .panel-header {
@@ -507,6 +611,7 @@ main.container {
   color: #fff;
   border: none;
   font-weight: bold;
+
   cursor: pointer;
   transition: background 0.2s;
   text-decoration: none;
