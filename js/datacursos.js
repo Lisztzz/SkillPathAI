@@ -6,6 +6,9 @@ export const dataCursos = [
         profesor: "Dr. Juan Pérez",
         modulos: 3,
         duracion: "18h",
+        moudlo1: "Historia y fundamentos de la inteligencia artificial",
+        modulo2: "Aplicaciones actuales de la IA",
+        modulo3: "Desafíos éticos y el futuro de la IA",
         pro: false
     },
     {
@@ -15,6 +18,9 @@ export const dataCursos = [
         profesor: "Dra. Ana Gómez",
         modulos: 3,
         duracion: "48h",
+        modulo1:"Aprendizaje profundo y redes neuronales",
+        modulo2: "Modelos generativos y transferencia de estilo",
+        modulo3: "Implementación de modelos en producción",
         pro: true
     },
     {
@@ -24,6 +30,9 @@ export const dataCursos = [
         profesor: "Dr. Luis Martínez",
         modulos: 3,
         duracion: "10h",
+        modulo1: "Principios éticos de la inteligencia artificial",
+        modulo2: "Sesgos algorítmicos e impacto social",
+        modulo3: "Regulación y gobernanza de la IA",
         pro: false
     },
     {
@@ -33,6 +42,9 @@ export const dataCursos = [
         profesor: "Dra. Laura Fernández",
         modulos: 3,
         duracion: "15h",
+        modulo1: "Qué es la transformación digital",
+        modulo2: "Tecnología como motor de cambio",
+        modulo3: "Liderazgo y adaptación al cambio",
         pro: false
     },
     {
@@ -42,6 +54,9 @@ export const dataCursos = [
         profesor: "Dr. Carlos López",
         modulos: 3,
         duracion: "7h",
+        modulo1: "Introducción a la computación",
+        modulo2: "Pensamiento lógico y programación básica",
+        modulo3: "Primeros pasos con IA y datos",
         pro: false
     },
     {
@@ -51,6 +66,9 @@ export const dataCursos = [
         profesor: "Dra. María Rodríguez",
         modulos: 3,
         duracion: "15h",
+        modulo1: "Fundamentos de gestión de proyectos",
+        modulo2: "Metodologías ágiles y tradicionales",
+        modulo3: "Gestión de equipos y entrega de valor",
         pro: false
     },
     {
@@ -60,6 +78,9 @@ export const dataCursos = [
         profesor: "Dr. Andrés Torres",
         modulos: 3,
         duracion: "22h",
+        modulo1: "Introducción al análisis de datos",
+        modulo2: "Estadística y visualización de datos",
+        modulo3: "Introducción al aprendizaje automático",
         pro: true
     },
     {
@@ -69,6 +90,9 @@ export const dataCursos = [
         profesor: "Dra. Elena Ruiz",
         modulos: 3,
         duracion: "17h",
+        modulo1: "Fundamentos de la salud digital",
+        modulo2: "Aplicaciones de IA en medicina",
+        modulo3: "Ética y regulaciones en tecnología médica",
         pro: false
     },
     {
@@ -78,6 +102,9 @@ export const dataCursos = [
         profesor: "Dr. Javier Sánchez",
         modulos: 3,
         duracion: "14h",
+        modulo1: "FinTech y evolución del sistema financiero",
+        modulo2: "Inteligencia artificial y big data en finanzas",
+        modulo3: "Ciberseguridad y regulación financiera",
         pro: false
     },
     {
@@ -87,6 +114,9 @@ export const dataCursos = [
         profesor: "Dra. Paula Jiménez",
         modulos: 3,
         duracion: "11h",
+        modulo1: "Estrategia de marketing en entornos digitales",
+        modulo2: "Publicidad y posicionamiento en buscadores",
+        modulo3: "Analítica digital y optimización de campañas",
         pro: false
     },
     {
@@ -96,6 +126,8 @@ export const dataCursos = [
         profesor: "Dr. Roberto Castro",
         modulos: 2,
         duracion: "10h",
+        modulo1: "Herramientas y plataformas de enseñanza virtual",
+        modulo2: "Analítica del aprendizaje y personalización",
         pro: false
     },
     {
@@ -105,6 +137,9 @@ export const dataCursos = [
         profesor: "Dra. Sofía Herrera",
         modulos: 3,
         duracion: "12h",
+        modulo1: "Innovaciones tecnológicas para el desarrollo sostenible",
+        modulo2: "Monitoreo ambiental y uso de datos geoespaciales",
+        modulo3: "Economía circular y responsabilidad tecnológica",
         pro: false
     },
     {
@@ -114,6 +149,8 @@ export const dataCursos = [
         profesor: "Dr. German Gonzalez",
         modulos: 2,
         duracion: "7h",
+        modulo1: "Conceptos esenciales y tipos de inteligencia artificial",
+        modulo2: "Herramientas y entornos de desarrollo en IA",
         pro: false
     },
     {
@@ -123,6 +160,9 @@ export const dataCursos = [
         profesor: "Dra. Ana Torres",
         modulos: 3,
         duracion: "19h",
+        modulo1: "Introducción al aprendizaje automático",
+        modulo2: "Algoritmos clásicos y cómo aplicarlos",
+        modulo3: "Evaluación de modelos y ajuste de parámetros",
         pro: true
     },
     {
@@ -132,6 +172,9 @@ export const dataCursos = [
         profesor: "Dr. Juan Carlos",
         modulos: 4,
         duracion: "19h",
+        modulo1: "Redes neuronales artificiales y perceptrón multicapa",
+        modulo2: "Redes convolucionales (CNN) y visión artificial",
+        modulo3: "Técnicas de regularización y mejora de modelos",
         pro: true
     },
     {
@@ -141,6 +184,9 @@ export const dataCursos = [
         profesor: "Dra. Laura Martínez",
         modulos: 3,
         duracion: "12h",
+        modulo1: "Representación y limpieza de texto",
+        modulo2: "Modelos de lenguaje y word embeddings",
+        modulo3: "Aplicaciones prácticas de NLP",
         pro: true
     },
     {
@@ -150,6 +196,9 @@ export const dataCursos = [
         profesor: "Dr. Joel Torres",
         modulos: 3,
         duracion: "12h",
+        modulo1: "Fundamentos del procesamiento de imágenes digitales",
+        modulo2: "Detección y clasificación de objetos",
+        modulo3: "Segmentación, seguimiento y análisis avanzado",
         pro: true
     }
 ];
