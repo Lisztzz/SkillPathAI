@@ -339,9 +339,7 @@ main.container {
   align-items: center;
   padding: 1.5rem 7.9rem;
 }
-body.sidebar-collapsed .curso-pro-main {
-    margin-left: 60px;
-}
+
 .titulo{
   margin-left:17.98rem;
   margin-top: 2rem;

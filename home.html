@@ -216,23 +216,12 @@
     const sidebarToggle = document.getElementById("sidebarToggle");
     function updateSidebarTogglePosition() {
       if (sidebar.classList.contains("collapsed")) {
-        sidebarToggle.innerHTML = "&gt;";
-        sidebar.style.width = "64px";
+        sidebarToggle.innerHTML = "&gt;&gt;";
         document.body.classList.add("sidebar-collapsed");
-        sidebarToggle.style.position = "absolute";
-        sidebarToggle.style.left = "50%";
-        sidebarToggle.style.transform = "translateX(-50%)";
       } else {
         sidebarToggle.innerHTML = "&lt;&lt;";
-        sidebar.style.width = "";
         document.body.classList.remove("sidebar-collapsed");
-        sidebarToggle.style.position = "relative";
-        sidebarToggle.style.left = "0";
-        sidebarToggle.style.transform = "none";
       }
-      sidebarToggle.style.display = "flex";
-      sidebarToggle.style.alignItems = "center";
-      sidebarToggle.style.justifyContent = "center";
     }
     if (sidebarToggle && sidebar) {
       sidebarToggle.addEventListener("click", () => {

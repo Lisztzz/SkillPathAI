@@ -51,9 +51,27 @@ function renderizarModulos() {
   modulos.forEach(modulo => {
     const li = document.createElement('li');
     li.innerHTML = `
-      <div class="modulo-numero">Módulo ${modulo.numero}</div>
-      <div class="modulo-titulo">${modulo.titulo}</div>
+      <a href="detalle_modulo.html?curso=${encodeURIComponent(nombreCurso)}&modulo=${modulo.numero}" 
+         style="text-decoration: none; color: inherit; display: block; width: 100%; height: 100%;">
+        <div class="modulo-numero">Módulo ${modulo.numero}</div>
+        <div class="modulo-titulo">${modulo.titulo}</div>
+        <div style="margin-top: 0.5rem; color: #00F7FF; font-size: 0.9rem;">
+          <i class="fas fa-play-circle"></i> Ver módulo
+        </div>
+      </a>
     `;
+    
+    // Agregar hover effect
+    li.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-2px)';
+      this.style.boxShadow = '0 4px 15px rgba(0, 247, 255, 0.3)';
+    });
+    
+    li.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+    
     modulosLista.appendChild(li);
   });
 }
