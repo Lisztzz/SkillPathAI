@@ -304,7 +304,7 @@ main.container {
       background: #00F7FF;
       color: #0F2424;
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.67rem;
       border: none;
       border-radius: 10px;
       padding: 0.9rem 2.2rem;
@@ -318,7 +318,7 @@ main.container {
       background: #0F2424;
       color: #00F7FF;
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.67rem;
       border: none;
       border-radius: 10px;
       padding: 0.9rem 2.2rem;
@@ -331,15 +331,181 @@ main.container {
       box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 .btn-comenzar:hover {
-  background-color: #00F7FF;
+  background-color: #26cfd4;
 }
 .acciones-cursos {
   display: flex;
   gap: 1rem; /* Espacio entre los botones */
   align-items: center;
-  margin-left: 70px;
+  padding: 1.5rem 7.9rem;
+}
+body.sidebar-collapsed .curso-pro-main {
+    margin-left: 60px;
+}
+.titulo{
+  margin-left:17.98rem;
+  margin-top: 2rem;
+  margin-bottom:-1rem; /* Reducir separación con .curso-modulos */
+  width: fit-content; /* Solo ocupa el ancho necesario */
+}
+.curso-pro-titulo {
+      color: #fff;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-family: 'Inter', sans-serif;    
+}
+.curso-pro-etiquetas {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: center;
+}
+.badge-pro {
+      background: #00F7FF;
+      color: #0F2424;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.3em 1em;
+      border-radius: 12px;
+      letter-spacing: 1px;
+      display: inline-block;
 }
 
+.badge-nivel, .badge-tiempo,.badge-profesor, .badge-modulo {
+      background: #214A4A;
+      color: #00F7FF;
+      font-size: 1.2rem;
+      padding: 0.3em 1em;
+      border-radius: 12px;
+      display: inline-block;
+      font-weight: 500;
+}
+.curso-pro-img {
+      width: 420px;
+      max-width: 100%;
+      border-radius: 18px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      object-fit: cover;
+      background: #214A4A;
+      display: block;
+}
+.curso-pro-desc {
+      color: #8CCCCF;
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      max-width: 900px;
+      line-height: 1.7;
+      font-family: 'Inter', sans-serif;
+      text-align: justify;
+}
+.btn-mejorar-pro {
+      background: #00F7FF;
+      color: #0F2424;
+      font-weight: bold;
+      font-size: 1.55rem;
+      border: none;
+      border-radius: 10px;
+      padding: 0.9rem 2.2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: -1.5rem;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.btn-mejorar-pro:hover {
+      background: #00c6c6;
+}
+.curso-pro-video-main { 
+  width: 260px;
+  margin-left: 1050px;
+  margin-top: -730px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.curso-pro-video iframe,
+.curso-pro-video video {
+  width: 250%;
+  height: 350px;
+  border-radius: 14px;
+  background: #214A4A;
+}
+
+/* Layout para alinear contenido principal y módulos lado a lado */
+.curso-modulos {
+  display: flex;
+  gap: 2rem;
+  margin-left: 180px; /* espacio para sidebar */
+  padding: 2rem;
+  max-width: calc(100vw - 180px);
+  box-sizing: border-box;
+}
+
+.curso-pro-main {
+  padding:1rem 5rem;
+  padding-top: 0.0000001rem;
+  background: #0F2424;
+  display: flex;
+  flex-direction: column;
+}
+
+.curso-pro-modulos {
+   /* ancho fijo de 400px */
+  background: #214A4A;
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  margin-top: 4.7rem; /* se queda fijo al hacer scroll */
+  margin-left: -3rem;
+}
+
+.curso-pro-modulos h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size:2.3rem;
+}
+
+.modulos-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modulos-lista li {
+  background: rgba(255,255,255,0.1);
+  margin-bottom: 0.8rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #00F7FF;
+  transition: background 0.2s;
+}
+
+.modulos-lista li:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.modulo-numero {
+  background: #00F7FF;
+  color: #0F2424;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.010rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.modulo-titulo {
+  color: #8CCCCF;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
 
 /* Responsive */
 @media (max-width: 750px) {
@@ -429,107 +595,6 @@ main.container {
     right: 20px;
   }
 }
-
-.curso-pro-main {
-  margin-left:240px; /* igual al ancho de .sidebar */
-  padding: 1rem  2rem;
-  min-height: 100vh;
-  transition: margin-left 0.3s;
-  background: #0F2424;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-body.sidebar-collapsed .curso-pro-main {
-    margin-left: 60px;
-}
-.curso-pro-titulo {
-      color: #fff;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      font-family: 'Inter', sans-serif;    
-}
-.curso-pro-etiquetas {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      align-items: center;
-}
-.badge-pro {
-      background: #00F7FF;
-      color: #0F2424;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 0.3em 1em;
-      border-radius: 12px;
-      letter-spacing: 1px;
-      display: inline-block;
-}
-
-.badge-nivel, .badge-tiempo,.badge-profesor, .badge-modulo {
-      background: #214A4A;
-      color: #00F7FF;
-      font-size: 1rem;
-      padding: 0.3em 1em;
-      border-radius: 12px;
-      display: inline-block;
-      font-weight: 500;
-}
-.curso-pro-img {
-      width: 420px;
-      max-width: 100%;
-      border-radius: 18px;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-      object-fit: cover;
-      background: #214A4A;
-      display: block;
-}
-.curso-pro-desc {
-      color: #8CCCCF;
-      font-size: 1.05rem;
-      margin-bottom: 2.5rem;
-      max-width: 620px;
-      line-height: 1.7;
-      font-family: 'Inter', sans-serif;
-      text-align: justify;
-}
-.btn-mejorar-pro {
-      background: #00F7FF;
-      color: #0F2424;
-      font-weight: bold;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 10px;
-      padding: 0.9rem 2.2rem;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: -1.5rem;
-      font-family: 'Inter', sans-serif;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-}
-.btn-mejorar-pro:hover {
-      background: #00c6c6;
-}
-.curso-pro-video-main { 
-  width: 260px;
-  margin-left: 1050px;
-  margin-top: -730px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: transparent;
-  pointer-events: auto;
-}
-
-.curso-pro-video iframe,
-.curso-pro-video video {
-  width: 250%;
-  height: 350px;
-  border-radius: 14px;
-  background: #214A4A;
-}
 @media (max-width: 900px) {
     .curso-pro-main {
         margin-left: 0;
@@ -549,6 +614,18 @@ body.sidebar-collapsed .curso-pro-main {
     .curso-pro-video video {
         height: 220px;
     }
+  .curso-modulos {
+    flex-direction: column;
+    margin-left: 0;
+    padding: 1rem;
+    max-width: 100vw;
+  }
+  
+  .curso-pro-modulos {
+    flex: none;
+    position: static;
+    margin-top: 2rem;
+  }
 }
 
 .modal-rutas-overlay {
