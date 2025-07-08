@@ -69,8 +69,7 @@
 .modulo-contenido {
     display: grid;
     grid-template-columns: 1fr 400px;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 6.8rem;
 }
         
 .modulo-principal {
@@ -93,7 +92,7 @@
 .video-container {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 470px;
     background: #0F2424;
     border-radius: 12px;
     margin-bottom: 2rem;
@@ -193,8 +192,9 @@
 }
         
 .btn-completar.completado {
-    background: #28a745;
-    color: white;
+    background: #1a3b3b;
+    color: #00F7FF;
+    border: 2px solid #00F7FF;
 }
         
 .progreso-curso {
