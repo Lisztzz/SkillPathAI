@@ -13,8 +13,8 @@ if (curso) {
   document.querySelector('.curso-pro-desc').innerHTML = curso.descripcion_larga;
   document.querySelector('.badge-nivel').textContent = curso.nivel || '';
   document.querySelector('.badge-tiempo').textContent = curso.duracion || '';
-  document.querySelector('.badge-modulo').textContent = `${curso.modulo} modulos`;
   document.querySelector('.badge-profesor').textContent = curso.profesor || '';
+  document.querySelector('.badge-modulo').textContent = `${curso.modulos} módulos`;
 
   // Mostrar o no la insignia PRO
   const badgePro = document.querySelector('.badge-pro');
@@ -39,6 +39,10 @@ if (curso) {
     btn.disabled = false;
     btn.classList.add('btn-comenzar');
     btn.classList.remove('btn-mejorar-pro');
+    btn.onclick = function() {
+      // Navegar al primer módulo del curso
+      window.location.href = `detalle_modulo.html?curso=${encodeURIComponent(curso.nombre)}&modulo=1`;
+    };
   }
 } else {
   document.querySelector('.curso-pro-main').innerHTML = '<h2>Curso no encontrado</h2>';
