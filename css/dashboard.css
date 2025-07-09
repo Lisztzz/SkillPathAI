@@ -364,7 +364,7 @@ body:has(.sidebar.collapsed) main.container {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
-  z-index: 1999;
+  z-index: 998;
 }
 
 .offcanvas-overlay.active {
@@ -385,7 +385,7 @@ body:has(.sidebar.collapsed) main.container {
   gap: 1.5rem;
   padding: 2rem 1rem;
   transition: right 0.3s;
-  z-index: 2000;
+  z-index: 998;
 }
 
 .close-offcanvas {
@@ -749,7 +749,7 @@ body:has(.sidebar.collapsed) main.container {
     border-top: 1px solid #8CCCCF;
     background-color: #1a3b3b;
     z-index: 2001;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     transition: none;
   }
@@ -781,8 +781,9 @@ body:has(.sidebar.collapsed) main.container {
     display: none;
   }
 
+  /* IMPORTANTE: Ocultar completamente el sidebar-toggle en móviles */
   .sidebar-toggle {
-    display: none;
+    display: none !important;
   }
 
   .navbar-avatar-desktop {
@@ -821,4 +822,208 @@ body:has(.sidebar.collapsed) main.container {
   }
 }
 
+/* ========== MIS RUTAS SECTION - IMPROVED STYLES ========== */
 
+/* Panel Header simplified */
+.panel-header {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(0, 247, 255, 0.15);
+}
+
+.panel-header span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00F7FF;
+  text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+}
+
+/* Empty State Container */
+.empty-state {
+  background: linear-gradient(145deg, rgba(15, 36, 36, 0.8) 0%, rgba(33, 74, 74, 0.3) 50%, rgba(15, 36, 36, 0.9) 100%);
+  border: 2px solid rgba(0, 247, 255, 0.3);
+  border-radius: 16px;
+  padding: 60px 40px;
+  text-align: center;
+  margin: 30px 0;
+  transition: all 0.3s ease;
+}
+
+.empty-state:hover {
+  border-color: rgba(0, 247, 255, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 247, 255, 0.15);
+}
+
+/* Icon with simple styling */
+.empty-state-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #00F7FF 0%, #214A4A 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px auto;
+  box-shadow: 0 8px 25px rgba(0, 247, 255, 0.3);
+}
+
+.empty-state-icon i {
+  font-size: 32px;
+  color: white;
+}
+
+/* Content styling */
+.empty-state-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.empty-state-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00F7FF;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.empty-state-desc {
+  font-size: 1rem;
+  color: #8CCCCF;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Action buttons container */
+.empty-state-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* Enhanced button styles */
+.empty-state-btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+/* Primary button */
+.empty-state-btn.btn-primary {
+  background: linear-gradient(135deg, #00F7FF 0%, #0DD9E8 100%);
+  color: #0F2424;
+  box-shadow: 0 4px 15px rgba(0, 247, 255, 0.3);
+}
+
+.empty-state-btn.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 247, 255, 0.4);
+}
+
+/* Secondary button */
+.empty-state-btn.btn-secondary {
+  background: transparent;
+  color: #00F7FF;
+  border: 2px solid #00F7FF;
+  box-shadow: 0 4px 15px rgba(0, 247, 255, 0.2);
+}
+
+.empty-state-btn.btn-secondary:hover {
+  background: rgba(0, 247, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 247, 255, 0.3);
+}
+
+/* Icon animations in buttons */
+.empty-state-btn i {
+  transition: transform 0.3s ease;
+}
+
+.empty-state-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .empty-state {
+    padding: 60px 30px;
+    margin: 20px 0;
+  }
+  
+  .empty-state-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 25px;
+  }
+  
+  .empty-state-icon i {
+    font-size: 36px;
+  }
+  
+  .empty-state-title {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  
+  .empty-state-desc {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .empty-state-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .empty-state-btn {
+    width: 220px;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+  
+  .panel-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .empty-state {
+    padding: 40px 20px;
+  }
+  
+  .empty-state-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .empty-state-icon i {
+    font-size: 28px;
+  }
+  
+  .empty-state-title {
+    font-size: 1.4rem;
+  }
+  
+  .empty-state-desc {
+    font-size: 0.9rem;
+  }
+  
+  .empty-state-btn {
+    width: 200px;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+}

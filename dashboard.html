@@ -137,12 +137,18 @@
       <div id="cursosEstudiadosContainer" class="cursos-estudiados-container">
         <!-- Los cursos se cargarán dinámicamente aquí -->
       </div>
-      <div id="cursosEstudiadosVacio" class="cert-panel cert-panel-empty" style="display: none;">
-        <i class="fas fa-route cert-icon"></i>
-        <div class="cert-empty-content">
-          <div class="cert-title">¡Aún no tienes rutas creadas!</div>
-          <div class="cert-desc">Crea rutas de estudio personalizadas para organizar tu aprendizaje.</div>
-          <a href="mis_rutas.html" class="btn-primary cert-explore-btn">Crear Primera Ruta</a>
+      <div id="cursosEstudiadosVacio" class="empty-state" style="display: block;">
+        <div class="empty-state-icon">
+          <i class="fas fa-route"></i>
+        </div>
+        <div class="empty-state-content">
+          <h3 class="empty-state-title">¡Aún no tienes rutas creadas!</h3>
+          <p class="empty-state-desc">Crea rutas de estudio personalizadas para organizar tu aprendizaje y alcanzar tus objetivos de manera estructurada.</p>
+          <div class="empty-state-actions">
+            <a href="mis_rutas.html" class="btn-primary empty-state-btn">
+              <i class="fas fa-plus"></i> Crear Primera Ruta
+            </a>
+          </div>
         </div>
       </div>
     </div>
