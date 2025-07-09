@@ -80,7 +80,7 @@
     </div>
     <!-- Notificación de ruta creada -->
     <div id="notificacionRuta" style="display:none; position:fixed; left:50%; bottom:32px; transform:translateX(-50%); background:#fff; color:#222; border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.2); padding:20px 40px; font-size:1.2rem; z-index:10000; display:flex; align-items:center; gap:12px; min-width:220px; visibility:hidden;">
-      <span style="font-size:1.5rem;">&#43;</span> Ruta creada
+      <span id="notificacionRutaTexto" style="font-size:1.5rem;">&#43; Ruta creada</span>
       <button id="cerrarNotificacionRuta" style="background:none; border:none; font-size:1.5rem; margin-left:auto; cursor:pointer;">&times;</button>
     </div>
     <!-- Notificación de ruta eliminada -->
@@ -380,9 +380,14 @@
       // Función para mostrar notificaciones (éxito o error)
       function mostrarNotificacion(mensaje, tipo) {
         const notificacion = document.getElementById(tipo === 'success' ? 'notificacionRuta' : 'notificacionEliminada');
+        if (tipo === 'success') {
+          // Solo muestra "Ruta creada" una vez
+          notificacion.querySelector('span').innerHTML = '&#43; Ruta creada';
+        } else {
+          notificacion.querySelector('span').textContent = mensaje;
+        }
         notificacion.style.display = 'flex';
         notificacion.style.visibility = 'visible';
-        notificacion.querySelector('span').textContent = mensaje;
         setTimeout(() => {
           notificacion.style.opacity = '1';
         }, 50);
