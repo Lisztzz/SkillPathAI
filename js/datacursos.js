@@ -170,7 +170,7 @@ export const dataCursos = [
         descripcion: "Explore los conceptos centrales de deep learning.",
         imagen: "assets/imagenes_cursos/Fundamentos de deep learning.jpg",
         profesor: "Dr. Juan Carlos",
-        modulos: 4,
+        modulos: 3,
         duracion: "19h",
         modulo1: "Redes neuronales artificiales y perceptrón multicapa",
         modulo2: "Redes convolucionales (CNN) y visión artificial",
