@@ -249,9 +249,10 @@ main.container {
   margin-top: 0.5rem;
 }
 
-/* Features & Courses */
-.features, .courses {
+/* Features*/
+.features {
   margin-bottom: 4rem;
+  max-width: 100%;
 }
 .features-text {
     text-align: center;
@@ -266,9 +267,11 @@ main.container {
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   margin-top: 1rem;
+  max-width: 100%;
+  align-items: stretch;
 }
 
 .card {
@@ -276,6 +279,10 @@ main.container {
   padding: 1.5rem;
   border-radius: 12px;
   border: 2px solid#2E696B;
+  width: 100%;
+  max-width: 400px;
+  min-height: 220px;
+  margin: 0 auto;
 }
 .card i {
     font-size: 40px;
@@ -291,11 +298,13 @@ main.container {
   cursor:auto;
   overflow: hidden;
   min-height:220px;
-  max-width: 320px;
+  width: 100%;
+  max-width: 400px;
   z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 0 auto;
 }
 
 /* Hover que expande el card (sin desplazar a otros) */
@@ -331,133 +340,93 @@ main.container {
   transform: scale(1);
   pointer-events: auto;
 }
+
+/* Responsivo para features y cursos y tendencias */
+/* Pantallas grandes: 3 columnas (por defecto) */
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .cursos-tendencias-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Pantallas medianas: 2 columnas */
+@media (max-width: 1199px) and (min-width: 801px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .cursos-tendencias-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Tablets y móviles grandes: 2 columnas */
+@media (max-width: 990px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .card,
+  .feature-card {
+    max-width: none;
+    min-height: 200px;
+  }
+  
+  .cursos-tendencias-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .cursos-tendencias-cards .carousel-item {
+    max-width: none;
+    min-height: 300px;
+  }
+  
+  .cursos-tendencias-cards .carousel-item img {
+    height: 140px;
+  }
+}
+
+/* Móviles: 1 columna */
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .card,
+  .feature-card {
+    max-width: none;
+    min-height: 180px;
+  }
+  
+  .cursos-tendencias-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .cursos-tendencias-cards .carousel-item {
+    max-width: none;
+    min-height: 320px;
+  }
+  
+  .cursos-tendencias-cards .carousel-item img {
+    height: 160px;
+  }
+}
 /* Cursos destacados */
-.titulo-cursos-destacados {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-.carousel-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  max-width: 100%;
-}
 
-.carousel-prev,
-.carousel-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  background: none;
-  color: #00F7FF;
-  border: none;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(33,74,74,0.18);
-  opacity: 0.92;
-}
-
-.carousel-prev {
-  left: 0px;
-}
-
-.carousel-next {
-  right: 50px;
-}
-
-.dashboard-carousel,
-.featured-courses-carousel,
-.cursos-tendencias-carousel {
-  display: flex;
-  gap: 4rem;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  padding-bottom: 1rem;
-  scroll-snap-type: x mandatory;
-  flex: 1 1 auto;
-  width: 100%;
-  position: relative;
-}
-
-.carousel-item {
-  background: #214A4A;
-  border-radius: 14px;
-  border: 2px solid #2E696B;
-  box-shadow: 0 2px 8px rgba(33,74,74,0.08);
-  min-width: 320px;
-  max-width: 320px;
-  min-height: 330px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: none;
-  position: relative;
-  scroll-snap-align: start;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.carousel-item:hover,
-.carousel-item:focus-within {
-  box-shadow: 0 8px 32px rgba(0,247,255,0.18), 0 2px 8px rgba(33,74,74,0.18);
-  z-index: 2;
-  cursor: pointer;
-}
-.carousel-item:last-child {
-  margin-right: 0;
-}
-.carousel-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
-  margin-bottom: 10px;
-}
-.carousel-title {
-  font-weight: bold;
-  color: #00F7FF;
-  font-size: 1.08rem;
-  margin-bottom: 1px;
-  text-align: center;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.carousel-desc {
-  color: #8CCCCF;
-  font-size: 0.98rem;
-  min-height: 48px;
-  margin-bottom: 5px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-}
-.btn-outline:hover {
-  background: #00F7FF;
-  color: #214A4A;
-}
-.carousel-item:hover {
-  cursor: pointer;
-}
-.btn-outlinec{
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: bold;
-  white-space: nowrap;
-  background-color: #13e4e4;
-  color: #FFF;
-}
 
 /* Testimonios */
 .testimonials {
@@ -608,7 +577,7 @@ main.container {
   padding: 2rem;
   background-color: #1a3b3b;
   border-radius: 12px;
-  max-width: 800px;
+  max-width: 100%;
 }
 
 .faq h3 {
@@ -800,7 +769,93 @@ footer {
 .social-icons a:hover {
   color: #00F7FF;
 }
+/*cursos y tendencias */
+.cursos-tendencias-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 2rem 0;
+  max-width: 100%;
+  align-items: start;
+}
 
+.cursos-tendencias-cards .carousel-item {
+  background: #214A4A;
+  border-radius: 14px;
+  border: 2px solid #2E696B;
+  box-shadow: 0 2px 8px rgba(33,74,74,0.08);
+  width: 100%;
+  max-width: 400px;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  position: relative;
+  scroll-snap-align: start;
+  transition: box-shadow 0.2s, transform 0.2s;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.cursos-tendencias-cards .carousel-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  margin-bottom: 12px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.cursos-tendencias-cards .carousel-title {
+  font-weight: bold;
+  color: #00F7FF;
+  font-size: 1.08rem;
+  margin-bottom: 1px;
+  text-align: center;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.cursos-tendencias-cards .carousel-desc {
+  color: #8CCCCF;
+  font-size: 0.98rem;
+  min-height: 48px;
+  margin-bottom: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+.carousel-item:hover,
+.carousel-item:focus-within {
+  box-shadow: 0 8px 32px rgba(0,247,255,0.18), 0 2px 8px rgba(33,74,74,0.18);
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Estilos para enlaces de cursos */
+.cursos-tendencias-cards a.carousel-item {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.cursos-tendencias-cards a.carousel-item:hover {
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-2px);
+}
+
+.cursos-tendencias-cards a.carousel-item:visited {
+  color: inherit;
+}
 
 /* Responsive */
 @media (max-width: 990px) {
@@ -856,5 +911,17 @@ footer {
     max-width: 180px;
     min-height: 320px;
     padding: 12px 8px 12px 8px;
+  }
+  /*por que elegirnos*/
+  .carousel-wrapper {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .features-text {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
   }
 }
