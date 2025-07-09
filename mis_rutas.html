@@ -246,7 +246,7 @@
         const rutas = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
         const cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
         if (rutas.length === 0) {
-          rutasContainer.innerHTML = `<div style="color:#bdbdbd;padding:24px 0;">No tienes rutas creadas aún.</div>`;
+          // No mostrar mensaje, solo dejar lo que está debajo (el estado vacío ya está en el HTML)
           return;
         }
         rutas.forEach(nombre => {
@@ -359,6 +359,14 @@
         document.getElementById('cerrarModalRuta').click();
         mostrarNotificacion('Ruta creada', 'success');
         renderRutasConProgreso();
+        // Si es la primera ruta, elimina el mensaje de estado vacío y deja solo el botón
+        if (rutasUsuario.length === 1) {
+          const estadoVacio = document.getElementById('estadoVacio');
+          if (estadoVacio) {
+            const p = estadoVacio.querySelector('p');
+            if (p) p.style.display = 'none';
+          }
+        }
       };
 
       // Eliminar ruta (solo si está vacía) y mostrar notificación
