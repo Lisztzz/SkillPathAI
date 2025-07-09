@@ -57,10 +57,10 @@
   </aside>
   
   <!-- Offcanvas Menu -->
+  <div class="offcanvas-overlay" id="offcanvas-overlay"></div>
   <div class="offcanvas-menu" id="offcanvas-menu">
-    <label for="menu-toggle" class="close-offcanvas">&times;</label>
     <a href="lista_cursos.html" class="btn-cursos cursos">Cursos</a>
-    <a href="index.html#precios" class="btn-primary">Precios</a>
+    <a href="home.html#precios" class="btn-primary">Precios</a>
   </div>
 
   <!-- Main Content -->
@@ -129,17 +129,20 @@
         </div>
       </div>
     </div>
-    <!-- Panel de Certificados debajo y a lo ancho -->
+    <!-- Mis rutas -->
     <div class="dashboard-panel panel-full">
       <div class="panel-header">
-        <span>Certificados</span>
+        <span>Mis Rutas</span>
       </div>
-      <div class="cert-panel cert-panel-empty">
-        <i class="fas fa-certificate cert-icon"></i>
+      <div id="cursosEstudiadosContainer" class="cursos-estudiados-container">
+        <!-- Los cursos se cargarán dinámicamente aquí -->
+      </div>
+      <div id="cursosEstudiadosVacio" class="cert-panel cert-panel-empty" style="display: none;">
+        <i class="fas fa-route cert-icon"></i>
         <div class="cert-empty-content">
-          <div class="cert-title">¡Aún no tienes certificados!</div>
-          <div class="cert-desc">Completa un curso para obtener tu primer certificado.</div>
-          <a href="lista_cursos.html" class="btn-primary cert-explore-btn">Explorar cursos</a>
+          <div class="cert-title">¡Aún no tienes rutas creadas!</div>
+          <div class="cert-desc">Crea rutas de estudio personalizadas para organizar tu aprendizaje.</div>
+          <a href="mis_rutas.html" class="btn-primary cert-explore-btn">Crear Primera Ruta</a>
         </div>
       </div>
     </div>
@@ -159,221 +162,6 @@
   <script type="module" src="js/log_out.js"></script>
   <script type="module" src="js/barraBusqueda.js"></script>
   <script src="js/perfil.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Sidebar toggle
-      const sidebar = document.getElementById("sidebar");
-      const sidebarToggle = document.getElementById("sidebarToggle");
-      if (sidebarToggle && sidebar) {
-        sidebarToggle.addEventListener("click", () => {
-          sidebar.classList.toggle("collapsed");
-          document.body.classList.toggle("sidebar-collapsed");
-          if (sidebar.classList.contains("collapsed")) {
-            sidebarToggle.innerHTML = "&gt;";
-          } else {
-            sidebarToggle.innerHTML = "&lt;&lt;";
-          }
-          sidebarToggle.style.display = "flex";
-          sidebarToggle.style.alignItems = "center";
-          sidebarToggle.style.justifyContent = "center";
-        });
-      }
-
-      // --- NAVBAR AVATAR MENU PERSONALIZADO (igual que perfil.js) ---
-      const avatarDesktop = document.getElementById('avatarDesktop');
-      const avatarMenu = document.getElementById('avatarMenu');
-      // Actualiza el icono de perfil en el navbar si hay uno guardado
-      const savedAvatar = localStorage.getItem('perfilAvatar');
-      if (savedAvatar) {
-        const navbarAvatar = avatarDesktop.querySelector('img');
-        if (navbarAvatar) navbarAvatar.src = savedAvatar;
-      }
-      function construirMenuAvatar() {
-        let nombreMostrar = localStorage.getItem('perfilNombre') || 'Usuario';
-        avatarMenu.innerHTML = `
-          <div style="padding: 16px 18px 8px 18px; color: #8CCCCF; font-weight: bold; font-size: 1.1rem;">Hola ${nombreMostrar}</div>
-          <button class="avatar-menu__item" id="btnMiPerfil" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#fff;font-size:1rem;cursor:pointer;">Mi perfil</button>
-          <hr style="border:0;border-top:1px solid #2E696B;margin:8px 0;">
-          <button class="avatar-menu__item" id="logoutBtn" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#e74c3c;font-size:1rem;cursor:pointer;">Cerrar sesión</button>
-        `;
-        avatarMenu.querySelector('#btnMiPerfil').onclick = function() {
-          window.location.href = 'perfil.html';
-        };
-        avatarMenu.querySelector('#logoutBtn').onclick = function() {
-          window.location.href = 'index.html';
-        };
-      }
-      if (avatarDesktop && avatarMenu) {
-        avatarDesktop.addEventListener('click', function (e) {
-          e.stopPropagation();
-          construirMenuAvatar();
-          avatarMenu.style.display = avatarMenu.style.display === 'block' ? 'none' : 'block';
-        });
-        document.addEventListener('click', function (e) {
-          if (avatarMenu.style.display === 'block' && !avatarDesktop.contains(e.target)) {
-            avatarMenu.style.display = 'none';
-          }
-        });
-      }
-
-      // Envío del formulario de preguntas frecuentes
-      const faqSendButton = document.getElementById('faqSend');
-      if (faqSendButton) {
-        faqSendButton.addEventListener("click", () => {
-          const name = document.getElementById('faqName').value.trim();
-          const email = document.getElementById('faqEmail').value.trim();
-          const message = document.getElementById('faqMessage').value.trim();
-          const faqPopup = document.getElementById('faqPopup');
-
-          if (!name || !email || !message) {
-            alert('Por favor, completa todos los campos.');
-          } else {
-            alert('¡Mensaje enviado! Gracias por contactarnos.');
-            // Limpiar los campos
-            document.getElementById('faqName').value = '';
-            document.getElementById('faqEmail').value = '';
-            document.getElementById('faqMessage').value = '';
-            if (faqPopup) faqPopup.style.display = 'none';
-          }
-        });
-      }
-
-      // Mostrar/ocultar el popup de preguntas frecuentes
-      const faqToggle = document.getElementById('faqToggle');
-      const faqPopup = document.getElementById('faqPopup');
-
-      if (faqToggle && faqPopup) {
-        faqToggle.addEventListener('click', () => {
-          faqPopup.style.display = faqPopup.style.display === 'block' ? 'none' : 'block';
-        });
-
-        // Opcional: cerrar el popup al hacer clic fuera de él
-        document.addEventListener('click', (e) => {
-          if (
-            faqPopup.style.display === 'block' &&
-            !faqPopup.contains(e.target) &&
-            e.target !== faqToggle
-          ) {
-            faqPopup.style.display = 'none';
-          }
-        });
-      }
-
-      // Gráfico de horas estudiadas por día
-      const ctx = document.getElementById('studyChart').getContext('2d');
-      const studyChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['L', 'M', 'M', 'J', 'V', 'S', 'D'], // Lunes a Domingo
-          datasets: [{
-            label: 'Horas',
-            data: [1, 2, 1.5, 0, 2.5, 3, 1], // Ejemplo de horas por día
-            backgroundColor: '#8CCCCF',
-            borderRadius: 8,
-            maxBarThickness: 32
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: { color: '#8CCCCF', font: { weight: 'bold' } }
-            },
-            y: {
-              beginAtZero: true,
-              max: 12,
-              ticks: {
-                stepSize: 1,
-                color: '#8CCCCF',
-                callback: function(value) { return value + 'h'; }
-              },
-              grid: { color: '#214A4A' }
-            }
-          }
-        }
-      });
-
-      // --- Configuración de objetivo diario ---
-      let dailyGoal = 2; // valor inicial
-      let hoursToday = 1; // puedes actualizar esto según tus datos reales
-
-      const goalSettingsBtn = document.getElementById('goalSettingsBtn');
-      const goalSettingsPopup = document.getElementById('goalSettingsPopup');
-      const goalInput = document.getElementById('goalInput');
-      const saveGoalBtn = document.getElementById('saveGoalBtn');
-      const cancelGoalBtn = document.getElementById('cancelGoalBtn');
-      const goalHoursText = document.getElementById('goalHoursText');
-      const goalProgressCircle = document.getElementById('goalProgressCircle');
-      const goalSettingsOverlay = document.getElementById('goalSettingsOverlay');
-
-      function updateGoalDisplay() {
-        goalHoursText.textContent = `${hoursToday}/${dailyGoal}h`;
-        // Actualiza el círculo de progreso
-        const total = dailyGoal;
-        const progress = Math.min(hoursToday / total, 1);
-        const dasharray = 2 * Math.PI * 100; // circunferencia
-        const dashoffset = dasharray * (1 - progress);
-        goalProgressCircle.setAttribute('stroke-dasharray', dasharray);
-        goalProgressCircle.setAttribute('stroke-dashoffset', dashoffset);
-      }
-
-      function showGoalPopup(show) {
-        goalSettingsPopup.style.display = show ? 'block' : 'none';
-        goalSettingsOverlay.style.display = show ? 'block' : 'none';
-      }
-
-      if (goalSettingsBtn && goalSettingsPopup && goalInput && saveGoalBtn && goalSettingsOverlay) {
-        goalSettingsBtn.addEventListener('click', function(e) {
-          goalInput.value = dailyGoal;
-          showGoalPopup(goalSettingsPopup.style.display !== 'block');
-          e.stopPropagation();
-        });
-
-        goalSettingsPopup.addEventListener('click', function(e) {
-          e.stopPropagation();
-        });
-
-        goalSettingsOverlay.addEventListener('click', function() {
-          showGoalPopup(false);
-        });
-
-        saveGoalBtn.addEventListener('click', function() {
-          const val = parseInt(goalInput.value, 10);
-          if (val >= 1 && val <= 24) {
-            dailyGoal = val;
-            updateGoalDisplay();
-            showGoalPopup(false);
-          } else {
-            alert('Por favor ingresa un valor entre 1 y 24.');
-          }
-        });
-
-        cancelGoalBtn.addEventListener('click', function() {
-          showGoalPopup(false);
-        });
-
-        document.addEventListener('click', function(e) {
-          if (
-            goalSettingsPopup.style.display === 'block' &&
-            !goalSettingsPopup.contains(e.target) &&
-            e.target !== goalSettingsBtn
-          ) {
-            showGoalPopup(false);
-          }
-        });
-      }
-
-      updateGoalDisplay();
-
-      // Ajustar la altura del canvas del gráfico
-      const canvas = document.getElementById('studyChart');
-      canvas.height = canvas.parentElement.offsetHeight || 220;
-
-    });
-  </script>
+  <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>
