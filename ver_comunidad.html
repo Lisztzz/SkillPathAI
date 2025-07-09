@@ -195,7 +195,7 @@ function publicarComentario() {
   const textarea = document.getElementById('nuevoComentario');
   const texto = textarea.value.trim();
   if (!texto) return;
-
+  const savedAvatar = localStorage.getItem('perfilAvatar') || 'assets/images/perfil.jpg';
   const subtituloPublicaciones = document.querySelector('.subtitulo-publicaciones');
   let miPublicacionBlock = document.getElementById('miPublicacionBlock');
 
@@ -209,28 +209,29 @@ function publicarComentario() {
     subtituloPublicaciones.parentNode.insertBefore(miPublicacionBlock, subtituloPublicaciones);
   }
 
-  const div = document.createElement('div');
-  div.className = 'publicacion-comunidad';
-  div.innerHTML = `
-    <div class="publicacion-header">
-      <img class="avatar-publicacion" src="assets/images/perfil.jpg" alt="Avatar de usuario" />
-      <span class="nombre-publicacion">Tú</span>
-      <span class="fecha-publicacion">ahora</span>
+ const div = document.createElement('div');
+ div.className = 'publicacion-comunidad';
+ const nombreUsuario = localStorage.getItem('perfilNombre') || 'Tú';
+ div.innerHTML = `
+  <div class="publicacion-header">
+    <img class="avatar-publicacion" src="${savedAvatar}" alt="Avatar de usuario" />
+    <span class="nombre-publicacion">${nombreUsuario}</span>
+    <span class="fecha-publicacion">ahora</span>
+  </div>
+  <div class="texto-publicacion-comunidad">${texto}</div>
+  <div class="acciones-publicacion-comunidad">
+    <div class="acciones-reacciones">
+      <img class="like-btn" src="assets/img/like.png" alt="Like" />
+      <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
     </div>
-    <div class="texto-publicacion-comunidad">${texto}</div>
-    <div class="acciones-publicacion-comunidad">
-      <div class="acciones-reacciones">
-        <img class="like-btn" src="assets/img/like.png" alt="Like" />
-        <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
-      </div>
-      <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
-    </div>
-    <div class="responder-box" style="display:none;">
-      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
-      <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
-    </div>
-    <div class="comentarios-respuestas"></div>
-  `;
+    <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
+  </div>
+  <div class="responder-box" style="display:none;">
+    <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
+    <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
+  </div>
+  <div class="comentarios-respuestas"></div>
+`;
 
   const miPublicacionContenedor = document.getElementById('miPublicacionContenedor');
   // miPublicacionContenedor.innerHTML = ''; // <-- Elimina esta línea
@@ -263,6 +264,8 @@ function enviarRespuesta(btn) {
   const texto = textarea.value.trim();
   if (!texto) return;
   const comentariosDiv = btn.parentElement.nextElementSibling;
+  const savedAvatar = localStorage.getItem('perfilAvatar') || 'assets/images/perfil.jpg';
+  const nombreUsuario = localStorage.getItem('perfilNombre') || 'Tú';
 
   // Buscar si ya existe un contenedor de respuesta en este comentario
   let respuesta = comentariosDiv.querySelector('.comentario-respuesta-contenedor');
@@ -298,8 +301,8 @@ function enviarRespuesta(btn) {
   const nuevoComentario = document.createElement("div");
   nuevoComentario.innerHTML = `
     <div class="comentario-respuesta-header">
-      <img class="avatar-respuesta" src="assets/images/perfil.jpg" alt="Tu foto de perfil" />
-      <span class="nombre-respuesta">Tú</span>
+      <img class="avatar-respuesta" src="${savedAvatar}" alt="Tu foto de perfil" />
+      <span class="nombre-publicacion">${nombreUsuario}</span>
       <span class="fecha-respuesta">ahora</span>
     </div>
     <div class="comentario-respuesta-texto">${texto}</div>
@@ -397,6 +400,15 @@ function inicializarContadores(reacciones) {
 </script>
 
   <script>
+    // Esto funciona para cualquier página donde haya un .avatar-publicar
+   document.addEventListener("DOMContentLoaded", function () {
+     const savedAvatar = localStorage.getItem('perfilAvatar');
+     if (savedAvatar) {
+       document.querySelectorAll('.avatar-publicar').forEach(img => {
+         img.src = savedAvatar;
+       });
+     }
+   });
   document.addEventListener("DOMContentLoaded", function () {
     // Inicializar contadores en publicaciones principales
     document.querySelectorAll('.acciones-reacciones, .comentario-respuesta-acciones').forEach(function(reacciones) {

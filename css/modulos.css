@@ -268,6 +268,174 @@
     transform: translateY(-2px);
 }
 
+.chat-panel {
+  background: #214A4A;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+  padding: 1.5rem 1rem;
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.publicar-verde-container {
+  width: 100%;      /* Cambia el ancho horizontal aquí */
+  height: 120px;     /* Cambia el alto vertical aquí */
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;     /* Opcional: para que el contenido se estire verticalmente */
+  flex-direction: column;
+}
+.publicar-verde-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: #1a3b3b;
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 880px;
+  width: 100%;
+  position: relative;
+}
+.avatar-publicar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 2px;
+}
+.publicar-verde {
+  flex: 1;
+  min-height: 60px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.08rem;
+  padding: 0.5rem 0.8rem;
+  resize: none;
+  outline: none;
+  box-shadow: none;
+}
+.btn-publicar {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 0.5rem;
+  background: #00F7FF;
+  color: #0F2424;
+  border: none;
+  border-radius: 8px;
+  padding: 0rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: background 0.2s, opacity 0.2s;
+}
+.btn-publicar:enabled {
+  opacity: 1;
+}
+.btn-publicar:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.publicar-verde::placeholder {
+  color: #fff8;
+  font-size: 1.05rem;
+}
+.publicar-verde:focus {
+  background: #1a3b3b;
+  box-shadow: 0 0 0 2px #1a3b3b;
+}
+
+/* Subtítulo Comentarios */
+.subtitulo-comentarios {
+  margin-top: 2.2rem;
+  margin-bottom: 1.2rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+/* Comentarios de usuarios */
+.comentarios-lista {
+  margin-top: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.comentario {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: #173a3f;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+}
+.avatar-comentario {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #173a3f;
+  border: 2px solid #00f7ff;
+  display: block;
+}
+.comentario-contenido {
+  flex: 1;
+}
+.comentario-header {
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+.comentario-texto {
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+.comentario-acciones button {
+  background: none;
+  border: none;
+  color: #8ccccf;
+  margin-right: 0.7rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.comentario-acciones button:hover {
+  color: #00f7ff;
+}
+
+
+.btn-like:disabled,
+.btn-dislike:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+.comentario-respuesta {
+  font-size: 0.97rem;
+}
+.respuesta-form textarea {
+  background: #1e4a4e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  width: 100%;
+  min-height: 40px;
+  resize: none !important; /* Esto evita que se pueda cambiar el tamaño */
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.respuesta-form textarea:focus {
+  outline: 2px solid #00f7ff;
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
