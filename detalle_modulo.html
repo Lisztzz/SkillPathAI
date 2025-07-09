@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/stylesMR.css">
     <link rel="stylesheet" href="css/modulos.css">
+    <link rel="stylesheet" href="css/comunidad.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -100,6 +101,22 @@
                     </a>
                 </div>
             </div>
+            <!-- Panel de chat -->
+            <div class="chat-panel">
+              <div class="publicar-verde-container">
+                <div class="publicar-verde-wrapper" style="display: flex; align-items: flex-start; gap: 0.8rem;">
+                  <img id="avatarPublicar" src="assets/images/perfil.jpg" alt="Tu perfil" class="avatar-comentario" style="width:28px;height:28px;">
+                  <textarea class="publicar-verde" id="nuevoComentario" placeholder="¿Quieres publicar algo?"></textarea>
+                  <button class="btn-publicar" id="btnPublicar" disabled>Publicar</button>
+               </div>
+              </div>
+              <!-- Subtítulo Comentarios -->
+              <h3 class="subtitulo-comentarios">Comentarios</h3>
+              <!-- Comentarios debajo del área para publicar -->
+                <div class="comentarios-lista">
+                    <!-- Aquí el JS insertará los comentarios dinámicamente -->
+                </div>
+            </div>
         </div>
     </main>
 
@@ -161,6 +178,9 @@
             to { transform: translateX(0); opacity: 1; }
         }
     </style>
+
+    <script type="module" src="js/detalleModulo.js"></script>
+
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Sidebar toggle y colisión igual que perfil
