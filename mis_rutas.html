@@ -259,7 +259,7 @@
           });
           let progresoRuta = cursos.length > 0 ? Math.round(sumaPorcentajes / cursos.length) : 0;
 
-          // Tarjeta de la ruta con barra de progreso afuera
+          // Tarjeta de la ruta con barra de progreso afuera y basurita
           const div = document.createElement('div');
           div.className = 'ruta-lista-item';
           div.style = 'background:#214A4A;color:#fff;padding:18px 22px;margin-bottom:18px;border-radius:16px;display:flex;align-items:center;gap:18px;cursor:pointer;position:relative;';
@@ -275,11 +275,57 @@
                 </div>
               </div>
             </div>
-            <div style="font-size:1.3rem;color:#8CCCCF;"><i class="fas fa-arrow-right"></i></div>
+            <button class="eliminarRutaBtn" title="Eliminar ruta" style="background:none;border:none;color:#8CCCCF;font-size:1.7rem;cursor:pointer;margin-left:12px;">
+              <i class="fas fa-trash-alt"></i>
+            </button>
           `;
-          div.addEventListener('click', function () {
-            window.mostrarDetalleRuta(nombre);
+          // Click en la tarjeta para ver detalle
+          div.addEventListener('click', function (e) {
+            if (!e.target.classList.contains('eliminarRutaBtn') && !e.target.closest('.eliminarRutaBtn')) {
+              window.mostrarDetalleRuta(nombre);
+            }
           });
+          // Basurita: eliminar ruta con confirmación
+          div.querySelector('.eliminarRutaBtn').onclick = function(e) {
+            e.stopPropagation();
+            // Cuadro emergente de confirmación
+            const confirmBox = document.createElement('div');
+            confirmBox.style.position = 'fixed';
+            confirmBox.style.left = '0';
+            confirmBox.style.top = '0';
+            confirmBox.style.width = '100vw';
+            confirmBox.style.height = '100vh';
+            confirmBox.style.background = 'rgba(26,58,58,0.75)';
+            confirmBox.style.display = 'flex';
+            confirmBox.style.alignItems = 'center';
+            confirmBox.style.justifyContent = 'center';
+            confirmBox.style.zIndex = '99999';
+            confirmBox.innerHTML = `
+              <div style="background:#1a3a3a; color:#fff; border-radius:18px; padding:36px 32px; box-shadow:0 4px 24px rgba(0,0,0,0.18); text-align:center; min-width:320px; border:2px solid #214A4A;">
+                <div style="font-size:1.25rem; margin-bottom:18px; color:#8CCCCF;">¿Estás seguro de que quieres eliminar esta ruta?</div>
+                <div style="display:flex; gap:18px; justify-content:center;">
+                  <button id="confirmEliminarRutaSi" style="background:#e74c3c; color:#fff; border:none; border-radius:8px; padding:10px 28px; font-size:1.1rem; cursor:pointer; transition:background 0.2s;">Sí</button>
+                  <button id="confirmEliminarRutaNo" style="background:#8CCCCF; color:#1a3a3a; border:none; border-radius:8px; padding:10px 28px; font-size:1.1rem; cursor:pointer; transition:background 0.2s;">No</button>
+                </div>
+              </div>
+            `;
+            document.body.appendChild(confirmBox);
+
+            document.getElementById('confirmEliminarRutaSi').onclick = function() {
+              // Eliminar ruta de localStorage
+              let rutasUsuario = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+              rutasUsuario = rutasUsuario.filter(ruta => ruta !== nombre);
+              localStorage.setItem('rutasUsuario', JSON.stringify(rutasUsuario));
+              let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+              delete cursosPorRuta[nombre];
+              localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+              document.body.removeChild(confirmBox);
+              renderRutasConProgreso();
+            };
+            document.getElementById('confirmEliminarRutaNo').onclick = function() {
+              document.body.removeChild(confirmBox);
+            };
+          };
           rutasContainer.appendChild(div);
         });
       }
