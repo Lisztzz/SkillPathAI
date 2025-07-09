@@ -63,7 +63,7 @@
   <div id="rutasContainer"></div>
   <div id="detalleRuta" style="display:none;">
     <div style="margin-bottom: 24px; border-bottom: 1px solid #2E696B; padding-bottom: 16px;">
-      <button id="volverRutas" class="btn-primary" style="margin-bottom:16px;background:#00F7A7;color:#222;">&larr; Volver</button>
+      <button id="volverRutas" class="btn-primary" style="margin-bottom:16px;background:#00F7FF;color:#000;">&larr; Volver</button>
       <h1 id="nombreRutaDetalle" style="margin: 0 0 8px 0; font-size: 2.5rem; color: #fff; text-transform: lowercase;"></h1>
       <span style="color: #8CCCCF; font-size: 1.1rem;">Ruta Personalizada</span>
     </div>
@@ -71,7 +71,7 @@
     <div id="detalleRutaVacio" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
       <h2 style="color:#fff; font-size:1.3rem; margin-bottom:8px; font-weight:bold;">Aún no tienes cursos en esta ruta</h2>
       <p style="color:#8CCCCF; font-size:1.1rem; margin-bottom:24px; text-align:center;">Explora los cursos que tenemos para ti y agrégalos a esta ruta.</p>
-      <button class="btn-primary" id="explorarCursosBtn" style="padding: 0.7rem 1.5rem; font-size:1rem;background:#00F7A7;color:#222;">Explorar Cursos</button>
+      <button class="btn-primary" id="explorarCursosBtn" style="padding: 0.7rem 1.5rem; font-size:1rem;background:#00F7FF;color:#000;">Explorar Cursos</button>
     </div>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;" id="estadoVacio">
@@ -101,7 +101,10 @@
   <script src="js/log_out.js"></script>
   <script src="js/misrutasFunciones.js"></script>
   <script type="module" src="js/barraBusqueda.js"></script>
-  <script>
+  <script type="module">
+    import { FiltroModulos } from './js/filtrarModulos.js';
+    const filtroModulos = new FiltroModulos();
+
     document.addEventListener("DOMContentLoaded", function () {
       // --- NAVBAR AVATAR MENU PERSONALIZADO (igual que perfil.js) ---
       const avatarDesktop = document.getElementById('avatarDesktop');
@@ -151,7 +154,7 @@
         var header = document.getElementById('headerMisRutas');
         if (header) header.style.display = 'none';
 
-        // Mostrar cursos con barra de progreso y basurita por curso (estilo imagen)
+        // Mostrar cursos con barra de progreso y basurita por curso (paleta de colores)
         const detalleCursosLista = document.getElementById('detalleCursosLista');
         const detalleRutaVacio = document.getElementById('detalleRutaVacio');
         detalleCursosLista.innerHTML = '';
@@ -164,8 +167,10 @@
             detalleRutaVacio.querySelector('#explorarCursosBtn').style.display = '';
           }
           cursos.forEach((nombreCurso, idx) => {
-            // Simulación de progreso individual (puedes cambiarlo por tu lógica real)
-            let progresoCurso = Math.floor(Math.random() * 100); // O usa tu propio sistema de progreso
+            // Obtener progreso real del curso usando FiltroModulos
+            let stats = filtroModulos.obtenerEstadisticasProgreso(nombreCurso);
+            let progresoCurso = stats ? stats.porcentaje : 0;
+
             const cursoDiv = document.createElement('div');
             cursoDiv.style.display = 'flex';
             cursoDiv.style.alignItems = 'center';
@@ -173,17 +178,18 @@
             cursoDiv.style.margin = '18px 0 0 0';
             cursoDiv.style.padding = '0';
             cursoDiv.style.borderRadius = '16px';
-            cursoDiv.style.background = '#24403F';
+            cursoDiv.style.background = '#214A4A';
             cursoDiv.style.boxShadow = 'none';
             cursoDiv.style.position = 'relative';
             cursoDiv.style.minHeight = '64px';
+            cursoDiv.style.cursor = 'pointer';
 
             cursoDiv.innerHTML = `
               <div style="
                 width:48px;
                 height:48px;
                 border-radius:12px;
-                background:#223634;
+                background:#1a3a3a;
                 display:flex;
                 align-items:center;
                 justify-content:center;
@@ -197,9 +203,9 @@
               <div style="display:flex; flex-direction:column; flex:1; min-width:200px; margin-top:8px; margin-bottom:8px;">
                 <span style="font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:2px;">${nombreCurso}</span>
                 <div style="display:flex;align-items:center;gap:8px;">
-                  <span style="color:#8CCCCF;font-size:0.98rem;font-weight:500;">${progresoCurso}%</span>
+                  <span style="color:#00F7FF;font-size:0.98rem;font-weight:500;">${progresoCurso}%</span>
                   <div style="flex:1; height:6px; background:#314B4A; border-radius:4px; position:relative; min-width:120px;">
-                    <div style="height:6px; background:#00F7A7; border-radius:4px; width:${progresoCurso}%; transition:width 0.3s;"></div>
+                    <div style="height:6px; background:#00F7FF; border-radius:4px; width:${progresoCurso}%; transition:width 0.3s;"></div>
                   </div>
                 </div>
               </div>
@@ -207,8 +213,12 @@
                 <i class="fas fa-trash-alt"></i>
               </button>
             `;
-            detalleCursosLista.appendChild(cursoDiv);
-
+            // Navegar al detalle del curso al hacer click en la tarjeta (excepto en la basurita)
+            cursoDiv.addEventListener('click', function(e) {
+              if (!e.target.classList.contains('eliminarCursoBtn') && !e.target.closest('.eliminarCursoBtn')) {
+                window.location.href = 'info_all_cursos.html?nombre=' + encodeURIComponent(nombreCurso);
+              }
+            });
             // Eliminar curso de la ruta
             cursoDiv.querySelector('.eliminarCursoBtn').onclick = function(e) {
               e.stopPropagation();
@@ -217,6 +227,7 @@
               localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
               window.mostrarDetalleRuta(nombre);
             };
+            detalleCursosLista.appendChild(cursoDiv);
           });
         } else {
           if (detalleRutaVacio) {
@@ -227,6 +238,128 @@
           detalleCursosLista.innerHTML = '';
         }
       };
+
+      // Renderizar rutas con barra de progreso general afuera
+      function renderRutasConProgreso() {
+        const rutasContainer = document.getElementById('rutasContainer');
+        rutasContainer.innerHTML = '';
+        const rutas = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+        const cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        if (rutas.length === 0) {
+          rutasContainer.innerHTML = `<div style="color:#bdbdbd;padding:24px 0;">No tienes rutas creadas aún.</div>`;
+          return;
+        }
+        rutas.forEach(nombre => {
+          const cursos = cursosPorRuta[nombre] || [];
+          // Calcular progreso general de la ruta (promedio de progreso de los cursos)
+          let sumaPorcentajes = 0;
+          cursos.forEach(nombreCurso => {
+            let stats = filtroModulos.obtenerEstadisticasProgreso(nombreCurso);
+            sumaPorcentajes += stats ? stats.porcentaje : 0;
+          });
+          let progresoRuta = cursos.length > 0 ? Math.round(sumaPorcentajes / cursos.length) : 0;
+
+          // Tarjeta de la ruta con barra de progreso afuera
+          const div = document.createElement('div');
+          div.className = 'ruta-lista-item';
+          div.style = 'background:#214A4A;color:#fff;padding:18px 22px;margin-bottom:18px;border-radius:16px;display:flex;align-items:center;gap:18px;cursor:pointer;position:relative;';
+          div.innerHTML = `
+            <div style="font-size:2rem;color:#8CCCCF;"><i class="fas fa-route"></i></div>
+            <div style="flex:1;">
+              <div style="font-weight:600;font-size:1.1rem;">${nombre}</div>
+              <div style="font-size:0.98rem;color:#8CCCCF;">${cursos.length} cursos &nbsp; <span>Ruta Personalizada</span></div>
+              <div style="margin-top:10px;display:flex;align-items:center;gap:10px;">
+                <span style="color:#00F7FF;font-size:0.98rem;font-weight:500;">${progresoRuta}%</span>
+                <div style="flex:1; height:6px; background:#314B4A; border-radius:4px; min-width:120px;">
+                  <div style="height:6px; background:#00F7FF; border-radius:4px; width:${progresoRuta}%; transition:width 0.3s;"></div>
+                </div>
+              </div>
+            </div>
+            <div style="font-size:1.3rem;color:#8CCCCF;"><i class="fas fa-arrow-right"></i></div>
+          `;
+          div.addEventListener('click', function () {
+            window.mostrarDetalleRuta(nombre);
+          });
+          rutasContainer.appendChild(div);
+        });
+      }
+
+      // Sobrescribe renderRutasGuardadas para usar la nueva función
+      window.renderRutasGuardadas = renderRutasConProgreso;
+      renderRutasConProgreso();
+
+      // --- FIN CARGA RUTAS Y DETALLES ---
+      // --- CREACION Y ELIMINACION DE RUTAS ---
+      // Crear nueva ruta desde el modal
+      document.getElementById('crearRutaModal').onclick = function() {
+        const nombreRuta = document.getElementById('nombreNuevaRuta').value.trim();
+        if (!nombreRuta) {
+          alert('Por favor, ingresa un nombre para la ruta.');
+          return;
+        }
+        let rutasUsuario = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+        if (rutasUsuario.includes(nombreRuta)) {
+          alert('Ya tienes una ruta con ese nombre. Elige otro nombre.');
+          return;
+        }
+        rutasUsuario.push(nombreRuta);
+        localStorage.setItem('rutasUsuario', JSON.stringify(rutasUsuario));
+        // Crear entrada vacía en cursosPorRuta
+        let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        cursosPorRuta[nombreRuta] = [];
+        localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+        document.getElementById('nombreNuevaRuta').value = '';
+        // Cerrar modal y mostrar notificación
+        document.getElementById('cerrarModalRuta').click();
+        mostrarNotificacion('Ruta creada', 'success');
+        renderRutasConProgreso();
+      };
+
+      // Eliminar ruta (solo si está vacía) y mostrar notificación
+      document.getElementById('notificacionEliminada').onclick = function() {
+        let rutasUsuario = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+        let rutaAEliminar = document.getElementById('nombreRutaDetalle').textContent.trim();
+        if (!rutaAEliminar) return;
+        rutasUsuario = rutasUsuario.filter(ruta => ruta !== rutaAEliminar);
+        localStorage.setItem('rutasUsuario', JSON.stringify(rutasUsuario));
+        // Eliminar entrada en cursosPorRuta
+        let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        delete cursosPorRuta[rutaAEliminar];
+        localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+        document.getElementById('volverRutas').click();
+        mostrarNotificacion('Ruta eliminada', 'error');
+        renderRutasConProgreso();
+      };
+
+      // Función para mostrar notificaciones (éxito o error)
+      function mostrarNotificacion(mensaje, tipo) {
+        const notificacion = document.getElementById(tipo === 'success' ? 'notificacionRuta' : 'notificacionEliminada');
+        notificacion.style.display = 'flex';
+        notificacion.style.visibility = 'visible';
+        notificacion.querySelector('span').textContent = mensaje;
+        setTimeout(() => {
+          notificacion.style.opacity = '1';
+        }, 50);
+        setTimeout(() => {
+          notificacion.style.opacity = '0';
+          setTimeout(() => {
+            notificacion.style.display = 'none';
+            notificacion.style.visibility = 'hidden';
+          }, 300);
+        }, 3000);
+      }
+
+      // --- FIN CREACION Y ELIMINACION DE RUTAS ---
+      // --- BUSCADOR DE CURSOS EN RUTAS ---
+      const searchParams = new URLSearchParams(window.location.search);
+      const nombreCursoBuscado = searchParams.get('curso');
+      if (nombreCursoBuscado) {
+        document.getElementById('nombreNuevaRuta').value = nombreCursoBuscado;
+        // Simular creación de ruta con el curso buscado
+        setTimeout(() => {
+          document.getElementById('crearRutaModal').click();
+        }, 500);
+      }
     });
   </script>
 </body>

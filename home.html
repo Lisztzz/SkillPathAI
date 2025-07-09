@@ -216,12 +216,23 @@
     const sidebarToggle = document.getElementById("sidebarToggle");
     function updateSidebarTogglePosition() {
       if (sidebar.classList.contains("collapsed")) {
-        sidebarToggle.innerHTML = "&gt;&gt;";
+        sidebarToggle.innerHTML = "&gt;";
+        sidebar.style.width = "64px";
         document.body.classList.add("sidebar-collapsed");
+        sidebarToggle.style.position = "absolute";
+        sidebarToggle.style.left = "50%";
+        sidebarToggle.style.transform = "translateX(-50%)";
       } else {
         sidebarToggle.innerHTML = "&lt;&lt;";
+        sidebar.style.width = "";
         document.body.classList.remove("sidebar-collapsed");
+        sidebarToggle.style.position = "relative";
+        sidebarToggle.style.left = "0";
+        sidebarToggle.style.transform = "none";
       }
+      sidebarToggle.style.display = "flex";
+      sidebarToggle.style.alignItems = "center";
+      sidebarToggle.style.justifyContent = "center";
     }
     if (sidebarToggle && sidebar) {
       sidebarToggle.addEventListener("click", () => {
@@ -344,7 +355,7 @@
       rutas.forEach((ruta, idx) => {
         const item = document.createElement('div');
         item.className = 'ruta-carousel-item';
-        item.style.cursor = 'pointer';
+        item.style.cursor = 'default';
         item.innerHTML = `
           <div class="ruta-card">
             <div class="ruta-icon"><i class="fas ${ruta.icono}"></i></div>
@@ -355,9 +366,7 @@
             <div class="ruta-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
         `;
-        item.addEventListener('click', () => {
-          window.location.href = `mis_rutas.html#${encodeURIComponent(ruta.nombre)}`;
-        });
+        // Ya NO redirige al hacer click
         rutasCarousel.appendChild(item);
       });
     }
