@@ -17,7 +17,6 @@ a {
 
 .container {
   padding: 2rem;
-  max-width: 1200px;
   margin: auto;
 }
 
@@ -35,11 +34,6 @@ a {
   gap: 1rem;
   padding: 0.5rem 1rem;
   border-bottom: 1px solid #8CCCCF;
-}
-
-.main.container {
-  margin-left: 220px;
-  padding-top: 80px;
 }
 
 .navbar-brand {
@@ -193,10 +187,10 @@ a {
 /* Sidebar */
 .sidebar {
   position: fixed;
-  top: 80px; /* Ajustado para que esté debajo del navbar */
+  top: 80px; 
   left: 0;
   width: 180px;
-  height: calc(100vh - 80px); /* Altura completa menos la altura del navbar */
+  height: calc(100vh - 80px);
   background-color: #1a3b3b;
   display: flex;
   flex-direction: column;
@@ -272,42 +266,24 @@ main.container {
 
 /* Main content spacing */
 main.container {
-  max-width: 1200px;
   margin: 0 auto;
   padding-top: 100px;
-  padding-left: 220px; /* Espacio para el sidebar */
-  padding-right: 1rem;
+  margin-left: 180px; 
+  margin-right: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
   box-sizing: border-box;
+  width: calc(100vw - 180px); 
 }
 
-/* Hero */
-.hero {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-.hero-text {
-  flex: 1 1 50%;
-  max-width: 50%;
-  text-align: center;
-  font-size: 30px;
+/* Main content cuando sidebar está colapsado */
+body:has(.sidebar.collapsed) main.container {
+  margin-left: 60px; 
+  margin-right: 0; 
+  width: calc(100vw - 60px); 
 }
 
-.hero-text h2 {
-  margin-bottom: 1rem;
-}
 
-.hero-text p {
-  margin-bottom: 1.5rem;
-}
-
-.hero-text a.btn-primary {
-  display: inline-block;
-  margin-top: 0.5rem;
-}
 
 /* Preguntas frecuentes */
 .faq-button {
@@ -378,6 +354,24 @@ main.container {
 }
 
 /* Offcanvas para móviles */
+.offcanvas-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 1999;
+}
+
+.offcanvas-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .offcanvas-menu {
   position: fixed;
   top: 0;
@@ -415,6 +409,7 @@ main.container {
   display: flex;
   gap: 24px;
   margin-bottom: 24px;
+  align-items: center;
 }
 .panel-half {
   flex: 1 1 0;
@@ -435,6 +430,10 @@ main.container {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+}
+
+.panel-header {
+  margin-bottom: 16px;
 }
 
 /* Ajuste de altura para simetría */
@@ -579,48 +578,104 @@ main.container {
   background: #163232;
 }
 
-/* Certificados */
-.panel-header {
-  text-align: left;
-  width: 100%;
-  padding-left: 0;
-  margin-bottom: 12px;
+
+.menu-open .offcanvas-menu {
+  right: 0;
 }
-.cert-panel-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 220px;
-  text-align: center;
+
+/* Mostrar offcanvas cuando el checkbox está marcado */
+#menu-toggle:checked ~ .offcanvas-menu,
+#menu-toggle:checked ~ * .offcanvas-menu {
+  right: 0;
+}
+
+/* Cursos estudiados */
+.cursos-estudiados-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
   width: 100%;
 }
-.cert-empty-content {
+
+.curso-estudiado-card {
+  background: #214A4A;
+  border-radius: 12px;
+  padding: 16px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.curso-estudiado-card:hover {
+  background: #2A5A5A;
+  transform: translateY(-2px);
+}
+
+.curso-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #163232;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8CCCCF;
+  flex-shrink: 0;
+}
+
+.curso-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.curso-nombre {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.curso-progreso-container {
+  display: flex;
   align-items: center;
   gap: 8px;
 }
-.cert-explore-btn {
-  margin-top: 10px;
-  padding: 8px 24px;
-  font-size: 1rem;
-  border-radius: 7px;
-  background: #214A4A;
-  color: #fff;
-  border: none;
-  font-weight: bold;
 
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;
-}/*
-.cert-explore-btn:hover {
-  background: #163232;
-}*/
-.menu-open .offcanvas-menu {
-  right: 0;
+.curso-progreso-text {
+  color: #00F7FF;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 35px;
+}
+
+.curso-progreso-bar {
+  flex: 1;
+  height: 4px;
+  background: #314B4A;
+  border-radius: 2px;
+  position: relative;
+  min-width: 80px;
+}
+
+.curso-progreso-fill {
+  height: 4px;
+  background: #00F7FF;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Responsive para cursos estudiados */
+@media (max-width: 900px) {
+  .cursos-estudiados-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 750px) {
