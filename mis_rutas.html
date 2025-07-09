@@ -63,14 +63,15 @@
   <div id="rutasContainer"></div>
   <div id="detalleRuta" style="display:none;">
     <div style="margin-bottom: 24px; border-bottom: 1px solid #2E696B; padding-bottom: 16px;">
-      <button id="volverRutas" class="btn-primary" style="margin-bottom:16px;">&larr; Volver</button>
-      <h1 id="nombreRutaDetalle" style="margin: 0 0 8px 0; font-size: 2rem; color: #fff;">Ruta</h1>
-      <span style="color: #8CCCCF; font-size: 1rem;">Ruta Personalizada</span>
+      <button id="volverRutas" class="btn-primary" style="margin-bottom:16px;background:#00F7A7;color:#222;">&larr; Volver</button>
+      <h1 id="nombreRutaDetalle" style="margin: 0 0 8px 0; font-size: 2.5rem; color: #fff; text-transform: lowercase;"></h1>
+      <span style="color: #8CCCCF; font-size: 1.1rem;">Ruta Personalizada</span>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
-      <h2 style="color:#fff; font-size:1.3rem; margin-bottom:8px;">Aún no tienes cursos en esta ruta</h2>
+    <div id="detalleCursosLista" style="margin-top:24px;"></div>
+    <div id="detalleRutaVacio" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
+      <h2 style="color:#fff; font-size:1.3rem; margin-bottom:8px; font-weight:bold;">Aún no tienes cursos en esta ruta</h2>
       <p style="color:#8CCCCF; font-size:1.1rem; margin-bottom:24px; text-align:center;">Explora los cursos que tenemos para ti y agrégalos a esta ruta.</p>
-      <button class="btn-primary" id="explorarCursosBtn" style="padding: 0.7rem 1.5rem; font-size:1rem;">Explorar Cursos</button>
+      <button class="btn-primary" id="explorarCursosBtn" style="padding: 0.7rem 1.5rem; font-size:1rem;background:#00F7A7;color:#222;">Explorar Cursos</button>
     </div>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;" id="estadoVacio">
@@ -138,6 +139,94 @@
           }
         });
       }
+
+      // --- DETALLE DE RUTA: barra de progreso, cursos y basurita por curso ---
+      window.mostrarDetalleRuta = function(nombre) {
+        document.getElementById('rutasContainer').style.display = 'none';
+        var estadoVacio = document.getElementById('estadoVacio');
+        var detalleRuta = document.getElementById('detalleRuta');
+        var nombreRutaDetalle = document.getElementById('nombreRutaDetalle');
+        if (nombreRutaDetalle) nombreRutaDetalle.textContent = nombre;
+        if (detalleRuta) detalleRuta.style.display = 'block';
+        var header = document.getElementById('headerMisRutas');
+        if (header) header.style.display = 'none';
+
+        // Mostrar cursos con barra de progreso y basurita por curso (estilo imagen)
+        const detalleCursosLista = document.getElementById('detalleCursosLista');
+        const detalleRutaVacio = document.getElementById('detalleRutaVacio');
+        detalleCursosLista.innerHTML = '';
+        let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        let cursos = cursosPorRuta[nombre] || [];
+        if (cursos.length > 0) {
+          if (detalleRutaVacio) {
+            detalleRutaVacio.querySelector('h2').style.display = 'none';
+            detalleRutaVacio.querySelector('p').style.display = 'none';
+            detalleRutaVacio.querySelector('#explorarCursosBtn').style.display = '';
+          }
+          cursos.forEach((nombreCurso, idx) => {
+            // Simulación de progreso individual (puedes cambiarlo por tu lógica real)
+            let progresoCurso = Math.floor(Math.random() * 100); // O usa tu propio sistema de progreso
+            const cursoDiv = document.createElement('div');
+            cursoDiv.style.display = 'flex';
+            cursoDiv.style.alignItems = 'center';
+            cursoDiv.style.gap = '18px';
+            cursoDiv.style.margin = '18px 0 0 0';
+            cursoDiv.style.padding = '0';
+            cursoDiv.style.borderRadius = '16px';
+            cursoDiv.style.background = '#24403F';
+            cursoDiv.style.boxShadow = 'none';
+            cursoDiv.style.position = 'relative';
+            cursoDiv.style.minHeight = '64px';
+
+            cursoDiv.innerHTML = `
+              <div style="
+                width:48px;
+                height:48px;
+                border-radius:12px;
+                background:#223634;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-shrink:0;
+                margin-left:8px;
+                margin-right:8px;
+                font-size:1.6rem;
+                font-weight:bold;
+                color:#8CCCCF;
+              ">${nombreCurso[0].toUpperCase()}</div>
+              <div style="display:flex; flex-direction:column; flex:1; min-width:200px; margin-top:8px; margin-bottom:8px;">
+                <span style="font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:2px;">${nombreCurso}</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span style="color:#8CCCCF;font-size:0.98rem;font-weight:500;">${progresoCurso}%</span>
+                  <div style="flex:1; height:6px; background:#314B4A; border-radius:4px; position:relative; min-width:120px;">
+                    <div style="height:6px; background:#00F7A7; border-radius:4px; width:${progresoCurso}%; transition:width 0.3s;"></div>
+                  </div>
+                </div>
+              </div>
+              <button class="eliminarCursoBtn" data-curso="${encodeURIComponent(nombreCurso)}" style="background:none; border:none; color:#8CCCCF; font-size:1.5rem; cursor:pointer; margin-right:18px;" title="Eliminar curso">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            `;
+            detalleCursosLista.appendChild(cursoDiv);
+
+            // Eliminar curso de la ruta
+            cursoDiv.querySelector('.eliminarCursoBtn').onclick = function(e) {
+              e.stopPropagation();
+              let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+              cursosPorRuta[nombre] = cursosPorRuta[nombre].filter(c => c !== nombreCurso);
+              localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+              window.mostrarDetalleRuta(nombre);
+            };
+          });
+        } else {
+          if (detalleRutaVacio) {
+            detalleRutaVacio.querySelector('h2').style.display = '';
+            detalleRutaVacio.querySelector('p').style.display = '';
+            detalleRutaVacio.querySelector('#explorarCursosBtn').style.display = '';
+          }
+          detalleCursosLista.innerHTML = '';
+        }
+      };
     });
   </script>
 </body>
