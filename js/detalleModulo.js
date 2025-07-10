@@ -251,7 +251,7 @@ function actualizarInterfaz() {
     // Información del módulo
     document.getElementById('modulo-numero').textContent = `Módulo ${moduloActual.numero}`;
     document.getElementById('modulo-titulo').textContent = moduloActual.titulo;
-    document.getElementById('modulo-resumen').textContent = moduloActual.resumen;
+    document.getElementById('modulo-resumen').innerHTML = moduloActual.resumen;
     
     // Video
     const videoContainer = document.getElementById('video-container');
