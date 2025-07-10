@@ -9,13 +9,14 @@
   <title>SkillPathIA</title>
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/stylesMR.css">
 </head>
 <body>
   <!-- Navbar -->
   <header class="navbar">
     <a class="navbar-brand" href="home.html">
-        <img src="assets/icons/logo.png" alt="Logo" />
-        <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
+      <img src="assets/icons/logo.png" alt="Logo" />
+      <span class="brand-skill">SkillPath</span><span class="brand-ia">IA</span>
     </a>
     <nav class="navbar-cursos">
       <a href="lista_cursos.html" class="nav-cursos">Cursos</a>
@@ -44,22 +45,22 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <nav class="sidebar-menu">
-        <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
-        <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
-        <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
-        <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
-        <div class="navbar-avatar navbar-avatar-mobile">
-          <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
-        </div>
+      <a href="home.html"><i class="fas fa-home"></i><span class="sidebar-text">Inicio</span></a>
+      <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
+      <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
+      <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
+      <div class="navbar-avatar navbar-avatar-mobile">
+        <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
+      </div>
     </nav>
-    <div class="sidebar-toggle" id="sidebarToggle">&lt;&lt;</div>
+    <div class="sidebar-toggle" id="sidebarToggle" style="display:flex;align-items:center;justify-content:center;height:48px;font-size:1.3rem;cursor:pointer;">&lt;&lt;</div>
   </aside>
   
   <!-- Offcanvas Menu -->
+  <div class="offcanvas-overlay" id="offcanvas-overlay"></div>
   <div class="offcanvas-menu" id="offcanvas-menu">
-    <label for="menu-toggle" class="close-offcanvas">&times;</label>
     <a href="lista_cursos.html" class="btn-cursos cursos">Cursos</a>
-    <a href="index.html#precios" class="btn-primary">Precios</a>
+    <a href="home.html#precios" class="btn-primary">Precios</a>
   </div>
 
   <!-- Main Content -->
@@ -128,17 +129,26 @@
         </div>
       </div>
     </div>
-    <!-- Panel de Certificados debajo y a lo ancho -->
+    <!-- Mis rutas -->
     <div class="dashboard-panel panel-full">
       <div class="panel-header">
-        <span>Certificados</span>
+        <span>Mis Rutas</span>
       </div>
-      <div class="cert-panel cert-panel-empty">
-        <i class="fas fa-certificate cert-icon"></i>
-        <div class="cert-empty-content">
-          <div class="cert-title">¡Aún no tienes certificados!</div>
-          <div class="cert-desc">Completa un curso para obtener tu primer certificado.</div>
-          <a href="lista_cursos.html" class="btn-primary cert-explore-btn">Explorar cursos</a>
+      <div id="cursosEstudiadosContainer" class="cursos-estudiados-container">
+        <!-- Los cursos se cargarán dinámicamente aquí -->
+      </div>
+      <div id="cursosEstudiadosVacio" class="empty-state" style="display: block;">
+        <div class="empty-state-icon">
+          <i class="fas fa-route"></i>
+        </div>
+        <div class="empty-state-content">
+          <h3 class="empty-state-title">¡Aún no tienes rutas creadas!</h3>
+          <p class="empty-state-desc">Crea rutas de estudio personalizadas para organizar tu aprendizaje y alcanzar tus objetivos de manera estructurada.</p>
+          <div class="empty-state-actions">
+            <a href="mis_rutas.html" class="btn-primary empty-state-btn">
+              <i class="fas fa-plus"></i> Crear Primera Ruta
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -157,189 +167,7 @@
   </main>
   <script type="module" src="js/log_out.js"></script>
   <script type="module" src="js/barraBusqueda.js"></script>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Referencias comunes
-    const toggle = document.getElementById("menu-toggle");
-    const sidebar = document.getElementById("sidebar");
-    const sidebarToggle = document.getElementById("sidebarToggle");
-    const faqSendButton = document.getElementById('faqSend');
-
-    // Funcionalidad del menú hamburguesa (offcanvas)
-    if (toggle) {
-      toggle.addEventListener("change", function () {
-        document.body.classList.toggle("menu-open", toggle.checked);
-      });
-    }
-
-    // Funcionalidad de colapso del sidebar
-    if (sidebarToggle && sidebar) {
-      sidebarToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("collapsed");
-        document.body.classList.toggle("sidebar-collapsed");
-
-        // Cambia el símbolo del botón
-        sidebarToggle.innerHTML = sidebar.classList.contains("collapsed") ? "&gt;&gt;" : "&lt;&lt;";
-      });
-    }
-
-    // Envío del formulario de preguntas frecuentes
-    if (faqSendButton) {
-      faqSendButton.addEventListener("click", () => {
-        const name = document.getElementById('faqName').value.trim();
-        const email = document.getElementById('faqEmail').value.trim();
-        const message = document.getElementById('faqMessage').value.trim();
-        const faqPopup = document.getElementById('faqPopup');
-
-        if (!name || !email || !message) {
-          alert('Por favor, completa todos los campos.');
-        } else {
-          alert('¡Mensaje enviado! Gracias por contactarnos.');
-          // Limpiar los campos
-          document.getElementById('faqName').value = '';
-          document.getElementById('faqEmail').value = '';
-          document.getElementById('faqMessage').value = '';
-          if (faqPopup) faqPopup.style.display = 'none';
-        }
-      });
-    }
-
-    // Mostrar/ocultar el popup de preguntas frecuentes
-    const faqToggle = document.getElementById('faqToggle');
-    const faqPopup = document.getElementById('faqPopup');
-
-    if (faqToggle && faqPopup) {
-      faqToggle.addEventListener('click', () => {
-        faqPopup.style.display = faqPopup.style.display === 'block' ? 'none' : 'block';
-      });
-
-      // Opcional: cerrar el popup al hacer clic fuera de él
-      document.addEventListener('click', (e) => {
-        if (
-          faqPopup.style.display === 'block' &&
-          !faqPopup.contains(e.target) &&
-          e.target !== faqToggle
-        ) {
-          faqPopup.style.display = 'none';
-        }
-      });
-    }
-
-    // Gráfico de horas estudiadas por día
-    const ctx = document.getElementById('studyChart').getContext('2d');
-    const studyChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['L', 'M', 'M', 'J', 'V', 'S', 'D'], // Lunes a Domingo
-        datasets: [{
-          label: 'Horas',
-          data: [1, 2, 1.5, 0, 2.5, 3, 1], // Ejemplo de horas por día
-          backgroundColor: '#8CCCCF',
-          borderRadius: 8,
-          maxBarThickness: 32
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          x: {
-            grid: { display: false },
-            ticks: { color: '#8CCCCF', font: { weight: 'bold' } }
-          },
-          y: {
-            beginAtZero: true,
-            max: 12,
-            ticks: {
-              stepSize: 1,
-              color: '#8CCCCF',
-              callback: function(value) { return value + 'h'; }
-            },
-            grid: { color: '#214A4A' }
-          }
-        }
-      }
-    });
-
-    // --- Configuración de objetivo diario ---
-    let dailyGoal = 2; // valor inicial
-    let hoursToday = 1; // puedes actualizar esto según tus datos reales
-
-    const goalSettingsBtn = document.getElementById('goalSettingsBtn');
-    const goalSettingsPopup = document.getElementById('goalSettingsPopup');
-    const goalInput = document.getElementById('goalInput');
-    const saveGoalBtn = document.getElementById('saveGoalBtn');
-    const cancelGoalBtn = document.getElementById('cancelGoalBtn');
-    const goalHoursText = document.getElementById('goalHoursText');
-    const goalProgressCircle = document.getElementById('goalProgressCircle');
-    const goalSettingsOverlay = document.getElementById('goalSettingsOverlay');
-
-    function updateGoalDisplay() {
-      goalHoursText.textContent = `${hoursToday}/${dailyGoal}h`;
-      // Actualiza el círculo de progreso
-      const total = dailyGoal;
-      const progress = Math.min(hoursToday / total, 1);
-      const dasharray = 2 * Math.PI * 100; // circunferencia
-      const dashoffset = dasharray * (1 - progress);
-      goalProgressCircle.setAttribute('stroke-dasharray', dasharray);
-      goalProgressCircle.setAttribute('stroke-dashoffset', dashoffset);
-    }
-
-    function showGoalPopup(show) {
-      goalSettingsPopup.style.display = show ? 'block' : 'none';
-      goalSettingsOverlay.style.display = show ? 'block' : 'none';
-    }
-
-    if (goalSettingsBtn && goalSettingsPopup && goalInput && saveGoalBtn && goalSettingsOverlay) {
-      goalSettingsBtn.addEventListener('click', function(e) {
-        goalInput.value = dailyGoal;
-        showGoalPopup(goalSettingsPopup.style.display !== 'block');
-        e.stopPropagation();
-      });
-
-      goalSettingsPopup.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-
-      goalSettingsOverlay.addEventListener('click', function() {
-        showGoalPopup(false);
-      });
-
-      saveGoalBtn.addEventListener('click', function() {
-        const val = parseInt(goalInput.value, 10);
-        if (val >= 1 && val <= 24) {
-          dailyGoal = val;
-          updateGoalDisplay();
-          showGoalPopup(false);
-        } else {
-          alert('Por favor ingresa un valor entre 1 y 24.');
-        }
-      });
-
-      cancelGoalBtn.addEventListener('click', function() {
-        showGoalPopup(false);
-      });
-
-      document.addEventListener('click', function(e) {
-        if (
-          goalSettingsPopup.style.display === 'block' &&
-          !goalSettingsPopup.contains(e.target) &&
-          e.target !== goalSettingsBtn
-        ) {
-          showGoalPopup(false);
-        }
-      });
-    }
-
-    updateGoalDisplay();
-
-    // Ajustar la altura del canvas del gráfico
-    const canvas = document.getElementById('studyChart');
-    canvas.height = canvas.parentElement.offsetHeight || 220;
-
-  });
-  </script>
+  <script src="js/perfil.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>

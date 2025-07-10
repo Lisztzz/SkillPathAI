@@ -9,6 +9,7 @@
   <title>SkillPathIA</title>
   <link rel="stylesheet" href="css/styles_comunidad.css"/>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/stylesMR.css">
 </head>
 <body>
 <!-- Navbar -->
@@ -50,7 +51,6 @@
         <a href="mis_rutas.html"><i class="fas fa-route"></i><span class="sidebar-text">Mis Rutas</span></a>
         <a href="ver_comunidad.html"><i class="fas fa-users"></i><span class="sidebar-text">Comunidad</span></a>
         <a href="dashboard.html"><i class="fas fa-chart-line"></i><span class="sidebar-text">Dashboard</span></a>
-
         <div class="navbar-avatar navbar-avatar-mobile">
           <img src="assets/images/perfil.jpg" alt="Avatar de usuario" />
         </div>
@@ -195,7 +195,7 @@ function publicarComentario() {
   const textarea = document.getElementById('nuevoComentario');
   const texto = textarea.value.trim();
   if (!texto) return;
-
+  const savedAvatar = localStorage.getItem('perfilAvatar') || 'assets/images/perfil.jpg';
   const subtituloPublicaciones = document.querySelector('.subtitulo-publicaciones');
   let miPublicacionBlock = document.getElementById('miPublicacionBlock');
 
@@ -209,28 +209,29 @@ function publicarComentario() {
     subtituloPublicaciones.parentNode.insertBefore(miPublicacionBlock, subtituloPublicaciones);
   }
 
-  const div = document.createElement('div');
-  div.className = 'publicacion-comunidad';
-  div.innerHTML = `
-    <div class="publicacion-header">
-      <img class="avatar-publicacion" src="assets/images/perfil.jpg" alt="Avatar de usuario" />
-      <span class="nombre-publicacion">Tú</span>
-      <span class="fecha-publicacion">ahora</span>
+ const div = document.createElement('div');
+ div.className = 'publicacion-comunidad';
+ const nombreUsuario = localStorage.getItem('perfilNombre') || 'Tú';
+ div.innerHTML = `
+  <div class="publicacion-header">
+    <img class="avatar-publicacion" src="${savedAvatar}" alt="Avatar de usuario" />
+    <span class="nombre-publicacion">${nombreUsuario}</span>
+    <span class="fecha-publicacion">ahora</span>
+  </div>
+  <div class="texto-publicacion-comunidad">${texto}</div>
+  <div class="acciones-publicacion-comunidad">
+    <div class="acciones-reacciones">
+      <img class="like-btn" src="assets/img/like.png" alt="Like" />
+      <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
     </div>
-    <div class="texto-publicacion-comunidad">${texto}</div>
-    <div class="acciones-publicacion-comunidad">
-      <div class="acciones-reacciones">
-        <img class="like-btn" src="assets/img/like.png" alt="Like" />
-        <img class="dislike-btn" src="assets/img/dislike.png" alt="Dislike" />
-      </div>
-      <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
-    </div>
-    <div class="responder-box" style="display:none;">
-      <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
-      <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
-    </div>
-    <div class="comentarios-respuestas"></div>
-  `;
+    <span class="texto-responder" onclick="mostrarResponder(this)">Responder</span>
+  </div>
+  <div class="responder-box" style="display:none;">
+    <textarea class="responder-textarea" placeholder="Escribe tu respuesta..."></textarea>
+    <button class="btn-enviar-respuesta" onclick="enviarRespuesta(this)">Enviar</button>
+  </div>
+  <div class="comentarios-respuestas"></div>
+`;
 
   const miPublicacionContenedor = document.getElementById('miPublicacionContenedor');
   // miPublicacionContenedor.innerHTML = ''; // <-- Elimina esta línea
@@ -263,6 +264,8 @@ function enviarRespuesta(btn) {
   const texto = textarea.value.trim();
   if (!texto) return;
   const comentariosDiv = btn.parentElement.nextElementSibling;
+  const savedAvatar = localStorage.getItem('perfilAvatar') || 'assets/images/perfil.jpg';
+  const nombreUsuario = localStorage.getItem('perfilNombre') || 'Tú';
 
   // Buscar si ya existe un contenedor de respuesta en este comentario
   let respuesta = comentariosDiv.querySelector('.comentario-respuesta-contenedor');
@@ -298,8 +301,8 @@ function enviarRespuesta(btn) {
   const nuevoComentario = document.createElement("div");
   nuevoComentario.innerHTML = `
     <div class="comentario-respuesta-header">
-      <img class="avatar-respuesta" src="assets/images/perfil.jpg" alt="Tu foto de perfil" />
-      <span class="nombre-respuesta">Tú</span>
+      <img class="avatar-respuesta" src="${savedAvatar}" alt="Tu foto de perfil" />
+      <span class="nombre-publicacion">${nombreUsuario}</span>
       <span class="fecha-respuesta">ahora</span>
     </div>
     <div class="comentario-respuesta-texto">${texto}</div>
@@ -397,36 +400,45 @@ function inicializarContadores(reacciones) {
 </script>
 
   <script>
+    // Esto funciona para cualquier página donde haya un .avatar-publicar
+   document.addEventListener("DOMContentLoaded", function () {
+     const savedAvatar = localStorage.getItem('perfilAvatar');
+     if (savedAvatar) {
+       document.querySelectorAll('.avatar-publicar').forEach(img => {
+         img.src = savedAvatar;
+       });
+     }
+   });
   document.addEventListener("DOMContentLoaded", function () {
-  // Inicializar contadores en publicaciones principales
-  document.querySelectorAll('.acciones-reacciones, .comentario-respuesta-acciones').forEach(function(reacciones) {
-    inicializarContadores(reacciones);
-  });
+    // Inicializar contadores en publicaciones principales
+    document.querySelectorAll('.acciones-reacciones, .comentario-respuesta-acciones').forEach(function(reacciones) {
+      inicializarContadores(reacciones);
+    });
 
-  // Delegación para publicaciones nuevas
-  const muro = document.getElementById('muroPublicaciones');
-  if (muro) {
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1) {
-            // Para publicaciones principales
-            const reacciones = node.querySelector('.acciones-reacciones');
-            if (reacciones && !reacciones.querySelector('.contador-like')) {
-              inicializarContadores(reacciones);
-            }
-            // Para respuestas nuevas
-            node.querySelectorAll('.comentario-respuesta-acciones').forEach(function(resp) {
-              if (!resp.querySelector('.contador-like')) {
-                inicializarContadores(resp);
+    // Delegación para publicaciones nuevas
+    const muro = document.getElementById('muroPublicaciones');
+    if (muro) {
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1) {
+              // Para publicaciones principales
+              const reacciones = node.querySelector('.acciones-reacciones');
+              if (reacciones && !reacciones.querySelector('.contador-like')) {
+                inicializarContadores(reacciones);
               }
-            });
-          }
+              // Para respuestas nuevas
+              node.querySelectorAll('.comentario-respuesta-acciones').forEach(function(resp) {
+                if (!resp.querySelector('.contador-like')) {
+                  inicializarContadores(resp);
+                }
+              });
+            }
+          });
         });
       });
-    });
-    observer.observe(muro, { childList: true, subtree: true });
-  }
+      observer.observe(muro, { childList: true, subtree: true });
+    }
     // Referencias comunes
     const toggle = document.getElementById("menu-toggle");
     const sidebar = document.getElementById("sidebar");
@@ -489,6 +501,43 @@ function inicializarContadores(reacciones) {
           e.target !== faqToggle
         ) {
           faqPopup.style.display = 'none';
+        }
+      });
+    }
+
+    // --- NAVBAR AVATAR MENU PERSONALIZADO (igual que perfil.js) ---
+    const avatarDesktop = document.getElementById('avatarDesktop');
+    const avatarMenu = document.getElementById('avatarMenu');
+    // Actualiza el icono de perfil en el navbar si hay uno guardado
+    const savedAvatar = localStorage.getItem('perfilAvatar');
+    if (savedAvatar) {
+      const navbarAvatar = avatarDesktop.querySelector('img');
+      if (navbarAvatar) navbarAvatar.src = savedAvatar;
+    }
+    function construirMenuAvatar() {
+      let nombreMostrar = localStorage.getItem('perfilNombre') || 'Usuario';
+      avatarMenu.innerHTML = `
+        <div style="padding: 16px 18px 8px 18px; color: #8CCCCF; font-weight: bold; font-size: 1.1rem;">Hola ${nombreMostrar}</div>
+        <button class="avatar-menu__item" id="btnMiPerfil" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#fff;font-size:1rem;cursor:pointer;">Mi perfil</button>
+        <hr style="border:0;border-top:1px solid #2E696B;margin:8px 0;">
+        <button class="avatar-menu__item" id="logoutBtn" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#e74c3c;font-size:1rem;cursor:pointer;">Cerrar sesión</button>
+      `;
+      avatarMenu.querySelector('#btnMiPerfil').onclick = function() {
+        window.location.href = 'perfil.html';
+      };
+      avatarMenu.querySelector('#logoutBtn').onclick = function() {
+        window.location.href = 'index.html';
+      };
+    }
+    if (avatarDesktop && avatarMenu) {
+      avatarDesktop.addEventListener('click', function (e) {
+        e.stopPropagation();
+        construirMenuAvatar();
+        avatarMenu.style.display = avatarMenu.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', function (e) {
+        if (avatarMenu.style.display === 'block' && !avatarDesktop.contains(e.target)) {
+          avatarMenu.style.display = 'none';
         }
       });
     }

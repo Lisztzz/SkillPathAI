@@ -63,14 +63,15 @@
   <div id="rutasContainer"></div>
   <div id="detalleRuta" style="display:none;">
     <div style="margin-bottom: 24px; border-bottom: 1px solid #2E696B; padding-bottom: 16px;">
-      <button id="volverRutas" class="btn-primary" style="margin-bottom:16px;">&larr; Volver</button>
-      <h1 id="nombreRutaDetalle" style="margin: 0 0 8px 0; font-size: 2rem; color: #fff;">Ruta</h1>
-      <span style="color: #8CCCCF; font-size: 1rem;">Ruta Personalizada</span>
+      <button id="volverRutas" class="btn-primary" style="margin-bottom:16px;background:#00F7FF;color:#000;">&larr; Volver</button>
+      <h1 id="nombreRutaDetalle" style="margin: 0 0 8px 0; font-size: 2.5rem; color: #fff; text-transform: lowercase;"></h1>
+      <span style="color: #8CCCCF; font-size: 1.1rem;">Ruta Personalizada</span>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
-      <h2 style="color:#fff; font-size:1.3rem; margin-bottom:8px;">Aún no tienes cursos en esta ruta</h2>
+    <div id="detalleCursosLista" style="margin-top:24px;"></div>
+    <div id="detalleRutaVacio" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
+      <h2 style="color:#fff; font-size:1.3rem; margin-bottom:8px; font-weight:bold;">Aún no tienes cursos en esta ruta</h2>
       <p style="color:#8CCCCF; font-size:1.1rem; margin-bottom:24px; text-align:center;">Explora los cursos que tenemos para ti y agrégalos a esta ruta.</p>
-      <button class="btn-primary" id="explorarCursosBtn" style="padding: 0.7rem 1.5rem; font-size:1rem;">Explorar Cursos</button>
+      <button class="btn-primary" id="explorarCursosBtn" style="padding: 0.7rem 1.5rem; font-size:1rem;background:#00F7FF;color:#000;">Explorar Cursos</button>
     </div>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;" id="estadoVacio">
@@ -79,7 +80,7 @@
     </div>
     <!-- Notificación de ruta creada -->
     <div id="notificacionRuta" style="display:none; position:fixed; left:50%; bottom:32px; transform:translateX(-50%); background:#fff; color:#222; border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,0.2); padding:20px 40px; font-size:1.2rem; z-index:10000; display:flex; align-items:center; gap:12px; min-width:220px; visibility:hidden;">
-      <span style="font-size:1.5rem;">&#43;</span> Ruta creada
+      <span id="notificacionRutaTexto" style="font-size:1.5rem;">&#43; Ruta creada</span>
       <button id="cerrarNotificacionRuta" style="background:none; border:none; font-size:1.5rem; margin-left:auto; cursor:pointer;">&times;</button>
     </div>
     <!-- Notificación de ruta eliminada -->
@@ -100,8 +101,325 @@
   <script src="js/log_out.js"></script>
   <script src="js/misrutasFunciones.js"></script>
   <script type="module" src="js/barraBusqueda.js"></script>
-  
-  
+  <script type="module">
+    import { FiltroModulos } from './js/filtrarModulos.js';
+    const filtroModulos = new FiltroModulos();
 
+    document.addEventListener("DOMContentLoaded", function () {
+      // --- NAVBAR AVATAR MENU PERSONALIZADO (igual que perfil.js) ---
+      const avatarDesktop = document.getElementById('avatarDesktop');
+      const avatarMenu = document.getElementById('avatarMenu');
+      // Actualiza el icono de perfil en el navbar si hay uno guardado
+      const savedAvatar = localStorage.getItem('perfilAvatar');
+      if (savedAvatar) {
+        const navbarAvatar = avatarDesktop.querySelector('img');
+        if (navbarAvatar) navbarAvatar.src = savedAvatar;
+      }
+      function construirMenuAvatar() {
+        let nombreMostrar = localStorage.getItem('perfilNombre') || 'Usuario';
+        avatarMenu.innerHTML = `
+          <div style="padding: 16px 18px 8px 18px; color: #8CCCCF; font-weight: bold; font-size: 1.1rem;">Hola ${nombreMostrar}</div>
+          <button class="avatar-menu__item" id="btnMiPerfil" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#fff;font-size:1rem;cursor:pointer;">Mi perfil</button>
+          <hr style="border:0;border-top:1px solid #2E696B;margin:8px 0;">
+          <button class="avatar-menu__item" id="logoutBtn" style="width:100%;text-align:left;padding:10px 18px;background:none;border:none;color:#e74c3c;font-size:1rem;cursor:pointer;">Cerrar sesión</button>
+        `;
+        avatarMenu.querySelector('#btnMiPerfil').onclick = function() {
+          window.location.href = 'perfil.html';
+        };
+        avatarMenu.querySelector('#logoutBtn').onclick = function() {
+          window.location.href = 'index.html';
+        };
+      }
+      if (avatarDesktop && avatarMenu) {
+        avatarDesktop.addEventListener('click', function (e) {
+          e.stopPropagation();
+          construirMenuAvatar();
+          avatarMenu.style.display = avatarMenu.style.display === 'block' ? 'none' : 'block';
+        });
+        document.addEventListener('click', function (e) {
+          if (avatarMenu.style.display === 'block' && !avatarDesktop.contains(e.target)) {
+            avatarMenu.style.display = 'none';
+          }
+        });
+      }
+
+      // --- DETALLE DE RUTA: barra de progreso, cursos y basurita por curso ---
+      window.mostrarDetalleRuta = function(nombre) {
+        document.getElementById('rutasContainer').style.display = 'none';
+        var estadoVacio = document.getElementById('estadoVacio');
+        var detalleRuta = document.getElementById('detalleRuta');
+        var nombreRutaDetalle = document.getElementById('nombreRutaDetalle');
+        if (nombreRutaDetalle) nombreRutaDetalle.textContent = nombre;
+        if (detalleRuta) detalleRuta.style.display = 'block';
+        var header = document.getElementById('headerMisRutas');
+        if (header) header.style.display = 'none';
+
+        // Mostrar cursos con barra de progreso y basurita por curso (paleta de colores)
+        const detalleCursosLista = document.getElementById('detalleCursosLista');
+        const detalleRutaVacio = document.getElementById('detalleRutaVacio');
+        detalleCursosLista.innerHTML = '';
+        let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        let cursos = cursosPorRuta[nombre] || [];
+        if (cursos.length > 0) {
+          if (detalleRutaVacio) {
+            detalleRutaVacio.querySelector('h2').style.display = 'none';
+            detalleRutaVacio.querySelector('p').style.display = 'none';
+            detalleRutaVacio.querySelector('#explorarCursosBtn').style.display = '';
+          }
+          cursos.forEach((nombreCurso, idx) => {
+            // Obtener progreso real del curso usando FiltroModulos
+            let stats = filtroModulos.obtenerEstadisticasProgreso(nombreCurso);
+            let progresoCurso = stats ? stats.porcentaje : 0;
+
+            const cursoDiv = document.createElement('div');
+            cursoDiv.style.display = 'flex';
+            cursoDiv.style.alignItems = 'center';
+            cursoDiv.style.gap = '18px';
+            cursoDiv.style.margin = '18px 0 0 0';
+            cursoDiv.style.padding = '0';
+            cursoDiv.style.borderRadius = '16px';
+            cursoDiv.style.background = '#214A4A';
+            cursoDiv.style.boxShadow = 'none';
+            cursoDiv.style.position = 'relative';
+            cursoDiv.style.minHeight = '64px';
+            cursoDiv.style.cursor = 'pointer';
+
+            cursoDiv.innerHTML = `
+              <div style="
+                width:48px;
+                height:48px;
+                border-radius:12px;
+                background:#1a3a3a;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                flex-shrink:0;
+                margin-left:8px;
+                margin-right:8px;
+                font-size:1.6rem;
+                font-weight:bold;
+                color:#8CCCCF;
+              ">${nombreCurso[0].toUpperCase()}</div>
+              <div style="display:flex; flex-direction:column; flex:1; min-width:200px; margin-top:8px; margin-bottom:8px;">
+                <span style="font-size:1.15rem; font-weight:600; color:#fff; margin-bottom:2px;">${nombreCurso}</span>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span style="color:#00F7FF;font-size:0.98rem;font-weight:500;">${progresoCurso}%</span>
+                  <div style="flex:1; height:6px; background:#314B4A; border-radius:4px; position:relative; min-width:120px;">
+                    <div style="height:6px; background:#00F7FF; border-radius:4px; width:${progresoCurso}%; transition:width 0.3s;"></div>
+                  </div>
+                </div>
+              </div>
+              <button class="eliminarCursoBtn" data-curso="${encodeURIComponent(nombreCurso)}" style="background:none; border:none; color:#8CCCCF; font-size:1.5rem; cursor:pointer; margin-right:18px;" title="Eliminar curso">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            `;
+            // Navegar al detalle del curso al hacer click en la tarjeta (excepto en la basurita)
+            cursoDiv.addEventListener('click', function(e) {
+              if (!e.target.classList.contains('eliminarCursoBtn') && !e.target.closest('.eliminarCursoBtn')) {
+                window.location.href = 'info_all_cursos.html?nombre=' + encodeURIComponent(nombreCurso);
+              }
+            });
+            // Eliminar curso de la ruta
+            cursoDiv.querySelector('.eliminarCursoBtn').onclick = function(e) {
+              e.stopPropagation();
+              let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+              cursosPorRuta[nombre] = cursosPorRuta[nombre].filter(c => c !== nombreCurso);
+              localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+              window.mostrarDetalleRuta(nombre);
+            };
+            detalleCursosLista.appendChild(cursoDiv);
+          });
+        } else {
+          if (detalleRutaVacio) {
+            detalleRutaVacio.querySelector('h2').style.display = '';
+            detalleRutaVacio.querySelector('p').style.display = '';
+            detalleRutaVacio.querySelector('#explorarCursosBtn').style.display = '';
+          }
+          detalleCursosLista.innerHTML = '';
+        }
+      };
+
+      // Renderizar rutas con barra de progreso general afuera
+      function renderRutasConProgreso() {
+        const rutasContainer = document.getElementById('rutasContainer');
+        rutasContainer.innerHTML = '';
+        const rutas = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+        const cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        if (rutas.length === 0) {
+          // No mostrar mensaje, solo dejar lo que está debajo (el estado vacío ya está en el HTML)
+          return;
+        }
+        rutas.forEach(nombre => {
+          const cursos = cursosPorRuta[nombre] || [];
+          // Calcular progreso general de la ruta (promedio de progreso de los cursos)
+          let sumaPorcentajes = 0;
+          cursos.forEach(nombreCurso => {
+            let stats = filtroModulos.obtenerEstadisticasProgreso(nombreCurso);
+            sumaPorcentajes += stats ? stats.porcentaje : 0;
+          });
+          let progresoRuta = cursos.length > 0 ? Math.round(sumaPorcentajes / cursos.length) : 0;
+
+          // Tarjeta de la ruta con barra de progreso afuera y basurita
+          const div = document.createElement('div');
+          div.className = 'ruta-lista-item';
+          div.style = 'background:#214A4A;color:#fff;padding:18px 22px;margin-bottom:18px;border-radius:16px;display:flex;align-items:center;gap:18px;cursor:pointer;position:relative;';
+          div.innerHTML = `
+            <div style="font-size:2rem;color:#8CCCCF;"><i class="fas fa-route"></i></div>
+            <div style="flex:1;">
+              <div style="font-weight:600;font-size:1.1rem;">${nombre}</div>
+              <div style="font-size:0.98rem;color:#8CCCCF;">${cursos.length} cursos &nbsp; <span>Ruta Personalizada</span></div>
+              <div style="margin-top:10px;display:flex;align-items:center;gap:10px;">
+                <span style="color:#00F7FF;font-size:0.98rem;font-weight:500;">${progresoRuta}%</span>
+                <div style="flex:1; height:6px; background:#314B4A; border-radius:4px; min-width:120px;">
+                  <div style="height:6px; background:#00F7FF; border-radius:4px; width:${progresoRuta}%; transition:width 0.3s;"></div>
+                </div>
+              </div>
+            </div>
+            <button class="eliminarRutaBtn" title="Eliminar ruta" style="background:none;border:none;color:#8CCCCF;font-size:1.7rem;cursor:pointer;margin-left:12px;">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          `;
+          // Click en la tarjeta para ver detalle
+          div.addEventListener('click', function (e) {
+            if (!e.target.classList.contains('eliminarRutaBtn') && !e.target.closest('.eliminarRutaBtn')) {
+              window.mostrarDetalleRuta(nombre);
+            }
+          });
+          // Basurita: eliminar ruta con confirmación
+          div.querySelector('.eliminarRutaBtn').onclick = function(e) {
+            e.stopPropagation();
+            // Cuadro emergente de confirmación
+            const confirmBox = document.createElement('div');
+            confirmBox.style.position = 'fixed';
+            confirmBox.style.left = '0';
+            confirmBox.style.top = '0';
+            confirmBox.style.width = '100vw';
+            confirmBox.style.height = '100vh';
+            confirmBox.style.background = 'rgba(26,58,58,0.75)';
+            confirmBox.style.display = 'flex';
+            confirmBox.style.alignItems = 'center';
+            confirmBox.style.justifyContent = 'center';
+            confirmBox.style.zIndex = '99999';
+            confirmBox.innerHTML = `
+              <div style="background:#1a3a3a; color:#fff; border-radius:18px; padding:36px 32px; box-shadow:0 4px 24px rgba(0,0,0,0.18); text-align:center; min-width:320px; border:2px solid #214A4A;">
+                <div style="font-size:1.25rem; margin-bottom:18px; color:#8CCCCF;">¿Estás seguro de que quieres eliminar esta ruta?</div>
+                <div style="display:flex; gap:18px; justify-content:center;">
+                  <button id="confirmEliminarRutaSi" style="background:#e74c3c; color:#fff; border:none; border-radius:8px; padding:10px 28px; font-size:1.1rem; cursor:pointer; transition:background 0.2s;">Sí</button>
+                  <button id="confirmEliminarRutaNo" style="background:#8CCCCF; color:#1a3a3a; border:none; border-radius:8px; padding:10px 28px; font-size:1.1rem; cursor:pointer; transition:background 0.2s;">No</button>
+                </div>
+              </div>
+            `;
+            document.body.appendChild(confirmBox);
+
+            document.getElementById('confirmEliminarRutaSi').onclick = function() {
+              // Eliminar ruta de localStorage
+              let rutasUsuario = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+              rutasUsuario = rutasUsuario.filter(ruta => ruta !== nombre);
+              localStorage.setItem('rutasUsuario', JSON.stringify(rutasUsuario));
+              let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+              delete cursosPorRuta[nombre];
+              localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+              document.body.removeChild(confirmBox);
+              renderRutasConProgreso();
+            };
+            document.getElementById('confirmEliminarRutaNo').onclick = function() {
+              document.body.removeChild(confirmBox);
+            };
+          };
+          rutasContainer.appendChild(div);
+        });
+      }
+
+      // Sobrescribe renderRutasGuardadas para usar la nueva función
+      window.renderRutasGuardadas = renderRutasConProgreso;
+      renderRutasConProgreso();
+
+      // --- FIN CARGA RUTAS Y DETALLES ---
+      // --- CREACION Y ELIMINACION DE RUTAS ---
+      // Crear nueva ruta desde el modal
+      document.getElementById('crearRutaModal').onclick = function() {
+        const nombreRuta = document.getElementById('nombreNuevaRuta').value.trim();
+        if (!nombreRuta) {
+          alert('Por favor, ingresa un nombre para la ruta.');
+          return;
+        }
+        let rutasUsuario = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+        if (rutasUsuario.includes(nombreRuta)) {
+          alert('Ya tienes una ruta con ese nombre. Elige otro nombre.');
+          return;
+        }
+        rutasUsuario.push(nombreRuta);
+        localStorage.setItem('rutasUsuario', JSON.stringify(rutasUsuario));
+        // Crear entrada vacía en cursosPorRuta
+        let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        cursosPorRuta[nombreRuta] = [];
+        localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+        document.getElementById('nombreNuevaRuta').value = '';
+        // Cerrar modal y mostrar notificación
+        document.getElementById('cerrarModalRuta').click();
+        mostrarNotificacion('Ruta creada', 'success');
+        renderRutasConProgreso();
+        // Si es la primera ruta, elimina el mensaje de estado vacío y deja solo el botón
+        if (rutasUsuario.length === 1) {
+          const estadoVacio = document.getElementById('estadoVacio');
+          if (estadoVacio) {
+            const p = estadoVacio.querySelector('p');
+            if (p) p.style.display = 'none';
+          }
+        }
+      };
+
+      // Eliminar ruta (solo si está vacía) y mostrar notificación
+      document.getElementById('notificacionEliminada').onclick = function() {
+        let rutasUsuario = JSON.parse(localStorage.getItem('rutasUsuario') || '[]');
+        let rutaAEliminar = document.getElementById('nombreRutaDetalle').textContent.trim();
+        if (!rutaAEliminar) return;
+        rutasUsuario = rutasUsuario.filter(ruta => ruta !== rutaAEliminar);
+        localStorage.setItem('rutasUsuario', JSON.stringify(rutasUsuario));
+        // Eliminar entrada en cursosPorRuta
+        let cursosPorRuta = JSON.parse(localStorage.getItem('cursosPorRuta') || '{}');
+        delete cursosPorRuta[rutaAEliminar];
+        localStorage.setItem('cursosPorRuta', JSON.stringify(cursosPorRuta));
+        document.getElementById('volverRutas').click();
+        mostrarNotificacion('Ruta eliminada', 'error');
+        renderRutasConProgreso();
+      };
+
+      // Función para mostrar notificaciones (éxito o error)
+      function mostrarNotificacion(mensaje, tipo) {
+        const notificacion = document.getElementById(tipo === 'success' ? 'notificacionRuta' : 'notificacionEliminada');
+        if (tipo === 'success') {
+          // Solo muestra "Ruta creada" una vez
+          notificacion.querySelector('span').innerHTML = '&#43; Ruta creada';
+        } else {
+          notificacion.querySelector('span').textContent = mensaje;
+        }
+        notificacion.style.display = 'flex';
+        notificacion.style.visibility = 'visible';
+        setTimeout(() => {
+          notificacion.style.opacity = '1';
+        }, 50);
+        setTimeout(() => {
+          notificacion.style.opacity = '0';
+          setTimeout(() => {
+            notificacion.style.display = 'none';
+            notificacion.style.visibility = 'hidden';
+          }, 300);
+        }, 3000);
+      }
+
+      // --- FIN CREACION Y ELIMINACION DE RUTAS ---
+      // --- BUSCADOR DE CURSOS EN RUTAS ---
+      const searchParams = new URLSearchParams(window.location.search);
+      const nombreCursoBuscado = searchParams.get('curso');
+      if (nombreCursoBuscado) {
+        document.getElementById('nombreNuevaRuta').value = nombreCursoBuscado;
+        // Simular creación de ruta con el curso buscado
+        setTimeout(() => {
+          document.getElementById('crearRutaModal').click();
+        }, 500);
+      }
+    });
+  </script>
 </body>
 </html>

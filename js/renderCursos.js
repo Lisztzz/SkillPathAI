@@ -9,7 +9,12 @@ if (grid) {
         ${curso.pro ? '<span class="badge-pro">PRO</span>' : ''}
         <div class="curso-info">
           <h3 class="curso-titulo">${curso.nombre}</h3>
-          <p class="curso-descripcion">${curso.descripcion}</p>
+          <p class="curso-descripcion">Por ${curso.profesor}</p>
+          <div class="curso-pro-etiquetas">
+            <span class="badge-tiempo">${curso.duracion}</span>
+            <span class="badge-modulo">${curso.modulos} modulos</span>
+          </div>
+
         </div>
       </div>
     </a>
