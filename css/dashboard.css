@@ -479,7 +479,6 @@ body:has(.sidebar.collapsed) main.container {
   background: rgba(0,0,0,0.3);
   z-index: 1000;
 }
-
 /* Popup centrado */
 .goal-popup {
   display: none;

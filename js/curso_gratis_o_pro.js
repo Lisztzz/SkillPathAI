@@ -28,6 +28,7 @@ cursosDetalle.forEach(curso => {
     }
     if (curso.nombre === "Ética y Sociedad") {
         curso.youtube = "https://www.youtube.com/embed/XxztyJ74uzk";
+
         curso.nivel = "Principiante";
         curso.descripcion_larga = "Este curso está diseñado para comprender el impacto ético y social de la inteligencia artificial en la sociedad moderna. Aprenderás sobre principios éticos fundamentales en IA, sesgos algorítmicos y discriminación automatizada, privacidad y protección de datos, transparencia y explicabilidad de modelos, responsabilidad algorítmica, justicia distributiva en sistemas automatizados, y marcos regulatorios emergentes. El curso incluye análisis de casos reales controvertidos, debates éticos, simulaciones de dilemas morales y acceso a foros de discusión con expertos en el tema.<br><br>Al finalizar, serás capaz de identificar y evaluar riesgos éticos en proyectos de IA, proponer soluciones justas e inclusivas, aplicar principios de IA responsable en el desarrollo tecnológico, y liderar conversaciones sobre el uso ético de la inteligencia artificial en organizaciones.";
         curso.puedeEmpezar = true;

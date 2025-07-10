@@ -14,6 +14,7 @@ if (grid) {
             <span class="badge-tiempo">${curso.duracion}</span>
             <span class="badge-modulo">${curso.modulos} modulos</span>
           </div>
+
         </div>
       </div>
     </a>
